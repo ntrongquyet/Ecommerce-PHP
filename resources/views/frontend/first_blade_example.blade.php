@@ -1,7 +1,6 @@
 @extends('layouts.default')
-@section ('title','Trang test')
+@section ('title','Trang chủ')
 @section ('sidebar')
-    @parent
     <p> Phần phụ của sidebar </p>
 @endsection
  @section ('content')

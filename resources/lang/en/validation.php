@@ -146,6 +146,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'username' => "Tên đăng nhập",
+        'email' => "Email",
+        'pwd' => "Mật khẩu",
+        'pwd_confirm' => "Mật khẩu xác nhận",
+    ],
 
 ];
