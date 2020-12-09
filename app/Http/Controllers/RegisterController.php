@@ -60,7 +60,16 @@ class RegisterController extends Controller
                     $user->password = password_hash($data['pwd'],PASSWORD_DEFAULT);
                     $user->email = $data['email'];
                     $user->save();
-                    return redirect('Register')->with('status',"Đăng kí thành công {$user->username}");
+                    $hashCode = md5($user->password);
+                    $details = [
+                        'title' => "Kích hoạt tài khoản $user->username",
+                        'hashCode' => "$hashCode",
+                        'username' =>"$user->username",
+                        'link' => "http://127.0.0.1:8000/active?username=$user->username&hashCode=$hashCode"
+                    ];
+
+                    \Mail::to($user->email)->send(new \App\Mail\MyTestMail($details));
+                    return redirect('Register')->with('status',"Đăng kí thành công {$user->username} vui lòng kiểm tra email để kích hoạt tài khoản");
 
                 }catch(Exception $e){
                     return redirect('Register')->with('failed',"operation failed");
