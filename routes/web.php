@@ -21,6 +21,9 @@ Route::get('/',function(){
     return view('index');
 });
 
+<<<<<<< HEAD
 Route::get('login', function(){
     return view('Users.Login');
 });
+=======
+>>>>>>> c6ea1e6011a9cd5812fb24fd8e1dcf9ebef1cd49
