@@ -8,7 +8,7 @@ $endsection
 
 <div class="container">
     <div class="row">
-        <div class="col-1 mt-5 pt-3 pb-3 bg-white">
+        <div class="col-1 mt-5 pt-5 pb-5 bg-white">
                 <div class="btn-group-vertical">
                     <button type="button" class="btn btn-secondary">Button</button>
                     <button type="button" class="btn btn-secondary">Button</button>
@@ -17,7 +17,7 @@ $endsection
                     <button type="button" class="btn btn-secondary">Button</button>
                 </div>
         </div>
-        <div class="col-8 mt-5 pt-3 pb-3 bg-white">
+        <div class="col-8 mt-5 pt-5 pb-5 bg-white">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -45,7 +45,7 @@ $endsection
                 </a>
             </div>
         </div>
-        <div class="col-3 mt-5 pt-3 pb-3 bg-white">
+        <div class="col-3 mt-5 pt-5 pb-5 bg-white">
             <div class="row">
                 <div class="col">
                     <img class="img-fluid img-thumbnail" src = "https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt = "">
