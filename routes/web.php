@@ -20,3 +20,4 @@ Route::post('Register','RegisterController@insertAccount');
 Route::get('/',function(){
     return view('index');
 });
+
