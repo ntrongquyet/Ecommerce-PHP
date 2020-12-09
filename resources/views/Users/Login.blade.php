@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/base.css"> -->
     <style>
         :root {
-            --primary-color: #FFC93C;
+            --primary-color: #DC3545;
             --blackblue-color: #07689F;
             --secondblue-color: #40A8C4;
             --thirtblue-color: #A2D5F2;
