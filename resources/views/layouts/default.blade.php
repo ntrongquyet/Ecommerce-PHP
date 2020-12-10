@@ -38,7 +38,7 @@
           <a class="nav-link" style="float:right;" href="login">Đăng nhập</a>
         </li>
         <li class="nav-item-account">
-          <img src="https://i.imgur.com/Nk7Krph.png" width="30px" height="auto" alt="user">
+          <img src="https://i.imgur.com/Nk7Krph.pngs" width="30px" height="auto" alt="user">
           <a class="nav-link" style="float:right;" href="Register">Đăng kí</a>
         </li>
       </ul>
