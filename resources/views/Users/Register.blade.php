@@ -51,7 +51,7 @@
                         <button type="submit" class="btn btn-primary">Đăng kí</button>
                     </div>
                     <div class="col-12 col-sm-8 text-right">
-                        <a class="text-info" href="./Login"><span>Đã có tài khoản</span></a>
+                        <a class="text-info" href="./login"><span>Đã có tài khoản</span></a>
                     </div>
                 </div>
             </div>
