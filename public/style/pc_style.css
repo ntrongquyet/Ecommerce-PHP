@@ -199,6 +199,12 @@
 
 /* ==================== HOME PAGE  ===================== */
 
+#main-logo {
+    height: 60px !important;
+    width: 60px !important;
+    margin-left: 47px;
+}
+
 #header {
     z-index: 99999;
     position: fixed;
