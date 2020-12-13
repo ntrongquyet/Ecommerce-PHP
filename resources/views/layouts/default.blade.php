@@ -1,7 +1,6 @@
 <html>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +23,7 @@
     </div>
     <div>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" style="min-width: 100vmin;" placeholder="Tìm kiếm sản phẩm">
+        <input class="form-control mr-sm-2" type="text" style="min-width: 30em;" placeholder="Tìm kiếm sản phẩm">
         <button class="btn btn-outline-none my-2 my-sm-0" style="margin-left: -15px;" type="submit">Tìm kiếm</button>
       </form>
     </div>
@@ -34,17 +33,17 @@
           <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item-account" style="margin-right: 10px ;">
-          <img src="https://i.imgur.com/RSt8TEj.png" width="30px" height="auto" alt="user">
+          <img src="https://i.imgur.com/CHl3pf0.png" width="30px" height="auto" alt="user">
           <a class="nav-link" style="float:right;" href="login">Đăng nhập</a>
         </li>
         <li class="nav-item-account">
-          <img src="https://i.imgur.com/Nk7Krph.pngs" width="30px" height="auto" alt="user">
+          <img src="https://i.imgur.com/bD1K2MI.png" width="30px" height="auto" alt="user">
           <a class="nav-link" style="float:right;" href="Register">Đăng kí</a>
         </li>
       </ul>
     </div>
     <button type="button" class="btn btn-danger">
-      <img src="https://i.imgur.com/CEx65Qr.png" width="30px" height="auto" alt="user">
+      <img src="https://i.imgur.com/xpO3mPl.png" width="30px" height="auto" alt="user">
       <div class="nav-link" style="float: right;">Giỏ hàng</div>
     </button>
   </nav>
