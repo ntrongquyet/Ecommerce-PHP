@@ -15,7 +15,7 @@
 <body>
 
     @section('sidebar')
-    <nav class="navbar navbar-expand-md navbar-dark bg-danger fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-danger">
     <div>
       <a class="navbar-brand" href="/">
         <img class="img-nav" src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png" alt="Girl in a jacket" width="75px" height="auto"></li>
