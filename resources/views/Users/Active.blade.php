@@ -4,16 +4,24 @@
 @parent
 @endsection
 @section('content')
+@if (session('status'))
+<div class="container">
+    <div class="alert alert-success" style="margin-top:15%" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('status') }}
+    </div>
+</div>
+@else
 <div class="container">
     <div class="row">
         <div class="col-1 mt-5 pt-5 pb-5 bg-white">
-                <div class="btn-group-vertical">
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                </div>
+            <div class="btn-group-vertical">
+                <button type="button" class="btn btn-secondary">Button</button>
+                <button type="button" class="btn btn-secondary">Button</button>
+                <button type="button" class="btn btn-secondary">Button</button>
+                <button type="button" class="btn btn-secondary">Button</button>
+                <button type="button" class="btn btn-secondary">Button</button>
+            </div>
         </div>
         <div class="col-8 mt-5 pt-5 pb-5 bg-white">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -24,13 +32,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                        <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                        <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                        <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -46,17 +54,17 @@
         <div class="col-3 mt-5 pt-5 pb-5 bg-white">
             <div class="row">
                 <div class="col">
-                    <img class="img-fluid img-thumbnail" src = "https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt = "">
+                    <img class="img-fluid img-thumbnail" src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt="">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <img class="img-fluid img-thumbnail" src = "https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt = "">
+                    <img class="img-fluid img-thumbnail" src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt="">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <img class="img-fluid img-thumbnail" src = "https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt = "">
+                    <img class="img-fluid img-thumbnail" src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -66,14 +74,14 @@
             <div class="card bg-dark text-white">
                 <img src="https://vinfast.vn/themes/custom/vinfast/static//images/logo/logo.png" class="card-img" alt="...">
                 <div class="card-img-overlay">
-                  <h5 class="card-title">Tập Đoàn VinFast</h5>
-                  <p class="card-text"></p>
-                  <p class="card-text">Last updated 3 mins ago</p>
+                    <h5 class="card-title">Tập Đoàn VinFast</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text">Last updated 3 mins ago</p>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+@endif
 @endsection
-

@@ -75,17 +75,5 @@ class RegisterController extends Controller
                     return redirect('Register')->with('failed',"operation failed");
                 }
         }
-        // $username = $request->input('username');
-        // $email = $request->input('email');
-        // $password = $request->input('pwd');
-        // $pwd_confirm = $request->input('pwd_confirm');
-        // $minutes = 30;
-        // $username_cookie = cookie('username',$username,$minutes);
-        // $email_cookie = cookie('email',$email,$minutes);
-        // $success = ['msg' => "Đăng kí thành công tài khoản $username"];
-        // return response()->view('Users.Register',$success,200)
-        //                 ->withCookie('$username_cookie')
-        //                 ->withCookie('$email_cookie');
-
     }
 }

@@ -20,3 +20,12 @@ Route::post('Register','RegisterController@insertAccount');
 Route::get('/',function(){
     return view('index');
 });
+
+Route::get('login', function(){
+    return view('Users.Login');
+});
+
+Route::get('active','ActiveMail@accountActive');
+Route::get('Active',function(){
+    return view('Users.Active');
+});
