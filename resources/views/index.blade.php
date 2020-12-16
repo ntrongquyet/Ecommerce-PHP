@@ -6,16 +6,41 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-1 mt-5 pt-5 pb-5 bg-white">
-                <div class="btn-group-vertical">
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
-                    <button type="button" class="btn btn-secondary">Button</button>
+        <div class="col mt-3 pt-3 pb-3 bg-white">
+            <div class="btn-group-vertical">
+                <div class="btn-group dropright">
+                    <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category1
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Sản phẩm 1</a>
+                        <a class="dropdown-item" href="#">Sản phẩm 2</a>
+                        <a class="dropdown-item" href="#">Sản phẩm 3</a>
+                    </div>
                 </div>
+                <div class="btn-group dropright">
+                    <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category2
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Sản phẩm 1</a>
+                        <a class="dropdown-item" href="#">Sản phẩm 2</a>
+                        <a class="dropdown-item" href="#">Sản phẩm 3</a>
+                    </div>
+                </div>
+                <div class="btn-group dropright">
+                    <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category3
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Sản phẩm 1</a>
+                        <a class="dropdown-item" href="#">Sản phẩm 2</a>
+                        <a class="dropdown-item" href="#">Sản phẩm 3</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-8 mt-5 pt-5 pb-5 bg-white">
+        <div class="col-8 mt-3 pt-3 pb-3 bg-white">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -43,7 +68,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-3 mt-5 pt-5 pb-5 bg-white">
+        <div class="col-2 mt-3 pt-3 pb-3 bg-white">
             <div class="row">
                 <div class="col">
                     <img class="img-fluid img-thumbnail" src = "https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" alt = "">
