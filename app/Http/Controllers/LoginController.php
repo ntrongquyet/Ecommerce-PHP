@@ -7,23 +7,28 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-    public function login(Request $res)
+    public function login()
+    {
+        return view('Users.Login');
+    }
+    public function loginValid(Request $res)
     {
         $data = $res->input();
-        $user = DB::table('users')->select('username', 'password', 'email_verified_at')
+        $user = DB::table('users')->select('username', 'password')
             ->where('username', '=', $data['username'])
             ->get()->first();
         if ($user !== null) {
-            if ($user->email_verified_at == null) {
-                return redirect('login')->with('status', "Tài khoản chưa được kích hoạt");
-            } else {
-                if ($md5 == $hashCode) {
+            if (password_verify($data['pwd'], $user->password)) {
+                session()->put('user', $user->username);
+                return redirect('/');
 
-                    return redirect('Active')->with('status', "Kích hoạt tài khoản thành công");
-                } else {
-                    return redirect('Active')->with('status', "Đường dẫn kích hoạt không chính xác.Vui lòng kiểm tra lại email");
-                }
+            } else {
+                $msg = "Mật khẩu đăng nhập không chính xác";
             }
+        } else {
+            $msg = "Tài khoản không tồn tại";
         }
+        return redirect('login')->with('status',"$msg");
+
     }
 }

@@ -11,14 +11,9 @@
         <hr>
 
         @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            {{ session('status') }}
-        </div>
-        @elseif(session('failed'))
         <div class="alert alert-danger" role="alert">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            {{ session('failed') }}
+            {{ session('status') }}
         </div>
         @endif
         <form action="login" method="post">

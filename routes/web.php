@@ -21,9 +21,16 @@ Route::get('/',function(){
     return view('index');
 });
 
-Route::get('login', function(){
-    return view('Users.Login');
+Route::get('login','LoginController@login');
+Route::post('login','LoginController@loginValid');
+
+Route::get('Logout',function(){
+    session()->forget('user');
+    return redirect('/');
 });
+// Route::get('login', 'function()'{
+//     return view('Users.Login');
+// });
 
 Route::get('active','ActiveMail@accountActive');
 Route::get('Active',function(){
