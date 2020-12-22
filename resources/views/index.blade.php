@@ -66,7 +66,7 @@
 
     @foreach($productList as $product)
     <div class="col-sm-3 product">
-        <a href="/">
+        <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
             <div class="product-image">
                 <img src="{{url('/image/default.jpg')}}" />
                 <div class="addToCart">
