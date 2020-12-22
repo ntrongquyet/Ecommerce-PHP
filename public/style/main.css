@@ -1,3 +1,39 @@
-.img-nav{
+.img-nav {
     padding: 15px;
+}
+
+/* Product Style */
+.product {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-image {
+    max-width: 300px;
+}
+
+.addToCart {
+    background: #C3c3c3;
+    padding: 10px;
+    text-align: center;
+    display: none;
+}
+
+.product:hover .addToCart {
+    display: block;
+
+}
+
+.title,
+.price {
+    display: block;
+    text-align: center;
+
+}
+.likedItem{
+    position: absolute;
+    top: 0;
+    right: 0;
 }

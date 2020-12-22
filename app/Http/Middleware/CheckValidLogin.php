@@ -16,6 +16,10 @@ class CheckValidLogin
      */
     public function handle(Request $request, Closure $next)
     {
+        $id = $request->route('username');
+        if(session()->get('user')!=$id){
+            return redirect('/');
+        }
         return $next($request);
     }
 }

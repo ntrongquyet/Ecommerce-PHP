@@ -12,27 +12,26 @@ use Illuminate\Support\Facades\View;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+// Trang chủ
+Route::get('/', 'PageController@index');
+// Đăng kí
 Route::get('Register','RegisterController@register');
 Route::post('Register','RegisterController@insertAccount');
 
-Route::get('/',function(){
-    return view('index');
-});
-
+//Đăng nhập
 Route::get('login','LoginController@login');
 Route::post('login','LoginController@loginValid');
-
+// Đăng xuất
 Route::get('Logout',function(){
     session()->forget('user');
     return redirect('/');
 });
-// Route::get('login', 'function()'{
-//     return view('Users.Login');
-// });
-
+// Active Mail
 Route::get('active','ActiveMail@accountActive');
 Route::get('Active',function(){
     return view('Users.Active');
 });
+// Profile
+Route::get('profile/{username}',function(){
+    return view('Users.Profile');
+})->middleware('CheckValidLogin');

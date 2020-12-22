@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="./assets/font/fontawesome-free-5.12.1-web/fontawesome-free-5.12.1-web/css/all.min.css">
+    <script src="https://kit.fontawesome.com/28e407cbaa.js" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
 </head>
 
@@ -60,7 +61,7 @@
   </nav>
     @show
 
-    <div class="container mt-2">
+    <div class="container-fluid mt-1">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
