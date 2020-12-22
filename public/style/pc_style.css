@@ -115,7 +115,11 @@ img {
 
 .checked,
 .price span {
-    color: #ff9f1a;
+    color: #dc3545;
+}
+
+.price {
+    text-align: left !important;
 }
 
 .product-title,
@@ -133,6 +137,7 @@ img {
 
 .size {
     margin-right: 10px;
+    text-transform: uppercase;
 }
 
 .size:first-of-type {
@@ -154,7 +159,7 @@ img {
 
 .add-to-cart,
 .like {
-    background: #ff9f1a;
+    background: #dc3545;
     padding: 1.2em 1.5em;
     border: none;
     text-transform: UPPERCASE;
@@ -166,7 +171,7 @@ img {
 
 .add-to-cart:hover,
 .like:hover {
-    background: #b36800;
+    background: #dc3545;
     color: #fff;
 }
 
@@ -191,6 +196,19 @@ img {
 
 .blue {
     background: #0076ad;
+}
+
+.red {
+    background: #dc3545;
+}
+
+.white {
+    background: #fff;
+    border: 1px solid #dc3545;
+}
+
+.black {
+    background: #200000;
 }
 
 .tooltip-inner {
