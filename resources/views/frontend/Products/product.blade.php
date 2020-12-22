@@ -85,5 +85,21 @@
             </div>
         </div>
     </div>
+
+<!-- 
+    <div class="card-column">
+        @foreach($listProductAsCat as $itemCat)
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" data-src="..." alt="Card image cap">
+            <div class="card-block">
+                <h4 class="card-title">{{$itemCat->name}}</h4>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                    content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        @endforeach
+    </div> -->
 </div>
+
 @endsection
