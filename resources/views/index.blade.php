@@ -50,6 +50,7 @@
     </div>
 </div>
 <div class="row">
+
     <section class="latest-blog-posts bg-white pt60 pb60">
         <div class="container-fluid">
             <div id="owl-demo-2" class="owl-carousel owl-theme">
@@ -65,6 +66,25 @@
                             Starting in 2011, 3 million baby boomers each year reach retirement age....</p>
                     </div>
                 </article>
+
+    @foreach($productList as $product)
+    <div class="col-sm-3 product">
+        <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+            <div class="product-image">
+                <img src="{{url('/image/default.jpg')}}" />
+                <div class="addToCart">
+                    <a href="#">Thêm giỏ hàng</a>
+                </div>
+            </div>
+
+            <div class="info-product">
+                <span class="title">
+                    {{$product->name}}
+                </span>
+                <span class="price">
+                    {{$product->price}}
+                </span>
+
             </div>
         </div>
     </section>

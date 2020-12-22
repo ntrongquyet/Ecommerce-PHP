@@ -35,3 +35,5 @@ Route::get('Active',function(){
 Route::get('profile/{username}',function(){
     return view('Users.Profile');
 })->middleware('CheckValidLogin');
+// Chi tiết đơn hàng
+Route::get("/{idCat}/{idProduct}",'pageController@chitietsanpham');
