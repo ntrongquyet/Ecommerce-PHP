@@ -49,24 +49,48 @@
         </div>
     </div>
 </div>
-<div class="row">
 
-    <section class="latest-blog-posts bg-white pt60 pb60">
-        <div class="container-fluid">
-            <div id="owl-demo-2" class="owl-carousel owl-theme">
-                <article class="thumbnail item" itemscope="" itemtype="http://schema.org/CreativeWork">
-                    <a class="blog-thumb-img" href="/5-ways-baby-boomers-changing-healthcare/" title="">
-                        <img src="http://placehold.it/500x250" class="img-responsive" />
-                    </a>
-                    <div class="caption">
-                        <h4 itemprop="headline">
-                            <a href="#" rel="bookmark">5 Ways Baby Boomers Are Changing Healthcare</a>
-                        </h4>
-                        <p itemprop="text" class="flex-text text-muted">5 ways baby boomers are changing healthcare
-                            Starting in 2011, 3 million baby boomers each year reach retirement age....</p>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container-fluid">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Sản phẩm bán chạy nhất</h4>
+                        <div class="owl-carousel">
+                            @foreach($productList as $product)
+                            <div class="item">
+                                <div class="product">
+                                    <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                                        <div class="product-image">
+                                            <img src="{{url('/image/default.jpg')}}" />
+                                            <div class="addToCart">
+                                                <a href="#">Thêm giỏ hàng</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="info-product">
+                                            <span class="title">
+                                                {{$product->name}}
+                                            </span>
+                                            <span class="price">
+                                                {{$product->price}}
+                                            </span>
+
+                                        </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
-                </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<div class="row">
     @foreach($productList as $product)
     <div class="col-sm-3 product">
         <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
@@ -86,10 +110,10 @@
                 </span>
 
             </div>
-        </div>
-    </section>
+    </div>
+    @endforeach
 </div>
-@endforeach
+
 
 
 <!-- <div class="card bg-dark text-white">
