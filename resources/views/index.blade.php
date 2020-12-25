@@ -9,8 +9,7 @@
         <div class="btn-group-vertical">
             @foreach($categoryList as $itemCat)
             <div class="btn-group dropright">
-                <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{$itemCat->name}}
                 </a>
             </div>
@@ -26,16 +25,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg"
-                        class="d-block w-100" alt="...">
+                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg"
-                        class="d-block w-100" alt="...">
+                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg"
-                        class="d-block w-100" alt="...">
+                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -50,80 +46,78 @@
     </div>
 </div>
 
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container-fluid">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Sản phẩm bán chạy nhất</h4>
-                        <div class="owl-carousel">
-                            @foreach($productList as $product)
-                            <div class="item">
-                                <div class="product">
-                                    <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-                                        <div class="product-image">
-                                            <img src="{{url('/image/default.jpg')}}" />
-                                            <div class="addToCart">
-                                                <a href="#">Thêm giỏ hàng</a>
-                                            </div>
-                                        </div>
+<div class="popular-product section">
+    <div class="section-title">
+        <h2>Sản phẩm bán chạy nhất</h2>
+    </div>
+    <div class="row container-fluid">
+        <div class="col-lg-12 grid-margin stretch-card">
 
-                                        <div class="info-product">
-                                            <span class="title">
-                                                {{$product->name}}
-                                            </span>
-                                            <span class="price">
-                                                {{$product->price}}
-                                            </span>
-
-                                        </div>
+            <div class="owl-carousel">
+                @foreach($productList as $product)
+                <div class="item">
+                    <div class="product">
+                        <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                            <div class="product-image">
+                                <img src="{{url('/image/default.jpg')}}" />
+                                <div class="addToCart">
+                                    <a href="#">Thêm giỏ hàng</a>
                                 </div>
                             </div>
-                            @endforeach
-                        </div>
+
+                            <div class="info-product">
+                                <span class="title">
+                                    {{$product->name}}
+                                </span>
+                                <span class="price">
+                                    {{$product->price}}
+                                </span>
+
+                            </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="row">
-    @foreach($productList as $product)
-    <div class="col-sm-3 product">
-        <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-            <div class="product-image">
-                <img src="{{url('/image/default.jpg')}}" />
-                <div class="addToCart">
-                    <a href="#">Thêm giỏ hàng</a>
-                </div>
-            </div>
-
-            <div class="info-product">
-                <span class="title">
-                    {{$product->name}}
-                </span>
-                <span class="price">
-                    {{$product->price}}
-                </span>
-
-            </div>
+<div class="all-product section">
+    <div class="section-title">
+        <h2>Tất cả sản phẩm</h2>
     </div>
-    @endforeach
-</div>
-
-
-
-<!-- <div class="card bg-dark text-white">
-                <img src="https://vinfast.vn/themes/custom/vinfast/static//images/logo/logo.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                    <h5 class="card-title">Tập Đoàn VinFast</h5>
-                    <p class="card-text"></p>
-                    <p class="card-text">Last updated 3 mins ago</p>
+    <div class="row">
+        @foreach($productList as $product)
+        <div class="col-sm-4 product">
+            <div class="single-product">
+                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                    <div class="single-product image">
+                        <img src="{{url('/image/default.jpg')}}" />
+                        <div class="addToCart">
+                            <a href="#">Thêm giỏ hàng</a>
+                        </div>
+                    </div>
+            </div>
+            <!-- <div class="info-product">
+                <div class="title">
+                    {{$product->name}}
                 </div>
+                <div class="price">
+                    {{$product->price}}
+                </div>
+
             </div> -->
+            <div class="product-content">
+                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                <div class="product-price">
+                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+    </div>
 
 </div>
+
 @endsection
