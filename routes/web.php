@@ -41,3 +41,8 @@ Route::get("/{idCat}/{idProduct}",'pageController@chitietsanpham');
 // tìm kiếm sản phẩm
 Route::get('default','pageController@SearchProduct');
 Route::post('default','pageController@SearchProduct');
+
+//Trang admin
+Route::get('Admin',function(){
+    return view('Admin.AdminPage');
+});
