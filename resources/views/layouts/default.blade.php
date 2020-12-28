@@ -28,8 +28,9 @@
       </a>
     </div>
     <div>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" style="min-width: 30em;" placeholder="Tìm kiếm sản phẩm">
+      <form class="form-inline my-2 my-lg-0" action="/default" method="post" role="form">
+        {{ csrf_field() }}
+        <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;" placeholder="Tìm kiếm sản phẩm">
         <button class="btn btn-outline-none my-2 my-sm-0" style="margin-left: -15px;" type="submit">Tìm kiếm</button>
       </form>
     </div>

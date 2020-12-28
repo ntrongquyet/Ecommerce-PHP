@@ -4,9 +4,49 @@
 @parent
 @endsection
 @section('content')
+
+@if(isset($listProduct))
+@if(count($listProduct) == 0)
+không tìm thấy
+@else
+<div class="row">
+        @foreach($listProduct as $product)
+        <div class="col-sm-4 product">
+            <div class="single-product">
+                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                    <div class="single-product image">
+                        <img src="{{url('/image/default.jpg')}}" />
+                        <div class="addToCart">
+                            <a href="#">Thêm giỏ hàng</a>
+                        </div>
+                    </div>
+            </div>
+            <!-- <div class="info-product">
+                <div class="title">
+                    {{$product->name}}
+                </div>
+                <div class="price">
+                    {{$product->price}}
+                </div>
+
+            </div> -->
+            <div class="product-content">
+                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                <div class="product-price">
+                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+    </div>
+@endif
+@endif
+@if(isset($categoryList))
 <div class="row">
     <div class="col mt-3 pt-3 pb-3 bg-white">
         <div class="btn-group-vertical">
+           
             @foreach($categoryList as $itemCat)
             <div class="btn-group dropright">
                 <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +85,9 @@
         </div>
     </div>
 </div>
+@endif
 
+@if(isset($productList))
 <div class="popular-product section">
     <div class="section-title">
         <h2>Sản phẩm bán chạy nhất</h2>
@@ -54,6 +96,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
 
             <div class="owl-carousel">
+                
                 @foreach($productList as $product)
                 <div class="item">
                     <div class="product">
@@ -77,6 +120,7 @@
                     </div>
                 </div>
                 @endforeach
+                
             </div>
         </div>
     </div>
@@ -115,9 +159,9 @@
             </div>
         </div>
         @endforeach
-
     </div>
-
+    
 </div>
+@endif
 
 @endsection
