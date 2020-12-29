@@ -8,7 +8,6 @@
 <div class="row">
     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white">
         <h3 style="text-align: center">Đăng nhập</h3>
-        <hr>
 
         @if (session('status'))
         <div class="alert alert-danger" role="alert">
@@ -37,11 +36,14 @@
                     </div>
                 </div>
             </div>
+            <a style="display: block;" href="#">Bạn đã quên mật khẩu?</a>
+            <p>Nếu bạn chưa có tài khoản, đăng ký <a href="http://127.0.0.1:8000/Register">tại đây</a>.</p>
             @if($errors->any())
 
         {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
         @endif
         </form>
+
     </div>
 </div>
 @endsection
