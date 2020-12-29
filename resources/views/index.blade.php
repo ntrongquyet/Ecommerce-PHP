@@ -87,7 +87,7 @@ không tìm thấy
 </div>
 @endif
 
-@if(isset($productList))
+@if(isset($topSaleProduct))
 <div class="popular-product section">
     <div class="section-title">
         <h2>Sản phẩm bán chạy nhất</h2>
@@ -97,7 +97,7 @@ không tìm thấy
 
             <div class="owl-carousel">
                 
-                @foreach($productList as $product)
+                @foreach($topSaleProduct as $product)
                 <div class="item">
                     <div class="product">
                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
@@ -161,6 +161,28 @@ không tìm thấy
         @endforeach
     </div>
     
+</div>
+<!-- phần phân trang -->
+<div>
+    <!-- nếu current_page > 1 và total_page > 1 mới hiển thị nút prev -->
+    @if ($currentPage > 1 && $totalPage > 1)
+        <a href="/{{$currentPage - 1}}">Prev</a>
+    @endif
+
+    @for ($i = 1; $i <= $totalPage; $i++)
+        <!--Nếu là trang hiện tại thì hiển thị thẻ span
+        ngược lại hiển thị thẻ a -->
+        @if ($i == $currentPage)
+            <span>{{$i}}</span>
+        @else
+            <a href="/{{$i}}">{{$i}}</a>
+        @endif
+    @endfor
+
+    <!-- nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev -->
+    @if ($currentPage < $totalPage && $totalPage > 1)
+        <a href="/{{$currentPage+1}}">Next</a>
+    @endif
 </div>
 @endif
 

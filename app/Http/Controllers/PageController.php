@@ -7,12 +7,28 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    private $limit = 3;
     public function index(){
-        $products = DB::table('Products')->get();
+
         $categories = DB::table('Categories')->get();
+
+        $products = DB::table('Products')->get();
+
+        $totalProduct = count($products);
+
+        $totalPage = ceil($totalProduct / $this->limit);
+
+        $result = DB::table('Products')
+        ->skip(0)
+        ->take($this->limit)
+        ->get();
+
         return view('index',[
             'categoryList' => $categories,
-            'productList' => $products
+            'productList' =>  $result,
+            'currentPage' => 1,
+            'totalPage' => $totalPage,
+            'topSaleProduct' => $products
         ]);
     }
     public function chitietsanpham($idCat,$idProduct) {
@@ -83,22 +99,57 @@ class PageController extends Controller
 
         if($keyword == null)
         {
-            $keyword = "#";
+            $keyword = '#';
         }
         $listProduct = array();
-            //lấy tất cả các sản phẩm
-            $products = DB::table('Products')->get();
 
-            //duyệt qua tất cả các sản phẩm tìm tên có chứa keyword
-            for($i = 0; $i < count($products); $i++)
+        //lấy tất cả các sản phẩm
+        $products = DB::table('Products')->get();
+
+        //duyệt qua tất cả các sản phẩm tìm tên có chứa keyword
+        for($i = 0; $i < count($products); $i++)
+        {
+            $pos = strpos(strtoupper($this->vn_to_str($products[$i]->name)), strtoupper($this->vn_to_str($keyword)));
+            if($pos !== false)
             {
-                $pos = strpos(strtoupper($this->vn_to_str($products[$i]->name)), strtoupper($this->vn_to_str($keyword)));
-                if($pos !== false)
-                {
-                    $listProduct[$i] = $products[$i];
-                }
+                $listProduct[$i] = $products[$i];
             }
+        }
 
-            return view('index', ['listProduct' => $listProduct]);
+        return view('index', ['listProduct' => $listProduct]);
+    }
+
+    public function CalculatePagingInfo($currentPage)
+    {
+        $categories = DB::table('Categories')->get();
+        $products = DB::table('Products')->get();
+
+        $totalProduct = count($products);
+
+        $totalPage = ceil($totalProduct / $this->limit);
+
+        if($currentPage > $totalPage)
+        {
+            $currentPage = $totalPage;
+        }
+        else if($currentPage < 1)
+        {
+            $currentPage = 1;
+        }
+
+        $start = ($currentPage - 1) * $this->limit;
+
+        $result = DB::table('Products')
+        ->skip($start)
+        ->take($this->limit)
+        ->get();
+
+        return view('index',[
+            'categoryList' => $categories,
+            'productList' =>  $result,
+            'currentPage' => $currentPage,
+            'totalPage' => $totalPage,
+            'topSaleProduct' => $products
+        ]);
     }
 }
