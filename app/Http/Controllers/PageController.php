@@ -16,15 +16,6 @@ class PageController extends Controller
 
         $products = DB::table('Products')->paginate($this->limit);
 
-        // $totalProduct = count($products);
-
-        // $totalPage = ceil($totalProduct / $this->limit);
-
-        // $result = DB::table('Products')
-        // ->skip(0)
-        // ->take($this->limit)
-        // ->get();
-
         return view('index',[
             'categoryList' => $categories,
             'productList' =>  $products,
@@ -118,36 +109,32 @@ class PageController extends Controller
         return view("frontend.Products.search", ['listProduct' => $listProduct]);
     }
 
-    public function CalculatePagingInfo($currentPage)
-    {
-        $categories = DB::table('Categories')->get();
-        $topSaleProduct = DB::table('Products')->get();
-        $products = DB::table('Products')->paginate($this->limit);
+    // public function CalculatePagingInfo_search($currentPage)
+    // {
+    //     $totalProduct = count($products);
 
-        // $totalProduct = count($products);
+    //     $totalPage = ceil($totalProduct / $this->limit);
 
-        // $totalPage = ceil($totalProduct / $this->limit);
+    //     if($currentPage > $totalPage)
+    //     {
+    //         $currentPage = $totalPage;
+    //     }
+    //     else if($currentPage < 1)
+    //     {
+    //         $currentPage = 1;
+    //     }
 
-        // if($currentPage > $totalPage)
-        // {
-        //     $currentPage = $totalPage;
-        // }
-        // else if($currentPage < 1)
-        // {
-        //     $currentPage = 1;
-        // }
+    //     $start = ($currentPage - 1) * $this->limit;
 
-        // $start = ($currentPage - 1) * $this->limit;
+    //     $result = DB::table('Products')
+    //     ->skip($start)
+    //     ->take($this->limit)
+    //     ->get();
 
-        // $result = DB::table('Products')
-        // ->skip($start)
-        // ->take($this->limit)
-        // ->get();
-
-        return view('index',[
-            'categoryList' => $categories,
-            'productList' =>  $products,
-            'topSaleProduct' => $topSaleProduct
-        ]);
-    }
+    //     return view('index',[
+    //         'categoryList' => $categories,
+    //         'productList' =>  $products,
+    //         'topSaleProduct' => $topSaleProduct
+    //     ]);
+    // }
 }

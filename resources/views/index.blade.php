@@ -122,9 +122,12 @@
             </div>
         </div>
         @endforeach
-        
     </div>
 </div>
+<div class="row">
+    <nav aria-label="Page navigation example">
+        {{ $productList->links() }}
+    </nav>
+</div>
 @endif
-
 @endsection

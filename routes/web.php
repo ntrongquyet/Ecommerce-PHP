@@ -46,6 +46,3 @@ Route::post('default','pageController@SearchProduct');
 Route::get('Admin',function(){
     return view('Admin.AdminPage');
 });
-
-//phân trang
-Route::get('/{currentPage}','pageController@CalculatePagingInfo');
