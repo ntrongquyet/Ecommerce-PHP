@@ -5,43 +5,6 @@
 @endsection
 @section('content')
 
-@if(isset($listProduct))
-@if(count($listProduct) == 0)
-không tìm thấy
-@else
-<div class="row">
-        @foreach($listProduct as $product)
-        <div class="col-sm-4 product">
-            <div class="single-product">
-                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-                    <div class="single-product image">
-                        <img src="{{url('/image/default.jpg')}}" />
-                        <div class="addToCart">
-                            <a href="#">Thêm giỏ hàng</a>
-                        </div>
-                    </div>
-            </div>
-            <!-- <div class="info-product">
-                <div class="title">
-                    {{$product->name}}
-                </div>
-                <div class="price">
-                    {{$product->price}}
-                </div>
-
-            </div> -->
-            <div class="product-content">
-                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
-                <div class="product-price">
-                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
-                </div>
-            </div>
-        </div>
-        @endforeach
-
-    </div>
-@endif
-@endif
 @if(isset($categoryList))
 <div class="row">
     <div class="col mt-3 pt-3 pb-3 bg-white">
@@ -159,30 +122,8 @@ không tìm thấy
             </div>
         </div>
         @endforeach
+        
     </div>
-    
-</div>
-<!-- phần phân trang -->
-<div>
-    <!-- nếu current_page > 1 và total_page > 1 mới hiển thị nút prev -->
-    @if ($currentPage > 1 && $totalPage > 1)
-        <a href="/{{$currentPage - 1}}">Prev</a>
-    @endif
-
-    @for ($i = 1; $i <= $totalPage; $i++)
-        <!--Nếu là trang hiện tại thì hiển thị thẻ span
-        ngược lại hiển thị thẻ a -->
-        @if ($i == $currentPage)
-            <span>{{$i}}</span>
-        @else
-            <a href="/{{$i}}">{{$i}}</a>
-        @endif
-    @endfor
-
-    <!-- nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev -->
-    @if ($currentPage < $totalPage && $totalPage > 1)
-        <a href="/{{$currentPage+1}}">Next</a>
-    @endif
 </div>
 @endif
 

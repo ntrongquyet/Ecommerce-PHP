@@ -12,23 +12,23 @@ class PageController extends Controller
 
         $categories = DB::table('Categories')->get();
 
-        $products = DB::table('Products')->get();
+        $topSaleProduct = DB::table('Products')->get();
 
-        $totalProduct = count($products);
+        $products = DB::table('Products')->paginate($this->limit);
 
-        $totalPage = ceil($totalProduct / $this->limit);
+        // $totalProduct = count($products);
 
-        $result = DB::table('Products')
-        ->skip(0)
-        ->take($this->limit)
-        ->get();
+        // $totalPage = ceil($totalProduct / $this->limit);
+
+        // $result = DB::table('Products')
+        // ->skip(0)
+        // ->take($this->limit)
+        // ->get();
 
         return view('index',[
             'categoryList' => $categories,
-            'productList' =>  $result,
-            'currentPage' => 1,
-            'totalPage' => $totalPage,
-            'topSaleProduct' => $products
+            'productList' =>  $products,
+            'topSaleProduct' => $topSaleProduct
         ]);
     }
     public function chitietsanpham($idCat,$idProduct) {
@@ -115,41 +115,39 @@ class PageController extends Controller
                 $listProduct[$i] = $products[$i];
             }
         }
-
-        return view('index', ['listProduct' => $listProduct]);
+        return view("frontend.Products.search", ['listProduct' => $listProduct]);
     }
 
     public function CalculatePagingInfo($currentPage)
     {
         $categories = DB::table('Categories')->get();
-        $products = DB::table('Products')->get();
+        $topSaleProduct = DB::table('Products')->get();
+        $products = DB::table('Products')->paginate($this->limit);
 
-        $totalProduct = count($products);
+        // $totalProduct = count($products);
 
-        $totalPage = ceil($totalProduct / $this->limit);
+        // $totalPage = ceil($totalProduct / $this->limit);
 
-        if($currentPage > $totalPage)
-        {
-            $currentPage = $totalPage;
-        }
-        else if($currentPage < 1)
-        {
-            $currentPage = 1;
-        }
+        // if($currentPage > $totalPage)
+        // {
+        //     $currentPage = $totalPage;
+        // }
+        // else if($currentPage < 1)
+        // {
+        //     $currentPage = 1;
+        // }
 
-        $start = ($currentPage - 1) * $this->limit;
+        // $start = ($currentPage - 1) * $this->limit;
 
-        $result = DB::table('Products')
-        ->skip($start)
-        ->take($this->limit)
-        ->get();
+        // $result = DB::table('Products')
+        // ->skip($start)
+        // ->take($this->limit)
+        // ->get();
 
         return view('index',[
             'categoryList' => $categories,
-            'productList' =>  $result,
-            'currentPage' => $currentPage,
-            'totalPage' => $totalPage,
-            'topSaleProduct' => $products
+            'productList' =>  $products,
+            'topSaleProduct' => $topSaleProduct
         ]);
     }
 }
