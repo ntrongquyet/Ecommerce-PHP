@@ -46,3 +46,7 @@ Route::post('default','pageController@SearchProduct');
 Route::get('Admin',function(){
     return view('Admin.AdminPage');
 });
+
+
+//Comment
+// Route::post('comment/{id}','CommentController@postComment');
