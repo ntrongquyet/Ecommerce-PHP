@@ -50,3 +50,8 @@ Route::get('Admin',function(){
 
 //Comment
 // Route::post('comment/{id}','CommentController@postComment');
+
+// Thêm sản phẩm
+Route::get('AddProduct','pageController@insertProduct')->middleware('RoleCheck');
+Route::post('AddProduct','pageController@insertProductToDB')->middleware('RoleCheck');
+
