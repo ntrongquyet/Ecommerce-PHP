@@ -53,3 +53,8 @@ Route::get('Admin',function(){
 //Quên mật khẩu
 Route::get('Forgot', 'ForgotController@forgot');
 Route::post('Forgot','ForgotController@forgotPassword');
+
+// Thêm sản phẩm
+Route::get('AddProduct','pageController@insertProduct')->middleware('RoleCheck');
+Route::post('AddProduct','pageController@insertProductToDB')->middleware('RoleCheck');
+
