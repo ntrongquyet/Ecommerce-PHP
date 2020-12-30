@@ -84,6 +84,17 @@
                 </div>
             </div>
         </div>
+        <hr/>
+        <div class="well">
+        <h4>Viết bình luận</h4>
+        <form role="form">
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+            <div class="form" style="margin-bottom: 10px;">
+                <textarea class="form-control" rows="10" name="textcomment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+        </form>
+        </div>
     </div>
 
 <!-- 

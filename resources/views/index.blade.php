@@ -4,9 +4,12 @@
 @parent
 @endsection
 @section('content')
+
+@if(isset($categoryList))
 <div class="row">
     <div class="col mt-3 pt-3 pb-3 bg-white">
         <div class="btn-group-vertical">
+           
             @foreach($categoryList as $itemCat)
             <div class="btn-group dropright">
                 <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +48,9 @@
         </div>
     </div>
 </div>
+@endif
 
+@if(isset($topSaleProduct))
 <div class="popular-product section">
     <div class="section-title">
         <h2>Sản phẩm bán chạy nhất</h2>
@@ -54,7 +59,8 @@
         <div class="col-lg-12 grid-margin stretch-card">
 
             <div class="owl-carousel">
-                @foreach($productList as $product)
+                
+                @foreach($topSaleProduct as $product)
                 <div class="item">
                     <div class="product">
                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
@@ -77,6 +83,7 @@
                     </div>
                 </div>
                 @endforeach
+                
             </div>
         </div>
     </div>
@@ -107,9 +114,12 @@
             </div>
         </div>
         @endforeach
-
     </div>
-
 </div>
-
+<div class="row">
+    <nav aria-label="Page navigation example">
+        {{ $productList->links() }}
+    </nav>
+</div>
+@endif
 @endsection
