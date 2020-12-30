@@ -18,7 +18,7 @@
         <form action="login" method="post">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="username">Tên đăng nhập</label>
+                <label for="username">Tên đăng nhập hoặc email</label>
                 <input type="text" name="username" <?php if (isset($username)) echo 'value = "' . $username . '"' ?> class="form-control" placeholder="" aria-describedby="helpId">
             </div>
             <div class="row">

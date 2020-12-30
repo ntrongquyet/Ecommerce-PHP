@@ -16,6 +16,7 @@ class LoginController extends Controller
         $data = $res->input();
         $user = DB::table('users')->select('username', 'password')
             ->where('username', '=', $data['username'])
+            ->orWhere('email', '=', $data['username'])
             ->get()->first();
         if ($user !== null) {
             if (password_verify($data['pwd'], $user->password)) {
