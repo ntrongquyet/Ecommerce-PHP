@@ -98,15 +98,7 @@
                         </div>
                     </div>
             </div>
-            <!-- <div class="info-product">
-                <div class="title">
-                    {{$product->name}}
-                </div>
-                <div class="price">
-                    {{$product->price}}
-                </div>
 
-            </div> -->
             <div class="product-content">
                 <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
                 <div class="product-price">
