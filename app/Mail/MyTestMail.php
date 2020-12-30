@@ -29,7 +29,7 @@ class MyTestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Kích hoạt tài khoản trang thương mại điện tử')
+        return $this->subject('Trang thương mại điện tử')
         ->view('emails.myTestMail');
     }
 }

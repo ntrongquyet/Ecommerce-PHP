@@ -36,8 +36,8 @@
                     </div>
                 </div>
             </div>
-            <a style="display: block;" href="#">Bạn đã quên mật khẩu?</a>
-            <p>Nếu bạn chưa có tài khoản, đăng ký <a href="http://127.0.0.1:8000/Register">tại đây</a>.</p>
+            <a style="display: block;" href="Forgot">Bạn đã quên mật khẩu?</a>
+            <p>Nếu bạn chưa có tài khoản, đăng ký <a href="Register">tại đây</a>.</p>
             @if($errors->any())
 
         {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
