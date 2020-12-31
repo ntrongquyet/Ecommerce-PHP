@@ -78,7 +78,7 @@
                         <span class="color black"></span>
                     </h5>
                     <div class="action">
-                        <button class="add-to-cart btn btn-default" type="button">Thêm vào giỏi hàng</button>
+                        <button class="add-to-cart btn btn-default" type="button">Thêm vào giỏi hàng</button>   
                         <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                     </div>
                 </div>

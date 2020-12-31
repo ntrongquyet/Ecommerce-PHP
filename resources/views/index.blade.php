@@ -101,7 +101,8 @@
                     <div class="single-product image">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                            <a href="#">Thêm giỏ hàng</a>
+                            <a href="/them-gio-hang/{{$product->id_product}}"
+                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
                         </div>
                     </div>
             </div>
