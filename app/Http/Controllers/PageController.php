@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class PageController extends Controller
 {
@@ -139,19 +140,22 @@ class PageController extends Controller
     public function insertProduct()
     {
         $categories = DB::table('Categories')->get();
+        $msg = "";
         return view('frontend.Products.addProduct', [
-            'categoryList' => $categories,
-        ]);
+            'categoryList' => $categories
+        ])->with('msg',"$msg");
     }
     public function insertProductToDB(Request $res)
     {
 
         $data = $res->input();
+        $images = array();
         $rule = [
             'name' => 'required',
             'price' => 'required',
             'about' => 'required',
             'qty' => 'required',
+            'images' => 'required|min:3'
 
         ];
         $customMessage = [
@@ -162,18 +166,20 @@ class PageController extends Controller
 
             // Chi tiết
             'about.required' => 'Chi tiết sản phẩm không được để trống',
-            // Mật khẩu xác nhận
+            // Sản phẩm
             'qty.required' => 'Số lượng sản phẩm không được để trống',
+            // Hình ảnh
+            'images.required' => 'Hình ảnh sản phẩm không được để trống',
+            'images.min' => 'Hình ảnh tối thiểu phải là 3',
         ];
-        $msg ='';
+        $msg = '';
         $validator = Validator::make($res->all(), $rule, $customMessage);
         if ($validator->fails()) {
             return redirect('AddProduct')
                 ->withInput()
                 ->withErrors($validator);
         } else {
-            var_dump($data);
-            if (count($data['images']) >= 3) {
+            if (count($res->file('images')) >= 3) {
                 DB::table('Products')->insert([
                     'name' => $data['name'],
                     'id_Cat' => $data['cats'],
@@ -185,23 +191,30 @@ class PageController extends Controller
                 ]);
                 $lastItem = DB::table('Products')->latest()->first();
                 $id_Product = $lastItem->id_product;
-                foreach ($data['images'] as $img) {
+                foreach ($res->file('images') as $img) {
+                    // Cấp quyền lưu file
+
                     $name = uniqid('img_') . '.' . $img->getClientOriginalExtension();
-                    $img->move(public_path('image/products'), $name);
+                    $image_resize = Image::make($img->path())->resize(200,200);
+                    $image_resize->save(public_path('/image/products/'.$name),80);
                     DB::table('Image')->insert([
                         'id_product' => $id_Product,
                         'image' => $name
                     ]);
                 }
+                // Cập nhật avatar mặc định cho sản phẩm
+                $images = DB::table('Image')->where('id_product', '=', $id_Product)->get()->first();
+                DB::table('Products')
+                    ->where('id_product', $id_Product)
+                    ->update(['avatar' => $images->image]);
                 $msg = "Thêm sản phẩm thành công";
             } else {
                 $msg = "Thêm sản phẩm thất bại, số lượng ảnh tối thiểu phải là 3";
             }
             $categories = DB::table('Categories')->get();
             return view('frontend.Products.addProduct', [
-                'categoryList' => $categories,
-                'message' => $msg
-            ]);
+                'categoryList' => $categories
+            ])->with('msg',"$msg");
         }
     }
 }

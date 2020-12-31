@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col mt-3 pt-3 pb-3 bg-white">
         <div class="btn-group-vertical">
-           
+
             @foreach($categoryList as $itemCat)
             <div class="btn-group dropright">
                 <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,13 +59,13 @@
         <div class="col-lg-12 grid-margin stretch-card">
 
             <div class="owl-carousel">
-                
+
                 @foreach($topSaleProduct as $product)
                 <div class="item">
                     <div class="product">
                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                             <div class="product-image">
-                                <img src="{{url('/image/default.jpg')}}" />
+                                <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                                 <div class="addToCart">
                                     <a href="#">Thêm giỏ hàng</a>
                                 </div>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 @endforeach
-                
+
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
             <div class="single-product">
                 <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                     <div class="single-product image">
-                        <img src="{{url('/image/default.jpg')}}" />
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
                             <a href="#">Thêm giỏ hàng</a>
                         </div>
