@@ -10,7 +10,7 @@ use Image;
 
 class PageController extends Controller
 {
-    private $limit = 3;
+    private $limit = 9;
     public function index()
     {
 
