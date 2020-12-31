@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "576857b0143fe4c21d84f1361ca5e76f",
+    "content-hash": "ec931fdb3c36bbfedc59995cdbb7e731",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -967,6 +968,13 @@
             "time": "2019-11-02T09:15:47+00:00"
         },
         {
+            "name": "laravel/framework",
+            "version": "v8.20.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "b5d8573ab16027867eaa1ac148893833434f9b02"
+            },
             "name": "laravel/framework",
             "version": "v8.20.1",
             "source": {

@@ -85,6 +85,7 @@
             </div>
         </div>
         <hr/>
+        @if (session()->has('user'))
         <div class="well">
         <h4>Viết bình luận</h4>
         <form role="form">
@@ -95,6 +96,7 @@
             <button type="submit" class="btn btn-primary">Gửi bình luận</button>
         </form>
         </div>
+        @endif
     </div>
 
 <!-- 

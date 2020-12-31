@@ -47,9 +47,12 @@ Route::get('Admin',function(){
     return view('Admin.AdminPage');
 });
 
-
 //Comment
 // Route::post('comment/{id}','CommentController@postComment');
+
+//Quên mật khẩu
+Route::get('Forgot', 'ForgotController@forgot');
+Route::post('Forgot','ForgotController@forgotPassword');
 
 // Thêm sản phẩm
 Route::get('AddProduct','pageController@insertProduct')->middleware('RoleCheck');
