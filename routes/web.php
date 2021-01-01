@@ -53,7 +53,7 @@ Route::get('Admin',function(){
 });
 
 //Comment
-// Route::post('comment/{id}','CommentController@postComment');
+Route::post('product','CommentController@postComment');
 
 //Quên mật khẩu
 Route::get('Forgot', 'ForgotController@forgot');
