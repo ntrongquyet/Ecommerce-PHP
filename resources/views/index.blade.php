@@ -123,4 +123,35 @@
     </nav>
 </div>
 @endif
+
+@if(isset($topNewProduct))
+<div class="all-product section">
+    <div class="section-title">
+        <h2>Sản Phẩm mới nhất</h2>
+    </div>
+    <div class="row">
+        @foreach($topNewProduct as $product)
+        <div class="col-sm-4 product">
+            <div class="single-product">
+                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                    <div class="single-product image">
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <div class="addToCart">
+                            <a href="/them-gio-hang/{{$product->id_product}}"
+                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="product-content">
+                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                <div class="product-price">
+                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+@endif
 @endsection
