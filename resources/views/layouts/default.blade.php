@@ -57,11 +57,11 @@
                 @else
                 <li class="nav-item-account" style="margin-right: 10px ;">
                     <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="login">Đăng nhập</a>
+                    <a class="nav-link" style="float:right;" href="/login">Đăng nhập</a>
                 </li>
                 <li class="nav-item-account">
                     <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="Register">Đăng kí</a>
+                    <a class="nav-link" style="float:right;" href="/Register">Đăng kí</a>
                 </li>
                 @endif
             </ul>
