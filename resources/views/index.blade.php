@@ -62,28 +62,22 @@
             <div class="owl-carousel">
 
                 @foreach($topSaleProduct as $product)
-                <div class="item">
-                    <div class="product">
-                        <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-                            <div class="product-image">
-                                <img src="{{url('/image/products')}}/{{$product->avatar}}" />
-                                <div class="addToCart">
-                                <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
-                                </div>
-                            </div>
-
-                            <div class="info-product">
-                                <span class="title">
-                                    {{$product->name}}
-                                </span>
-                                <span class="price">
-                                    {{$product->price}}
-                                </span>
-
-                            </div>
+                <div>
+            <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                <figcaption class="info-wrap">
+                    <div class="row">
+                        <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                        <div class="col-md-4">
+                            <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
+                        </div>
                     </div>
+                </figcaption>
+                <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                    <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
+            </figure>
+        </div>
                 @endforeach
 
             </div>
@@ -97,29 +91,30 @@
     </div>
     <div class="row">
         @foreach($productList as $product)
-        <div class="col-sm-4 product">
-            <div class="single-product">
-                <div class="single-product image">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
-                    <div class="addToCart">
-                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="product-content">
-                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
-                <div class="product-price">
-                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+        <div class="col-md-4">
+            <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                <figcaption class="info-wrap">
+                    <div class="row">
+                        <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                        <div class="col-md-4">
+                            <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
+                        </div>
+                    </div>
+                </figcaption>
+                <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                    <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
-            </div>
+            </figure>
         </div>
         @endforeach
     </div>
 </div>
-<div class="row">
-    <nav aria-label="Page navigation example">
+
+</div>
+<div class="row mt-2" >
+    <nav aria-label="Page navigation example" style="margin: 0 auto">
         {{ $productList->links() }}
     </nav>
 </div>
@@ -132,24 +127,21 @@
     </div>
     <div class="row">
         @foreach($topLikeProduct as $product)
-        <div class="col-sm-4 product">
-            <div class="single-product">
-                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-                    <div class="single-product image">
-                        <img src="{{url('/image/products')}}/{{$product->avatar}}" />
-                        <div class="addToCart">
-                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
+        <div class="col-md-4">
+            <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                <figcaption class="info-wrap">
+                    <div class="row">
+                        <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                        <div class="col-md-4">
+                            <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
-            </div>
-
-            <div class="product-content">
-                <div><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></div>
-                <div class="product-price">
-                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                </figcaption>
+                <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                    <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
-            </div>
+            </figure>
         </div>
         @endforeach
     </div>
@@ -169,8 +161,8 @@
                     <div class="single-product image">
                         <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
+                            <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                            </a>
                         </div>
                     </div>
             </div>
@@ -186,8 +178,10 @@
     </div>
 </div>
 <script>
-    var msg = '{{Session::get('jsAlert')}}';
-    var exist = '{{Session::has('jsAlert')}}';
+    var msg = '{{Session::get('
+    jsAlert ')}}';
+    var exist = '{{Session::has('
+    jsAlert ')}}';
     if (exist) {
         alert(msg);
     }
