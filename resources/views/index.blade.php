@@ -145,7 +145,7 @@
             </div>
 
             <div class="product-content">
-                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                <div><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></div>
                 <div class="product-price">
                     <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
                 </div>
@@ -163,7 +163,7 @@
     </div>
     <div class="row">
         @foreach($topNewProduct as $product)
-        <div class="col-sm-4 product">
+        <div class="col-sm-3 product">
             <div class="single-product">
                 <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                     <div class="single-product image">
