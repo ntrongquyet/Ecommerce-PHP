@@ -44,13 +44,21 @@ class PageController extends Controller
                             ->take(10)
                             ->get();
 
+        // 10 sản phẩm được yêu thích nhất nhất
+        $topLikeProduct = DB::table('Products')
+                            ->orderBy('liked', 'desc')
+                            ->take(10)
+                            ->get();
+
+        // phân trang
         $products = DB::table('Products')->paginate($this->limit);
 
         return view('index', [
             'categoryList' => $categories,
             'productList' =>  $products,
             'topSaleProduct' => $topSaleProduct,
-            'topNewProduct' => $topNewProduct
+            'topNewProduct' => $topNewProduct,
+            'topLikeProduct' => $topLikeProduct
         ]);
     }
     public function chitietsanpham($idCat, $idProduct)
