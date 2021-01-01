@@ -88,7 +88,8 @@
         @if (session()->has('user'))
         <div class="well">
         <h4>Viết bình luận</h4>
-        <form role="form" action="/product">
+        <form role="form">
+        {{ csrf_field() }}
             <input type="hidden" name="_token" value="{{$product->id_product}}"/>
             <div class="form" style="margin-bottom: 10px;">
                 <textarea class="form-control" rows="10" name="textcomment"></textarea>

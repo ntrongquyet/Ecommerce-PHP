@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function postComment($id,Request $request)
+    public function postComment(Request $request)
     {
         // $comment = new Comment;
         // $comment;
         // $comment -> idUser = Auth::use()->id;
-
-        
     }
 }
