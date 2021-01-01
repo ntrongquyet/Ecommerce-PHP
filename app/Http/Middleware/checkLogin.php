@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class checkActive
+class checkLogin
 {
     /**
      * Handle an incoming request.
@@ -17,12 +16,12 @@ class checkActive
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
-        if($user->email_verified_at!=null){
-            $msg = "Vui lòng kích hoạt để tiếp tục";
+        $value = $request->session()->get('user','default');
 
-            return redirect('/')->with('jsAlert', $msg);
+        if($value!='default'){
+            return $next($request);
+        }else{
+            return response()->view('layouts.error');
         }
-        return $next($request);
     }
 }

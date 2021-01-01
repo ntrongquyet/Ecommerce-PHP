@@ -48,7 +48,7 @@
                 @if (session()->has('user'))
                 <li class="nav-item-account" style="margin-right: 10px ;">
                     <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="/{{session()->get('user')}}">Tôi</a>
+                    <a class="nav-link" style="float:right;" href="profile/{{session()->get('user')}}">Tôi</a>
                 </li>
                 <li class="nav-item-account">
                     <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">

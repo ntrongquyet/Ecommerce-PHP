@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Image;
 use Cart;
+use Darryldecode\Cart\Cart as CartCart;
 
 class PageController extends Controller
 {
@@ -18,38 +19,37 @@ class PageController extends Controller
 
         //lấy 10 id_product có tổng số lượng lớn nhất trong PurchaseDetail
         $id_products = DB::table('PurchaseDetail')
-                        ->select('id_product', DB::raw('SUM(quantity) as total'))
-                        ->groupBy('id_product')
-                        ->orderBy('total', 'desc')
-                        ->take(10)
-                        ->get();
+            ->select('id_product', DB::raw('SUM(quantity) as total'))
+            ->groupBy('id_product')
+            ->orderBy('total', 'desc')
+            ->take(10)
+            ->get();
 
 
         $arr_id = array();
 
         //tạo mảng chứa các id_product
-        for($i = 0; $i < count($id_products); $i++)
-        {
+        for ($i = 0; $i < count($id_products); $i++) {
             $arr_id[$i] = $id_products[$i]->id_product;
         }
 
         // 10 sản phẩm bán chạy nhất
         $topSaleProduct = DB::table('Products')
-                            ->whereIn('id_product', $arr_id)
-                            ->take(10)
-                            ->get();
-        
+            ->whereIn('id_product', $arr_id)
+            ->take(10)
+            ->get();
+
         // 10 sản phẩm mới nhất
         $topNewProduct = DB::table('Products')
-                            ->orderBy('id_product', 'desc')
-                            ->take(10)
-                            ->get();
+            ->orderBy('id_product', 'desc')
+            ->take(10)
+            ->get();
 
         // 10 sản phẩm được yêu thích nhất nhất
         $topLikeProduct = DB::table('Products')
-                            ->orderBy('liked', 'desc')
-                            ->take(10)
-                            ->get();
+            ->orderBy('liked', 'desc')
+            ->take(10)
+            ->get();
 
         // phân trang
         $products = DB::table('Products')->paginate($this->limit);
@@ -256,11 +256,11 @@ class PageController extends Controller
     public function cart()
     {
         $items = \Cart::getContent();
-
+        $total = \Cart::getTotal();
         return view('frontend.checkout.cart')->with([
-            "list" => $items
+            "list" => $items,
+            'total_money' => $total
         ]);
-
     }
 
     public function themgiohang($idProduct)
@@ -268,18 +268,122 @@ class PageController extends Controller
         $product = DB::table('Products')
             ->where('id_product', '=', $idProduct)
             ->get()->first();
+        $msg = "Thêm sản phẩm thành công";
+        $item = Cart::get($idProduct);
+        if ($item != null && $item->quantity >= $product->quantity) {
+            $msg = "Sản phẩm trong kho không đủ để thực hiện giao dịch";
+        } else {
+            Cart::add(array(
+                'id'    => $idProduct,
+                'name'  => $product->name,
+                'price' => $product->price,
+                'quantity'   => 1,
+                'attributes' => [
+                    'img' => $product->avatar,
+                ]
+            ));
+        }
+        return redirect()->back()->with('jsAlert', $msg);
+    }
+    public function xoasanpham($idProduct)
+    {
+        $remove = \Cart::remove($idProduct);
+        return redirect()->back();
+    }
+    public function giamsanpham($idProduct)
+    {
 
-        $add = Cart::add(array(
-            'id'    => $idProduct,
-            'name'  => $product->name,
-            'price' => $product->price,
-            'quantity'   => 1,
-            'attributes' => [
-                'img' => $product->avatar,
-            ]
-        ));
-        if ($add) {
+        $item = \Cart::get($idProduct);
+        if ($item->quantity == 1) {
+            $remove = \Cart::remove($idProduct);
+        } else {
+            Cart::update($idProduct, array(
+                'quantity' => -1, // lấy số lượng hiện tại trong giỏ hàng trừ đi 1
+            ));
+        }
+        return redirect()->back();
+    }
+    public function tangsanpham($idProduct)
+    {
+        $msg = "";
+        $itemDB = DB::table("Products")->where("id_product", "=", $idProduct)->get()->first();
+
+
+        $item = \Cart::get($idProduct);
+        if ($item->quantity == $itemDB->quantity) {
+            $msg = "Sản phẩm trong kho không đủ để thực hiện giao dịch";
+            return redirect()->back()->with('jsAlert', $msg);
+        } else {
+            Cart::update($idProduct, array(
+                'quantity' => +1, // lấy số lượng hiện tại trong giỏ hàng cộng thêm1
+
+            ));
             return redirect()->back();
         }
+    }
+    public function chitietdathang()
+    {
+        $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+        return view('frontend.checkout.checkout')->with('user', $user);
+    }
+    public function thanhtoan(Request $request)
+    {
+        $items = \Cart::getContent();
+        if(Cart::isEmpty()){
+            return redirect()->back()->with('thatbai','Giỏ hàng của bạn đang trống');
+        }else{
+            $data = $request->input();
+            $this->validate(
+                $request,
+                [
+                    'hoten'         => 'required',
+                    'email'         => 'required|email',
+                    'diachi'        => 'required',
+                    'sodienthoai'   => 'required'
+
+                ],
+                [
+                    'hoten.required'        => 'Bạn chưa điền tên',
+                    'email.required'        => 'Bạn chưa điền email',
+                    'diachi.required'       => 'Bạn chưa điền địa chỉ',
+                    'sodienthoai.required'  => 'Bạn cần điền số điện thoại'
+                ]
+            );
+            $total_money = floatval(preg_replace('/[^\d.]/', '', Cart::getSubTotal()));
+            $status = 1;
+            // Thanh toán qua zalopay
+            if ($data['thanhtoan'] == 0) {
+                $status = 0;
+            }
+            // Lấy id khách hàng
+            $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+            // Tạo đơn hàng trong database
+            DB::table('Purchases')->insert([
+                'id_user' => $user->id,
+                'total' => $total_money,
+                'status' => 1,
+                'note' => $data['ghichu'],
+                'thanhtoan' => $status,
+                'name' => $data['hoten'],
+                'phone' => $data['sodienthoai'],
+                'address' => $data['diachi'],
+            ]);
+            $lastItem = DB::table('Purchases')->latest()->first();
+            $id_Purchase = $lastItem->id_purchase;
+            // Lưu số thứ tự từng món hàng
+            $stt = 1;
+            foreach($items as $product){
+                DB::table('PurchaseDetail')->insert([
+                    'id_purchase' => $id_Purchase,
+                    'id_detail' => $stt++,
+                    'id_product' => $product->id,
+                    'quantity' => $product->quantity,
+                    'unit_price' => $product->price,
+                ]);
+            }
+            Cart::clear();
+            return redirect()->back()->with('thanhcong','Đặt hàng thành công');
+        }
+
     }
 }

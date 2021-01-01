@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\View;
 */
 // Trang chủ
 Route::get('/', 'PageController@index');
+// 404
+Route::get('404', function(){
+    return view('layouts.error');
+});
+
 // Đăng kí
 Route::get('Register','RegisterController@register');
 Route::post('Register','RegisterController@insertAccount');
@@ -57,7 +62,14 @@ Route::post('Forgot','ForgotController@forgotPassword');
 // Thêm sản phẩm
 Route::get('AddProduct','PageController@insertProduct')->middleware('RoleCheck');
 Route::post('AddProduct','PageController@insertProductToDB')->middleware('RoleCheck');
+// Giỏ hàng
+Route::get("product/addToCart/{idProduct}",'PageController@themgiohang')->middleware('Logged');
+Route::get('product/view/cart','PageController@cart')->middleware('Logged');
+Route::get('product/xoa-san-pham/{id}','PageController@xoasanpham')->middleware('Logged');
+Route::get('product/giam-san-pham/{id}','PageController@giamsanpham')->middleware('Logged');
+Route::get('product/tang-san-pham/{id}','PageController@tangsanpham')->middleware('Logged');
+// Đặt hàng
+Route::get('product/cart/checkout','PageController@chitietdathang')->middleware('Logged');
+Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
-Route::get("product/addToCart/{idProduct}",'PageController@themgiohang');
-Route::get('product/view/cart','PageController@cart');
 

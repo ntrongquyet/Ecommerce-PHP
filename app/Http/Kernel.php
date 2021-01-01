@@ -43,6 +43,12 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        'checkout' =>[
+            \App\Http\Middleware\checkLogin::class,
+            \App\Http\Middleware\checkActive::class,
+            \App\Http\Middleware\checkInfo::class,
+
+        ]
     ];
 
     /**
@@ -65,6 +71,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'CheckValidLogin' => \App\Http\Middleware\CheckValidLogin::class,
         'RoleCheck' => \App\Http\Middleware\checkRole::class,
+        'Logged' => \App\Http\Middleware\checkLogin::class,
 
     ];
 }
