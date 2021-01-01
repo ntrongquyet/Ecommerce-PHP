@@ -12,7 +12,8 @@
 
             @foreach($categoryList as $itemCat)
             <div class="btn-group dropright">
-                <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     {{$itemCat->name}}
                 </a>
             </div>
@@ -28,13 +29,16 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg"
+                        class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg"
+                        class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg"
+                        class="d-block w-100" alt="...">
                 </div>
 
             </div>
@@ -63,25 +67,21 @@
 
                 @foreach($topSaleProduct as $product)
                 <div class="item">
-                    <div class="product">
-                        <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-                            <div class="product-image">
-                                <img src="{{url('/image/products')}}/{{$product->avatar}}" />
-                                <div class="addToCart">
+                    <div class="single-product">
+                        <div class="single-product image">
+                            <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                            <div class="addToCart">
                                 <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
-                                </div>
+                                </a>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="info-product">
-                                <span class="title">
-                                    {{$product->name}}
-                                </span>
-                                <span class="price">
-                                    {{$product->price}}
-                                </span>
-
-                            </div>
+                    <div class="product-content">
+                        <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                        <div class="product-price">
+                            <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -138,8 +138,8 @@
                     <div class="single-product image">
                         <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
+                            <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                            </a>
                         </div>
                     </div>
             </div>
@@ -169,8 +169,8 @@
                     <div class="single-product image">
                         <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
+                            <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                            </a>
                         </div>
                     </div>
             </div>
@@ -186,11 +186,13 @@
     </div>
 </div>
 <script>
-    var msg = '{{Session::get('jsAlert')}}';
-    var exist = '{{Session::has('jsAlert')}}';
-    if (exist) {
-        alert(msg);
-    }
+var msg = '{{Session::get('
+jsAlert ')}}';
+var exist = '{{Session::has('
+jsAlert ')}}';
+if (exist) {
+    alert(msg);
+}
 </script>
 @endif
 @endsection

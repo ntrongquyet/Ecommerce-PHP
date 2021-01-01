@@ -12,5 +12,7 @@ class CommentController extends Controller
         // $comment = new Comment;
         // $comment;
         // $comment -> idUser = Auth::use()->id;
+
+        
     }
 }
