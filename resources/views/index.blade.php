@@ -97,12 +97,11 @@
         @foreach($productList as $product)
         <div class="col-sm-4 product">
             <div class="single-product">
-                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                     <div class="single-product image">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                            <a href="/them-gio-hang/{{$product->id_product}}"
-                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
+                            <a href="product/addToCart/{{$product->id_product}}" onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng
+                            </a>
                         </div>
                     </div>
             </div>

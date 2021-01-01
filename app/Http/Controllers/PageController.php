@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Image;
+use Cart;
 
 class PageController extends Controller
 {
@@ -143,7 +144,7 @@ class PageController extends Controller
         $msg = "";
         return view('frontend.Products.addProduct', [
             'categoryList' => $categories
-        ])->with('msg',"$msg");
+        ])->with('msg', "$msg");
     }
     public function insertProductToDB(Request $res)
     {
@@ -195,8 +196,8 @@ class PageController extends Controller
                     // Cấp quyền lưu file
 
                     $name = uniqid('img_') . '.' . $img->getClientOriginalExtension();
-                    $image_resize = Image::make($img->path())->resize(200,200);
-                    $image_resize->save(public_path('/image/products/'.$name),80);
+                    $image_resize = Image::make($img->path())->resize(200, 200);
+                    $image_resize->save(public_path('/image/products/' . $name), 80);
                     DB::table('Image')->insert([
                         'id_product' => $id_Product,
                         'image' => $name
@@ -214,7 +215,37 @@ class PageController extends Controller
             $categories = DB::table('Categories')->get();
             return view('frontend.Products.addProduct', [
                 'categoryList' => $categories
-            ])->with('msg',"$msg");
+            ])->with('msg', "$msg");
+        }
+    }
+
+    public function cart()
+    {
+        $items = \Cart::getContent();
+
+        return view('frontend.checkout.cart')->with([
+            "list" => $items
+        ]);
+
+    }
+
+    public function themgiohang($idProduct)
+    {
+        $product = DB::table('Products')
+            ->where('id_product', '=', $idProduct)
+            ->get()->first();
+
+        $add = Cart::add(array(
+            'id'    => $idProduct,
+            'name'  => $product->name,
+            'price' => $product->price,
+            'quantity'   => 1,
+            'attributes' => [
+                'img' => $product->avatar,
+            ]
+        ));
+        if ($add) {
+            return redirect()->back();
         }
     }
 }

@@ -66,10 +66,10 @@
                 @endif
             </ul>
         </div>
-        <button type="button" class="btn btn-danger">
+        <a href="/product/view/cart" type="button" class="btn btn-danger">
             <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
             <div class="nav-link" style="float: right;">Giỏ hàng</div>
-        </button>
+        </a>
     </nav>
     @show
 

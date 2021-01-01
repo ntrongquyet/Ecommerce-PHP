@@ -36,11 +36,11 @@ Route::get('profile/{username}',function(){
     return view('Users.Profile');
 })->middleware('CheckValidLogin');
 // Chi tiết đơn hàng
-Route::get("/{idCat}/{idProduct}",'pageController@chitietsanpham');
+Route::get("/{idCat}/{idProduct}",'PageController@chitietsanpham');
 
 // tìm kiếm sản phẩm
-Route::get('default','pageController@SearchProduct');
-Route::post('default','pageController@SearchProduct');
+Route::get('default','PageController@SearchProduct');
+Route::post('default','PageController@SearchProduct');
 
 //Trang admin
 Route::get('Admin',function(){
@@ -55,6 +55,9 @@ Route::get('Forgot', 'ForgotController@forgot');
 Route::post('Forgot','ForgotController@forgotPassword');
 
 // Thêm sản phẩm
-Route::get('AddProduct','pageController@insertProduct')->middleware('RoleCheck');
-Route::post('AddProduct','pageController@insertProductToDB')->middleware('RoleCheck');
+Route::get('AddProduct','PageController@insertProduct')->middleware('RoleCheck');
+Route::post('AddProduct','PageController@insertProductToDB')->middleware('RoleCheck');
+
+Route::get("product/addToCart/{idProduct}",'PageController@themgiohang');
+Route::get('product/view/cart','PageController@cart');
 
