@@ -12,10 +12,17 @@ class PageController extends Controller
     private $limit = 3;
     public function index()
     {
-
         $categories = DB::table('Categories')->get();
 
-        $topSaleProduct = DB::table('Products')->get();
+        $topSaleProduct = DB::table('Products')
+                            ->orderBy('id_product', 'desc')
+                            ->take(5)
+                            ->get();
+        
+        $topNewProduct = DB::table('Products')
+                            ->orderBy('id_product', 'desc')
+                            ->take(10)
+                            ->get();
 
         $products = DB::table('Products')->paginate($this->limit);
 
@@ -45,7 +52,6 @@ class PageController extends Controller
     // chuyển đổi tiếng việt có dấu sang không dấu
     public function vn_to_str($str)
     {
-
         $unicode = array(
 
             'a' => 'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',
