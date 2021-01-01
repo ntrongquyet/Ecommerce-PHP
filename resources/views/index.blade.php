@@ -99,13 +99,14 @@
         @foreach($productList as $product)
         <div class="col-sm-4 product">
             <div class="single-product">
-                <div class="single-product image">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
-                    <div class="addToCart">
-                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
-                        </a>
+                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                    <div class="single-product image">
+                        <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <div class="addToCart">
+                            <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                            </a>
+                        </div>
                     </div>
-                </div>
             </div>
 
             <div class="product-content">
