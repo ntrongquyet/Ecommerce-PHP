@@ -15,7 +15,7 @@
                 <div class="single-product">
                     <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                         <div class="single-product image">
-                            <img src="{{url('/image/default.jpg')}}" />
+                            <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                             <div class="addToCart">
                                 <a href="#">Thêm giỏ hàng</a>
                             </div>
