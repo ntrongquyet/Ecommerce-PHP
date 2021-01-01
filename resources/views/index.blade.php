@@ -36,6 +36,7 @@
                 <div class="carousel-item">
                     <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                 </div>
+                
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -120,6 +121,68 @@
     <nav aria-label="Page navigation example">
         {{ $productList->links() }}
     </nav>
+</div>
+@endif
+
+@if(isset($topLikeProduct))
+<div class="all-product section">
+    <div class="section-title">
+        <h2>Sản Phẩm được yêu thích nhất</h2>
+    </div>
+    <div class="row">
+        @foreach($topLikeProduct as $product)
+        <div class="col-sm-4 product">
+            <div class="single-product">
+                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                    <div class="single-product image">
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <div class="addToCart">
+                            <a href="/them-gio-hang/{{$product->id_product}}"
+                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="product-content">
+                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                <div class="product-price">
+                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+@endif
+
+@if(isset($topNewProduct))
+<div class="all-product section">
+    <div class="section-title">
+        <h2>Sản Phẩm mới nhất</h2>
+    </div>
+    <div class="row">
+        @foreach($topNewProduct as $product)
+        <div class="col-sm-4 product">
+            <div class="single-product">
+                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
+                    <div class="single-product image">
+                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <div class="addToCart">
+                            <a href="/them-gio-hang/{{$product->id_product}}"
+                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="product-content">
+                <span><a href="/{{$product->id_Cat}}/{{$product->id_product}}">{{$product->name}}</a></span>
+                <div class="product-price">
+                    <span>{{number_format($product->price, 0, '', ',')}}VNĐ</span>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>
 @endif
 @endsection

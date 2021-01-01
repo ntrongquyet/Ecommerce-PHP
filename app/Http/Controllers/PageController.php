@@ -14,17 +14,52 @@ class PageController extends Controller
     private $limit = 9;
     public function index()
     {
-
         $categories = DB::table('Categories')->get();
 
-        $topSaleProduct = DB::table('Products')->get();
+        //lấy 10 id_product có tổng số lượng lớn nhất trong PurchaseDetail
+        $id_products = DB::table('PurchaseDetail')
+                        ->select('id_product', DB::raw('SUM(quantity) as total'))
+                        ->groupBy('id_product')
+                        ->orderBy('total', 'desc')
+                        ->take(10)
+                        ->get();
 
+
+        $arr_id = array();
+
+        //tạo mảng chứa các id_product
+        for($i = 0; $i < count($id_products); $i++)
+        {
+            $arr_id[$i] = $id_products[$i]->id_product;
+        }
+
+        // 10 sản phẩm bán chạy nhất
+        $topSaleProduct = DB::table('Products')
+                            ->whereIn('id_product', $arr_id)
+                            ->take(10)
+                            ->get();
+        
+        // 10 sản phẩm mới nhất
+        $topNewProduct = DB::table('Products')
+                            ->orderBy('id_product', 'desc')
+                            ->take(10)
+                            ->get();
+
+        // 10 sản phẩm được yêu thích nhất nhất
+        $topLikeProduct = DB::table('Products')
+                            ->orderBy('liked', 'desc')
+                            ->take(10)
+                            ->get();
+
+        // phân trang
         $products = DB::table('Products')->paginate($this->limit);
 
         return view('index', [
             'categoryList' => $categories,
             'productList' =>  $products,
-            'topSaleProduct' => $topSaleProduct
+            'topSaleProduct' => $topSaleProduct,
+            'topNewProduct' => $topNewProduct,
+            'topLikeProduct' => $topLikeProduct
         ]);
     }
     public function chitietsanpham($idCat, $idProduct)
@@ -47,7 +82,6 @@ class PageController extends Controller
     // chuyển đổi tiếng việt có dấu sang không dấu
     public function vn_to_str($str)
     {
-
         $unicode = array(
 
             'a' => 'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',
