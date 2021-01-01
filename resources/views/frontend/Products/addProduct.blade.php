@@ -12,11 +12,17 @@
             <h3 class="panel-title">Thêm sản phẩm</h3>
         </div>
         <div class="panel-body">
+            @if ($msg != "")
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ $msg }}
+            </div>
+            @endif
             @if($errors->any())
 
             {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
             @endif
-            <form action="/AddProduct" class="form-horizontal"  enctype="multipart/form-data" method="post" role="form">
+            <form action="/AddProduct" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="cats" class="col-sm-3 control-label">Loại sản phẩm</label>

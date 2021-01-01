@@ -21,6 +21,11 @@
     margin: 0 auto;
 }
 
+.single-product img{
+    border-style: none;
+    width: 200px;
+    height: 200px;
+}
 .info-product {
     margin-top: 15px;
 }
