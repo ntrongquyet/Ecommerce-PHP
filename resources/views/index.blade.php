@@ -36,7 +36,7 @@
                 <div class="carousel-item">
                     <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
                 </div>
-                
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -68,7 +68,8 @@
                             <div class="product-image">
                                 <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                                 <div class="addToCart">
-                                    <a href="#">Thêm giỏ hàng</a>
+                                <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                        </a>
                                 </div>
                             </div>
 
@@ -98,14 +99,13 @@
         @foreach($productList as $product)
         <div class="col-sm-4 product">
             <div class="single-product">
-                <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
-                    <div class="single-product image">
+                <div class="single-product image">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}" />
-                        <div class="addToCart">
-                            <a href="/them-gio-hang/{{$product->id_product}}"
-                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
-                        </div>
+                    <div class="addToCart">
+                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                        </a>
                     </div>
+                </div>
             </div>
 
             <div class="product-content">
@@ -136,10 +136,10 @@
             <div class="single-product">
                 <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                     <div class="single-product image">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                            <a href="/them-gio-hang/{{$product->id_product}}"
-                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
+                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                        </a>
                         </div>
                     </div>
             </div>
@@ -167,10 +167,10 @@
             <div class="single-product">
                 <a href="/{{$product->id_Cat}}/{{$product->id_product}}">
                     <div class="single-product image">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}" />
+                        <img src="{{url('/image/products')}}/{{$product->avatar}}" />
                         <div class="addToCart">
-                            <a href="/them-gio-hang/{{$product->id_product}}"
-                            onclick="return alert('Thêm vào giỏ hàng thành công')">Thêm giỏ hàng</a>
+                        <a href="product/addToCart/{{$product->id_product}}">Thêm giỏ hàng
+                        </a>
                         </div>
                     </div>
             </div>
@@ -185,5 +185,12 @@
         @endforeach
     </div>
 </div>
+<script>
+    var msg = '{{Session::get('jsAlert')}}';
+    var exist = '{{Session::has('jsAlert')}}';
+    if (exist) {
+        alert(msg);
+    }
+</script>
 @endif
 @endsection

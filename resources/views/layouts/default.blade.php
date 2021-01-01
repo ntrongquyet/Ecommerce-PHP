@@ -48,7 +48,7 @@
                 @if (session()->has('user'))
                 <li class="nav-item-account" style="margin-right: 10px ;">
                     <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="/{{session()->get('user')}}">Tôi</a>
+                    <a class="nav-link" style="float:right;" href="profile/{{session()->get('user')}}">Tôi</a>
                 </li>
                 <li class="nav-item-account">
                     <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
@@ -66,10 +66,10 @@
                 @endif
             </ul>
         </div>
-        <button type="button" class="btn btn-danger">
+        <a href="/product/view/cart" type="button" class="btn btn-danger">
             <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
             <div class="nav-link" style="float: right;">Giỏ hàng</div>
-        </button>
+        </a>
     </nav>
     @show
 
