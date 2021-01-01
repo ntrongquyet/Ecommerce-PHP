@@ -355,7 +355,7 @@ class PageController extends Controller
             if ($data['thanhtoan'] == 0) {
                 $status = 0;
             }
-            // Lấy id khách hàng
+            // Lấy thông tin khách hàng
             $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
             // Tạo đơn hàng trong database
             DB::table('Purchases')->insert([
@@ -380,6 +380,10 @@ class PageController extends Controller
                     'quantity' => $product->quantity,
                     'unit_price' => $product->price,
                 ]);
+                // Trừ số lượng sản phẩm trong kho
+                DB::table('Products')
+              ->where('id_product', '=',$product->id)
+              ->decrement('quantity', $product->quantity);
             }
             Cart::clear();
             return redirect()->back()->with('thanhcong','Đặt hàng thành công');
