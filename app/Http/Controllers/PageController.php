@@ -73,10 +73,16 @@ class PageController extends Controller
         $cat = DB::table('Products')
             ->where('id_Cat', '=', $idCat)
             ->take(10)->get();
-        return view("frontend.Products.product", [
+            //Lấy chi tiết hình ảnh
+        $imageDetail = DB::table('Image')
+        ->where('id_product', '=', $idProduct)
+        ->get();
+        return view("frontend.Products.detailProduct", [
             'product' => $product,
-            'listProductAsCat' => $cat
+            'listProductAsCat' => $cat,
+            'imageDetail' => $imageDetail
         ]);
+        
     }
 
     // chuyển đổi tiếng việt có dấu sang không dấu

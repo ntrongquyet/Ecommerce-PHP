@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url('/style/carousel.css') }}" />
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url('/style/pc_style.css') }}" /> -->
+    <link rel="stylesheet" type="text/css" href="{{ url('/style/detailProductStyle.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('/style/main.css') }}" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
