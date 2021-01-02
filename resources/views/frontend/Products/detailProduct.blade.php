@@ -35,11 +35,6 @@
                                 src="{{url('/image/products')}}/{{$product->avatar}}" /></div>
                         @php($counter=2)
                         @foreach($imageDetail as $image)
-                        {{--  @if ($key > 1)
-                        <div class="tab-pane" id="pic-{{$counter}}"><img
-                            src="{{url('/image/products')}}/{{$image->image}}" />
-                    </div>
-                    @endif--}}
                     <div class="tab-pane" id="pic-{{$counter}}"><img
                             src="{{url('/image/products')}}/{{$image->image}}" /></div>
                     @php($counter=$counter+1)
@@ -54,8 +49,8 @@
 
             </div>
             <ul class="preview-thumbnail nav nav-tabs">
-                <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-                            src="{{url('/image/products')}}/{{$product->avatar}}" /></a></li>
+                {{-- <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                            src="{{url('/image/products')}}/{{$product->avatar}}" /></a></li> --}}
                 @php($counter=2)
                 @foreach($imageDetail as $image)
 
