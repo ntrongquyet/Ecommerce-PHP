@@ -25,6 +25,7 @@
 <body>
 
     @section('sidebar')
+    <div class="container-fluid">
     <nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
@@ -72,6 +73,7 @@
             <div class="nav-link" style="float: right;">Giỏ hàng</div>
         </a>
     </nav>
+    </div>
     @show
 
     <div class="container-fluid mt-1">

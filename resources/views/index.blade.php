@@ -6,8 +6,8 @@
 @section('content')
 
 @if(isset($categoryList))
-<div class="row">
-    <div class="col mt-3 pt-3 pb-3 bg-white">
+<div class="row justify-content-center">
+    <div class="col-3 bg-white">
         <div class="btn-group-vertical">
 
             @foreach($categoryList as $itemCat)
@@ -20,8 +20,8 @@
             @endforeach
         </div>
     </div>
-    <div class="col-9 mt-3 pt-3 pb-3 bg-white">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="col-6 mt-3 pt-3 pb-3 bg-white">
+        <div id="carouselExampleIndicators" class="carousel slide carousel" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
