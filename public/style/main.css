@@ -5,10 +5,7 @@ body {
     color: #000000;
     overflow-x: hidden;
 }
-*{
-    margin: 0;
-    padding: 0;
-}
+
 .container {
     margin-top: 50px;
     margin-bottom: 50px
