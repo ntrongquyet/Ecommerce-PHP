@@ -30,7 +30,7 @@
             <a class="navbar-brand" href="/">
                 <img class="img-nav"
                     src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                    alt="Girl in a jacket" width="75px" height="auto"></li>
+                    alt="Girl in a jacket" width="65px" height="auto"></li>
             </a>
         </div>
         <div>
@@ -43,7 +43,7 @@
                  type="submit">Tìm kiếm</button>
             </form>
         </div>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <div class="collapse navbar-collapse nav-login-register" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>

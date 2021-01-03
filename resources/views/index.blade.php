@@ -75,7 +75,7 @@
                                 <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}"
                                         class="title" data-toggle="tooltip" data-placement="bottom"
                                         title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 rating-edit">
                                     <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                         <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title"
                                 data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}"
                                 data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                         <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title"
                                 data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}"
                                 data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                         <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title"
                                 data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}"
                                 data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>

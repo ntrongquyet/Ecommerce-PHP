@@ -11,6 +11,10 @@ body {
     margin-bottom: 50px
 }
 
+.nav-login-register{
+    float: right;
+}
+
 a {
     text-decoration: none !important
 }
@@ -121,6 +125,10 @@ a {
     top: 0;
     left: 0;
     overflow: hidden
+}
+
+.rating-edit{
+    color: rgba(248, 61, 61, 0.719);
 }
 
 .rating-stars li {
