@@ -73,4 +73,4 @@ Route::get('product/cart/checkout','PageController@chitietdathang')->middleware(
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
 //like sản phẩm
-Route::get("product/liked/{idProduct}",'PageController@likeProduct');
+Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
