@@ -4,7 +4,7 @@
 @parent
 @endsection
 @section('content')
-<!-- <div class="col-sm-3 product">
+{{-- <!-- <div class="col-sm-3 product">
         <div class="product-image">
             <img src="{{url('/image/default.jpg')}}" />
             <div class="addToCart">
@@ -23,7 +23,7 @@
     <a href=# class="likedItem">
         <i class="far fa-heart"></i>
     </a>
-</div> -->
+</div> --> --}}
 <div class="container">
     <div class="card">
         <div class="container-fliud">
