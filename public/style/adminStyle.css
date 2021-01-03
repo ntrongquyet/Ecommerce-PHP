@@ -11,6 +11,10 @@ body {
     background: #fff;
 }
 
+.fas {
+    margin-top: 8px;
+}
+
 .wrapper .header {
     z-index: 1;
     background: #22242A;

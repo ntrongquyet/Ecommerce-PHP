@@ -31,7 +31,7 @@
         <div class="sidebar">
             <div class="sidebar-menu">
                 <center class="profile">
-                    <img src="1.jpg" alt="">
+                    <img src="{{url('/image/profile/male-profile-picture-vector-2041304.jpg')}}" alt="">
                     <p>Phú Cường</p>
                 </center>
                 <li class="item">
@@ -94,13 +94,13 @@
     </div>
     <!--wrapper end-->
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             $(".sidebar-btn").click(function() {
                 $(".wrapper").toggleClass("collapse");
             });
         });
-    </script>
+    </script> --}}
 
 </body>
 @endsection
