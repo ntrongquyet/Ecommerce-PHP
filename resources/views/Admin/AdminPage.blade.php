@@ -20,9 +20,9 @@
                 <div class="title">ADMIN <span>DASHBROAD</span></div>
 
                 <ul>
-                    <li><a href="#"><i class="fas fa-search"></i></a></li>
-                    <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                    <li><a href="#"><i class="fas fa-power-off"></i></a></li>
+                    <li><a href="#"><i class="fas icon-nav fa-search"></i></a></li>
+                    <li><a href="#"><i class="fas icon-nav fa-bell"></i></a></li>
+                    <li><a href="#"><i class="fas icon-nav fa-power-off"></i></a></li>
                 </ul>
             </div>
         </div>

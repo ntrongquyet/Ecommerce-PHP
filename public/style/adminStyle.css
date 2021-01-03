@@ -11,8 +11,12 @@ body {
     background: #fff;
 }
 
-.fas {
+.icon-nav {
     margin-top: 8px;
+}
+
+.icon-head {
+    margin-top: 15px;
 }
 
 .wrapper .header {
