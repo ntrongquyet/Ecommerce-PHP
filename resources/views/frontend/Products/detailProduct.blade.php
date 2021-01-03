@@ -6,7 +6,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="container-fliud">
+        <div class="container-fluid">
             <div class="wrapper row">
                 <div class="preview col-md-6">
 
