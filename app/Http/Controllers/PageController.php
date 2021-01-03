@@ -152,14 +152,9 @@ class PageController extends Controller
         $keyword = $res->input('keyword');
 
         if ($keyword == null) {
-            if (session('keyword') != '#') {
-                $keyword = session('keyword');
-            } else {
-                $keyword = '#';
-            }
+            $keyword = '#';
         }
 
-        session()->put('keyword', $keyword);
         $listProduct = array();
 
         //lấy tất cả các sản phẩm
