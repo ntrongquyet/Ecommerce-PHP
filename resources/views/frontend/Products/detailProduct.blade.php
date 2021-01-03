@@ -100,7 +100,11 @@
             </h5>
             <div class="action">
                 <button class="add-to-cart btn btn-default" type="button">Thêm vào giỏi hàng</button>
-                <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                @if (session()->has('user'))
+                <button class="like btn btn-default" type="button"><a class="fa fa-heart" href="/product/liked/{{$product->id_product}}"></a></button>
+                @else
+                <button class="like btn btn-default" type="button"><span class="fa fa-heart" href="/product/liked/{{$product->id_product}}"></span></button>
+                @endif
             </div>
         </div>
     </div>
@@ -118,6 +122,7 @@
         <button type="submit" class="btn btn-primary">Gửi bình luận</button>
     </form>
 </div>
+
 @endif
 </div>
 

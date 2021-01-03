@@ -72,4 +72,5 @@ Route::get('product/tang-san-pham/{id}','PageController@tangsanpham')->middlewar
 Route::get('product/cart/checkout','PageController@chitietdathang')->middleware('Logged');
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
-
+//like sản phẩm
+Route::get("product/liked/{idProduct}",'PageController@likeProduct');
