@@ -11,8 +11,21 @@ body {
     margin-bottom: 50px
 }
 
+.nav-login-register{
+    float: right;
+}
+
 a {
     text-decoration: none !important
+}
+
+.dropright{
+    border-radius: 20px;
+    color: black;
+}
+.btn-group-vertical{
+    float: right;
+    margin-top: 30px;
 }
 
 .card-product-list,
@@ -30,6 +43,9 @@ a {
     -ms-flex-direction: column;
     flex-direction: column;
     min-width: 0;
+    padding: 20px;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
@@ -40,7 +56,7 @@ a {
 
 .card-product-grid:hover {
     -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
-    box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+    box-shadow: 0 5px 15px rgba(153, 153, 153, 0.3);
     -webkit-transition: .3s;
     transition: .3s
 }
@@ -61,12 +77,12 @@ a {
 .card-product-grid .img-wrap {
     border-radius: 0.2rem 0.2rem 0 0;
     height: 228px;
-    padding: 16px
 }
 
 [class*='card-product'] .img-wrap img {
     height: 100%;
     max-width: 100%;
+    border-radius: 0.5rem;
     width: auto;
     display: inline-block;
     -o-object-fit: cover;
@@ -86,7 +102,7 @@ a {
 [class*='card-product'] a.title {
     color: #212529;
     overflow: hidden;
-    width: 100px;
+    width: 300px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -111,6 +127,10 @@ a {
     overflow: hidden
 }
 
+.rating-edit{
+    color: rgba(248, 61, 61, 0.719);
+}
+
 .rating-stars li {
     display: block;
     text-overflow: clip;
@@ -119,10 +139,18 @@ a {
 }
 
 .card-product-grid .bottom-wrap {
-    padding: 18px;
+    padding: 18px 20px;
     border-top: 1px solid #e4e4e4
 }
 
+.bottom-wrap .btn-price{
+    background-color:  #dc3545;
+    border: 1px solid  #dc3545;
+}
+.bottom-wrap .btn-price:hover{
+    background-color:  #f35666;
+    border: 1px solid  #f35666;
+}
 .btn {
     display: inline-block;
     font-weight: 600;
@@ -154,6 +182,7 @@ a {
 /* Popular-Product */
 .section-title {
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 50px;
     padding: 0 215px;
 }

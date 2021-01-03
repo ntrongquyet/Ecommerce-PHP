@@ -407,4 +407,47 @@ class PageController extends Controller
         }
 
     }
+
+    public function likeProduct($idProduct)
+    {
+        if(session()->get('user') != null)
+        {
+            // Lấy thông tin khách hàng
+            $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+
+            // tìm xem user đã like sản phẩm đó chưa
+            $userLikeProduct = DB::table('UserLikeProduct')
+                                ->where('user_id', '=', $user->id)
+                                ->where('product_id', '=', $idProduct)
+                                ->get()
+                                ->first();
+
+            if($userLikeProduct == null)
+            {
+                //insert
+                DB::table('UserLikeProduct')->insert([
+                    'user_id' => $user->id,
+                    'product_id' => $idProduct,
+                ]);
+
+                // update cột liked tăng lên 1 giá trị
+                DB::table('Products')
+                ->where('id_product', '=',$idProduct)
+                ->increment('liked');
+            }
+            else
+            {
+                //delete
+                DB::table('UserLikeProduct')
+                ->where('id', $userLikeProduct->id)
+                ->delete();
+
+                // update cột liked giảm 1 giá trị
+                DB::table('Products')
+                ->where('id_product', '=',$idProduct)
+                ->decrement('liked');
+            }
+        }
+        return redirect()->back();
+    }
 }

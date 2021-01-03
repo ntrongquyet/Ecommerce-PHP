@@ -6,8 +6,8 @@
 @section('content')
 
 @if(isset($categoryList))
-<div class="row">
-    <div class="col mt-3 pt-3 pb-3 bg-white">
+<div class="row justify-content-center">
+    <div class="col-3 bg-white">
         <div class="btn-group-vertical">
 
             @foreach($categoryList as $itemCat)
@@ -20,8 +20,8 @@
             @endforeach
         </div>
     </div>
-    <div class="col-9 mt-3 pt-3 pb-3 bg-white">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="col-6 mt-3 pt-3 pb-3 bg-white">
+        <div id="carouselExampleIndicators" class="carousel slide carousel" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -75,14 +75,14 @@
                                 <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}"
                                         class="title" data-toggle="tooltip" data-placement="bottom"
                                         title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 rating-edit">
                                     <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}
                                     </div>
                                 </div>
                             </div>
                         </figcaption>
                         <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                                class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                                class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                             <div class="price-wrap"> <span
                                     class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br>
                                 <small class="text-success">Free shipping</small> </div>
@@ -111,13 +111,13 @@
                         <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title"
                                 data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}"
                                 data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
                 </figcaption>
                 <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                        class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                        class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
@@ -151,13 +151,13 @@
                         <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title"
                                 data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}"
                                 data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
                 </figcaption>
                 <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                        class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                        class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
@@ -184,13 +184,13 @@
                         <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title"
                                 data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}"
                                 data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
                 </figcaption>
                 <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                        class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                        class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>

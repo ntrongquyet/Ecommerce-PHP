@@ -31,7 +31,7 @@
             <a class="navbar-brand" href="/">
                 <img class="img-nav"
                     src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                    alt="Girl in a jacket" width="75px" height="auto"></li>
+                    alt="Girl in a jacket" width="65px" height="auto"></li>
             </a>
         </div>
         <div>
@@ -39,10 +39,12 @@
                 {{ csrf_field() }}
                 <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
                     placeholder="Tìm kiếm sản phẩm">
-                <button class="btn btn-outline-none my-2 my-sm-0" style="margin-left: -15px;" type="submit">Tìm kiếm</button>
+                <button class="btn btn-outline-none my-2 my-sm-0"
+                 style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; " 
+                 type="submit">Tìm kiếm</button>
             </form>
         </div>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <div class="collapse navbar-collapse nav-login-register" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
