@@ -73,16 +73,15 @@ class PageController extends Controller
         $cat = DB::table('Products')
             ->where('id_Cat', '=', $idCat)
             ->take(10)->get();
-            //Lấy chi tiết hình ảnh
+        //Lấy chi tiết hình ảnh
         $imageDetail = DB::table('Image')
-        ->where('id_product', '=', $idProduct)
-        ->get();
+            ->where('id_product', '=', $idProduct)
+            ->get();
         return view("frontend.Products.detailProduct", [
             'product' => $product,
             'listProductAsCat' => $cat,
             'imageDetail' => $imageDetail
         ]);
-        
     }
 
     // chuyển đổi tiếng việt có dấu sang không dấu
@@ -132,17 +131,12 @@ class PageController extends Controller
     {
         $keyword = $res->input('keyword');
 
-        if ($keyword == null)
-        {
-            if(session('keyword') != '#')
-            {
+        if ($keyword == null) {
+            if (session('keyword') != '#') {
                 $keyword = session('keyword');
-            }
-            else
-            {
+            } else {
                 $keyword = '#';
             }
-            
         }
 
         session()->put('keyword', $keyword);
@@ -280,27 +274,49 @@ class PageController extends Controller
         ]);
     }
 
-    public function themgiohang($idProduct)
+    public function themgiohang(Request $res, $idProduct)
     {
+        $data = $res->input();
         $product = DB::table('Products')
             ->where('id_product', '=', $idProduct)
             ->get()->first();
+        $qtt = 1;
+        if ($data != null) {
+            if ($data['quantity'] != 0) {
+                $qtt = $data['quantity'];
+            }
+        }
         $msg = "Thêm sản phẩm thành công";
         $item = Cart::get($idProduct);
-        if ($item != null && $item->quantity >= $product->quantity) {
-            $msg = "Sản phẩm trong kho không đủ để thực hiện giao dịch";
-        } else {
+        if ($item != null && ($item->quantity >= $product->quantity || $item->quantity + $qtt >= $product->quantity)) {
+            $qtt = $product->quantity;
+
+            // Xoá sản phẩm hiện tại
+            Cart::remove($idProduct);
+            // Thêm sản phẩm mới với số lượng là tối đa
             Cart::add(array(
                 'id'    => $idProduct,
                 'name'  => $product->name,
                 'price' => $product->price,
-                'quantity'   => 1,
+                'quantity'   => $qtt,
+                'attributes' => [
+                    'img' => $product->avatar,
+                ]
+            ));
+        }else{
+            Cart::add(array(
+                'id'    => $idProduct,
+                'name'  => $product->name,
+                'price' => $product->price,
+                'quantity'   => $qtt,
                 'attributes' => [
                     'img' => $product->avatar,
                 ]
             ));
         }
-        return redirect()->back()->with('jsAlert', $msg);
+
+
+        return redirect('product/view/cart')->with('jsAlert', $msg);
     }
     public function xoasanpham($idProduct)
     {
@@ -346,9 +362,9 @@ class PageController extends Controller
     public function thanhtoan(Request $request)
     {
         $items = \Cart::getContent();
-        if(Cart::isEmpty()){
-            return redirect()->back()->with('thatbai','Giỏ hàng của bạn đang trống');
-        }else{
+        if (Cart::isEmpty()) {
+            return redirect()->back()->with('thatbai', 'Giỏ hàng của bạn đang trống');
+        } else {
             $data = $request->input();
             $this->validate(
                 $request,
@@ -389,7 +405,7 @@ class PageController extends Controller
             $id_Purchase = $lastItem->id_purchase;
             // Lưu số thứ tự từng món hàng
             $stt = 1;
-            foreach($items as $product){
+            foreach ($items as $product) {
                 DB::table('PurchaseDetail')->insert([
                     'id_purchase' => $id_Purchase,
                     'id_detail' => $stt++,
@@ -399,31 +415,28 @@ class PageController extends Controller
                 ]);
                 // Trừ số lượng sản phẩm trong kho
                 DB::table('Products')
-              ->where('id_product', '=',$product->id)
-              ->decrement('quantity', $product->quantity);
+                    ->where('id_product', '=', $product->id)
+                    ->decrement('quantity', $product->quantity);
             }
             Cart::clear();
-            return redirect()->back()->with('thanhcong','Đặt hàng thành công');
+            return redirect()->back()->with('thanhcong', 'Đặt hàng thành công');
         }
-
     }
 
     public function likeProduct($idProduct)
     {
-        if(session()->get('user') != null)
-        {
+        if (session()->get('user') != null) {
             // Lấy thông tin khách hàng
             $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
 
             // tìm xem user đã like sản phẩm đó chưa
             $userLikeProduct = DB::table('UserLikeProduct')
-                                ->where('user_id', '=', $user->id)
-                                ->where('product_id', '=', $idProduct)
-                                ->get()
-                                ->first();
+                ->where('user_id', '=', $user->id)
+                ->where('product_id', '=', $idProduct)
+                ->get()
+                ->first();
 
-            if($userLikeProduct == null)
-            {
+            if ($userLikeProduct == null) {
                 //insert
                 DB::table('UserLikeProduct')->insert([
                     'user_id' => $user->id,
@@ -432,20 +445,18 @@ class PageController extends Controller
 
                 // update cột liked tăng lên 1 giá trị
                 DB::table('Products')
-                ->where('id_product', '=',$idProduct)
-                ->increment('liked');
-            }
-            else
-            {
+                    ->where('id_product', '=', $idProduct)
+                    ->increment('liked');
+            } else {
                 //delete
                 DB::table('UserLikeProduct')
-                ->where('id', $userLikeProduct->id)
-                ->delete();
+                    ->where('id', $userLikeProduct->id)
+                    ->delete();
 
                 // update cột liked giảm 1 giá trị
                 DB::table('Products')
-                ->where('id_product', '=',$idProduct)
-                ->decrement('liked');
+                    ->where('id_product', '=', $idProduct)
+                    ->decrement('liked');
             }
         }
         return redirect()->back();
