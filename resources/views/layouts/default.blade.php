@@ -38,7 +38,9 @@
                 {{ csrf_field() }}
                 <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
                     placeholder="Tìm kiếm sản phẩm">
-                <button class="btn btn-outline-none my-2 my-sm-0" style="margin-left: -15px;" type="submit">Tìm kiếm</button>
+                <button class="btn btn-outline-none my-2 my-sm-0"
+                 style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; " 
+                 type="submit">Tìm kiếm</button>
             </form>
         </div>
         <div class="collapse navbar-collapse" id="collapsibleNavId">

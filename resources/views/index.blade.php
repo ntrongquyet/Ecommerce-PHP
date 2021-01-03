@@ -82,7 +82,7 @@
                             </div>
                         </figcaption>
                         <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                                class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                                class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                             <div class="price-wrap"> <span
                                     class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br>
                                 <small class="text-success">Free shipping</small> </div>
@@ -117,7 +117,7 @@
                     </div>
                 </figcaption>
                 <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                        class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                        class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
@@ -157,7 +157,7 @@
                     </div>
                 </figcaption>
                 <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                        class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                        class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
@@ -190,7 +190,7 @@
                     </div>
                 </figcaption>
                 <div class="bottom-wrap"> <a href="product/addToCart/{{$product->id_product}}"
-                        class="btn btn-primary float-right" data-abc="true"> Mua ngay </a>
+                        class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
