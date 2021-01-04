@@ -64,6 +64,7 @@ class PageController extends Controller
     }
     public function chitietsanpham($idCat, $idProduct)
     {
+        $liked = false;
         // Lấy chi tiết sản phẩm
         $product = DB::table('Products')
             ->where('id_product', '=', $idProduct)
@@ -80,13 +81,33 @@ class PageController extends Controller
         // Lấy các comment về sản phẩm
         $listComments = DB::table('Comments')
         ->join('users','users.id','=','id_user')
+        ->orderBy('Comments.id_comment', 'desc')
         ->where('id_product', '=', $idProduct)
         ->get();
+
+        // Lấy thông tin khách hàng
+        $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+
+        if($user != null)
+        {
+            // tìm xem user đã like sản phẩm đó chưa
+            $userLikeProduct = DB::table('UserLikeProduct')
+            ->where('user_id', '=', $user->id)
+            ->where('product_id', '=', $idProduct)
+            ->get()
+            ->first();
+
+            if ($userLikeProduct != null) {
+                $liked = true;
+            }
+
+        }
         return view("frontend.Products.detailProduct", [
             'product' => $product,
             'listProductAsCat' => $cat,
             'imageDetail' => $imageDetail,
-            'listComments' => $listComments
+            'listComments' => $listComments,
+            'liked' => $liked
         ]);
     }
 
@@ -138,14 +159,9 @@ class PageController extends Controller
         $keyword = $res->input('keyword');
 
         if ($keyword == null) {
-            if (session('keyword') != '#') {
-                $keyword = session('keyword');
-            } else {
-                $keyword = '#';
-            }
+            $keyword = '#';
         }
 
-        session()->put('keyword', $keyword);
         $listProduct = array();
 
         //lấy tất cả các sản phẩm
@@ -431,41 +447,42 @@ class PageController extends Controller
 
     public function likeProduct($idProduct)
     {
-        if (session()->get('user') != null) {
-            // Lấy thông tin khách hàng
-            $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+        $liked = false;
+        // Lấy thông tin khách hàng
+        $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
 
-            // tìm xem user đã like sản phẩm đó chưa
-            $userLikeProduct = DB::table('UserLikeProduct')
-                ->where('user_id', '=', $user->id)
-                ->where('product_id', '=', $idProduct)
-                ->get()
-                ->first();
+        // tìm xem user đã like sản phẩm đó chưa
+        $userLikeProduct = DB::table('UserLikeProduct')
+            ->where('user_id', '=', $user->id)
+            ->where('product_id', '=', $idProduct)
+            ->get()
+            ->first();
 
-            if ($userLikeProduct == null) {
-                //insert
-                DB::table('UserLikeProduct')->insert([
-                    'user_id' => $user->id,
-                    'product_id' => $idProduct,
-                ]);
+        if ($userLikeProduct == null) {
+            //insert
+            DB::table('UserLikeProduct')->insert([
+                'user_id' => $user->id,
+                'product_id' => $idProduct,
+            ]);
 
-                // update cột liked tăng lên 1 giá trị
-                DB::table('Products')
-                    ->where('id_product', '=', $idProduct)
-                    ->increment('liked');
-            } else {
-                //delete
-                DB::table('UserLikeProduct')
-                    ->where('id', $userLikeProduct->id)
-                    ->delete();
+            // update cột liked tăng lên 1 giá trị
+            DB::table('Products')
+                ->where('id_product', '=', $idProduct)
+                ->increment('liked');
 
-                // update cột liked giảm 1 giá trị
-                DB::table('Products')
-                    ->where('id_product', '=', $idProduct)
-                    ->decrement('liked');
-            }
+            $liked = true;
+        } else {
+            //delete
+            DB::table('UserLikeProduct')
+                ->where('id', $userLikeProduct->id)
+                ->delete();
+
+            // update cột liked giảm 1 giá trị
+            DB::table('Products')
+                ->where('id_product', '=', $idProduct)
+                ->decrement('liked');
         }
-        return redirect()->back();
+        return redirect()->back()->with('liked', $liked);
     }
     public function profile($user){
         $listPurchases = DB::table('Purchases')
@@ -477,5 +494,16 @@ class PageController extends Controller
         return view('Users.Profile', [
             'listPurchases' => $listPurchases
         ]);
+    }
+
+    public function comment(Request $res,$id){
+        $data = $res->input();
+        $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+        DB::table('Comments')->insert([
+            'id_product' => $id,
+            'id_user' => $user->id,
+            'content' => $data['textComment']
+        ]);
+        return redirect()->back();
     }
 }

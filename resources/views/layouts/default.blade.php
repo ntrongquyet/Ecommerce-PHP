@@ -17,7 +17,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./assets/font/fontawesome-free-5.12.1-web/fontawesome-free-5.12.1-web/css/all.min.css">
     <script src="https://kit.fontawesome.com/28e407cbaa.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <!-- nhan -->
 
     <title>@yield('title')</title>
@@ -91,6 +92,7 @@
     </script>
 
     <!-- nhan -->
+    <script src="{{ url('/js/likeProduct.js') }}"></script>
     <script src="{{ url('/js/carousel.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
