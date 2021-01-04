@@ -72,6 +72,7 @@
                                     </div>
                                     <div class="col-auto">
                                         <button type="submit"
+                                        style="margin-top:20px"
                                             class="btn btn-outline-dark text-primary font-weight-bold add-item-btn">Thêm
                                             vào giỏ hàng</button>
                                     </div>
