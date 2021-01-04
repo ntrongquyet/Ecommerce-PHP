@@ -97,21 +97,31 @@
 
     @endif
 </div>
+</div>
+<div class="container mb-5 mt-5 comment">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center mb-5"> Nhận xét sản phẩm </h3>
+                <div class="row">
+                    @foreach($listComments as $cmt)
+                    <div class="col-md-12">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-8 d-flex">
+                                        <h5>{{$cmt->username}}</h5> <span> - {{date("d-m-Y", strtotime($cmt->time))}}</span>
+                                    </div>
 
-<!--
-    <div class="card-column">
-        @foreach($listProductAsCat as $itemCat)
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" data-src="..." alt="Card image cap">
-            <div class="card-block">
-                <h4 class="card-title">{{$itemCat->name}}</h4>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div> {{$cmt->content}}
+
+                            </div>
+                        </div>
+                    </div>
+                   @endforeach
+                </div>
             </div>
         </div>
-        @endforeach
-    </div> -->
+    </div>
 </div>
-
 @endsection

@@ -73,14 +73,20 @@ class PageController extends Controller
         $cat = DB::table('Products')
             ->where('id_Cat', '=', $idCat)
             ->take(10)->get();
-        //Lấy chi tiết hình ảnh
+        // Lấy chi tiết hình ảnh
         $imageDetail = DB::table('Image')
             ->where('id_product', '=', $idProduct)
             ->get();
+        // Lấy các comment về sản phẩm
+        $listComments = DB::table('Comments')
+        ->join('users','users.id','=','id_user')
+        ->where('id_product', '=', $idProduct)
+        ->get();
         return view("frontend.Products.detailProduct", [
             'product' => $product,
             'listProductAsCat' => $cat,
-            'imageDetail' => $imageDetail
+            'imageDetail' => $imageDetail,
+            'listComments' => $listComments
         ]);
     }
 
@@ -460,5 +466,16 @@ class PageController extends Controller
             }
         }
         return redirect()->back();
+    }
+    public function profile($user){
+        $listPurchases = DB::table('Purchases')
+                    ->join('users','Purchases.id_user','=','users.id')
+                    ->join('Status','Status.id_stt','=','status')
+                    ->where('users.username','=',$user)
+                    ->orderBy('Purchases.created_at', 'asc')
+                    ->select('Purchases.*','Status.description')->get();
+        return view('Users.Profile', [
+            'listPurchases' => $listPurchases
+        ]);
     }
 }
