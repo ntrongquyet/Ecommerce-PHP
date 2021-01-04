@@ -37,9 +37,7 @@ Route::get('Active',function(){
     return view('Users.Active');
 });
 // Profile
-Route::get('profile/{username}',function(){
-    return view('Users.Profile');
-})->middleware('CheckValidLogin');
+Route::get('profile/{username}','PageController@profile')->middleware('CheckValidLogin');
 // Chi tiết đơn hàng
 Route::get("/{idCat}/{idProduct}",'PageController@chitietsanpham');
 
@@ -74,3 +72,7 @@ Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Log
 
 //like sản phẩm
 Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
+
+// Bình luận sản phẩm
+Route::get('product/comment/{id}','PageController@comment');
+Route::post("product/comment/{id}","PageController@comment");

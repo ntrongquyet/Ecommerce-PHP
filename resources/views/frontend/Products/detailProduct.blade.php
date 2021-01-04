@@ -12,12 +12,10 @@
                 <div class="wrapper row">
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
-                            <div class="tab-pane active" id="pic-1"><img
-                                    src="{{url('/image/products')}}/{{$product->avatar}}" /></div>
+                            <div class="tab-pane active" id="pic-1"><img src="{{url('/image/products')}}/{{$product->avatar}}" /></div>
                             @php($counter=2)
                             @foreach($imageDetail as $image)
-                            <div class="tab-pane" id="pic-{{$counter}}"><img
-                                    src="{{url('/image/products')}}/{{$image->image}}" /></div>
+                            <div class="tab-pane" id="pic-{{$counter}}"><img src="{{url('/image/products')}}/{{$image->image}}" /></div>
                             @php($counter=$counter+1)
 
                             @endforeach
@@ -35,8 +33,7 @@
                         @php($counter=2)
                         @foreach($imageDetail as $image)
 
-                        <li><a data-target="#pic-{{$counter}}" data-toggle="tab"><img
-                                    src="{{url('/image/products')}}/{{$image->image}}" /></a>
+                        <li><a data-target="#pic-{{$counter}}" data-toggle="tab"><img src="{{url('/image/products')}}/{{$image->image}}" /></a>
                         </li>
                         @php($counter=$counter+1)
 
@@ -67,40 +64,68 @@
                                     <div class="col-auto mr-2">
                                         {{ csrf_field() }}
 
-                                        <input type="number" step="1" min="1" max="{{$product->quantity}}"
-                                            name="quantity" class="form-control" />
+                                        <input type="number" step="1" min="1" max="{{$product->quantity}}" name="quantity" class="form-control" />
                                     </div>
                                     <div class="col-auto">
-                                        <button type="submit"
-                                        style="margin-top:20px"
-                                            class="btn btn-outline-dark text-primary font-weight-bold add-item-btn">Thêm
+                                        <button type="submit" 
+                                        style="margin-top:20px "class="btn btn-outline-dark text-primary font-weight-bold add-item-btn">Thêm
                                             vào giỏ hàng</button>
                                     </div>
                                 </form>
                             </div>
-                            <button class="like btn btn-default" type="button"><a class="fa fa-heart" id="heart"
-                                    href="/product/liked/{{$product->id_product}}"></a></button>
+                            <button class="like btn btn-default" type="button"><a class="fa fa-heart" id="heart" href="/product/liked/{{$product->id_product}}"></a></button>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <hr />
-        @if (session()->has('user'))
-        <div class="well">
-            <h4>Viết bình luận</h4>
-            <form role="form">
-                {{ csrf_field() }}
-                <input type="hidden" name="_token" value="{{$product->id_product}}" />
-                <div class="form" style="margin-bottom: 10px;">
-                    <textarea class="form-control" rows="10" name="textcomment"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Gửi bình luận</button>
-            </form>
-        </div>
 
-        @endif
+    </div>
+    </div>
+    <div class="container mb-5 mt-5 comment">
+
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12">
+                    @if (session()->has('user'))
+                    <div class="well">
+                        <h3 class="text-center mb-5">Viết bình luận</h3>
+                        <form action="/product/comment/{{$product->id_product}}" method="post">
+                            @csrf
+
+                            @method('POST')
+                            <div class="form mb-2">
+                                <textarea class="form-control" rows="2" name="textComment"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+                        </form>
+                    </div>
+                    @endif
+                </div>
+                <div class="col-md-12">
+                    <h3 class="text-center mb-5"> Nhận xét sản phẩm </h3>
+                    <div class="row">
+                        @foreach($listComments as $cmt)
+                        <div class="col-md-12">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-8 d-flex">
+                                            <h5>{{$cmt->username}}</h5> <span> - {{date("d-m-Y", strtotime($cmt->time))}}</span>
+                                        </div>
+
+                                    </div> {{$cmt->content}}
+
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!--

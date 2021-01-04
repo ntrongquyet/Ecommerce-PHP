@@ -74,10 +74,16 @@ class PageController extends Controller
         $cat = DB::table('Products')
             ->where('id_Cat', '=', $idCat)
             ->take(10)->get();
-        //Lấy chi tiết hình ảnh
+        // Lấy chi tiết hình ảnh
         $imageDetail = DB::table('Image')
             ->where('id_product', '=', $idProduct)
             ->get();
+        // Lấy các comment về sản phẩm
+        $listComments = DB::table('Comments')
+        ->join('users','users.id','=','id_user')
+        ->orderBy('Comments.id_comment', 'desc')
+        ->where('id_product', '=', $idProduct)
+        ->get();
 
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
@@ -94,12 +100,13 @@ class PageController extends Controller
             if ($userLikeProduct != null) {
                 $liked = true;
             }
+
         }
-        
         return view("frontend.Products.detailProduct", [
             'product' => $product,
             'listProductAsCat' => $cat,
             'imageDetail' => $imageDetail,
+            'listComments' => $listComments,
             'liked' => $liked
         ]);
     }
@@ -476,5 +483,27 @@ class PageController extends Controller
                 ->decrement('liked');
         }
         return redirect()->back()->with('liked', $liked);
+    }
+    public function profile($user){
+        $listPurchases = DB::table('Purchases')
+                    ->join('users','Purchases.id_user','=','users.id')
+                    ->join('Status','Status.id_stt','=','status')
+                    ->where('users.username','=',$user)
+                    ->orderBy('Purchases.created_at', 'asc')
+                    ->select('Purchases.*','Status.description')->get();
+        return view('Users.Profile', [
+            'listPurchases' => $listPurchases
+        ]);
+    }
+
+    public function comment(Request $res,$id){
+        $data = $res->input();
+        $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+        DB::table('Comments')->insert([
+            'id_product' => $id,
+            'id_user' => $user->id,
+            'content' => $data['textComment']
+        ]);
+        return redirect()->back();
     }
 }
