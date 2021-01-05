@@ -54,7 +54,7 @@
 @if(isset($topSaleProduct))
 <div class="popular-product section">
     <div class="section-title">
-        <h2>Sản phẩm bán chạy nhất</h2>
+        <h2 class="title-best-product">Sản phẩm bán chạy nhất</h2>
     </div>
     <div class="row container-fluid">
         <div class="col-lg-12 grid-margin stretch-card">
@@ -89,7 +89,7 @@
 
 <div class="all-product section">
     <div class="section-title">
-        <h2>Tất cả sản phẩm</h2>
+        <h2 class="title-all-product">Tất cả sản phẩm</h2>
     </div>
     <div class="row">
         @foreach($productList as $product)
@@ -127,7 +127,7 @@
 @if(isset($topLikeProduct))
 <div class="all-product section">
     <div class="section-title">
-        <h2>Sản Phẩm được yêu thích nhất</h2>
+        <h2 class="title-product-like">Sản Phẩm Được Yêu Thích Nhất</h2>
     </div>
     <div class="row">
         @foreach($topLikeProduct as $product)
@@ -156,7 +156,7 @@
 @if(isset($topNewProduct))
 <div class="all-product section">
     <div class="section-title">
-        <h2>Sản Phẩm mới nhất</h2>
+        <h2 class="title-new-product">Sản Phẩm Mới Nhất</h2>
     </div>
     <div class="row">
         @foreach($topNewProduct as $product)
