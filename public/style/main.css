@@ -189,31 +189,91 @@ a {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    padding: 0 215px;
 }
 
-.section-title h2 {
+.section-title .title-best-product {
     font-size: 30px;
     margin-bottom: 0;
     text-transform: capitalize;
     position: relative;
-    color: #2c2d3f;
-    font-weight: 700;
+    color: black;
+    font-weight: 600;
     margin-bottom: 10px;
     padding-bottom: 15px;
 }
 
-.section-title h2::before {
+.section-title .title-best-product::before {
     position: absolute;
     content: "";
     width: 15%;
     height: 2px;
     background: #F7941D;
     bottom: 0px;
-    left: 42%;
+    left: 43%;
 }
 
+.section-title .title-all-product {
+    font-size: 30px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    position: relative;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+}
 
+.section-title .title-all-product::before {
+    position: absolute;
+    content: "";
+    width: 10%;
+    height: 2px;
+    background: #F7941D;
+    bottom: 0px;
+    left: 45%;
+}
+
+.section-title .title-product-like {
+    font-size: 30px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    position: relative;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+}
+
+.section-title .title-product-like::before {
+    position: absolute;
+    content: "";
+    width: 18%;
+    height: 2px;
+    background: #F7941D;
+    bottom: 0px;
+    left: 41%;
+}
+
+.section-title .title-new-product {
+    font-size: 30px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    position: relative;
+    color: black;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+}
+
+.section-title .title-new-product::before {
+    position: absolute;
+    content: "";
+    width: 12%;
+    height: 2px;
+    background: #F7941D;
+    bottom: 0px;
+    left: 44%;
+}
 /* ---------------------------------------------------------- */
 
 * {
@@ -402,7 +462,6 @@ ul {
 }
 
 
-<<<<<<< HEAD
 /* -------------------------------------------------------------------- */
 
 .flex {
@@ -534,6 +593,3 @@ p {
 .reply a {
     text-decoration: none
 }
-=======
-/* -------------------------------------------------------------------- */
->>>>>>> 8cff32ee1dd76b0e8813cc6ed1db36309ed6349d
