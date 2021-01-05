@@ -21,6 +21,13 @@ img {
     flex-direction: column;
 }
 
+.my-font {
+    font-size: 100px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 996px) {
     .preview {
         margin-bottom: 20px;
@@ -86,6 +93,17 @@ img {
     }
 }
 
+.group-input {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.disable {
+    pointer-events: none !important;
+}
+
 .details {
     display: -webkit-box;
     display: -webkit-flex;
@@ -105,7 +123,6 @@ img {
     flex-grow: 1;
 }
 
-.product-title,
 .price,
 .sizes,
 .colors {
@@ -214,6 +231,11 @@ img {
 
 .tooltip-inner {
     padding: 1.3em;
+}
+
+.main-container--admin {
+    font-weight: bold;
+    font-size: 50px;
 }
 
 @-webkit-keyframes opacity {
