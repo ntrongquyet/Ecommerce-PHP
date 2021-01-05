@@ -45,10 +45,6 @@ Route::get("/{idCat}/{idProduct}",'PageController@chitietsanpham');
 Route::get('default','PageController@SearchProduct');
 Route::post('default','PageController@SearchProduct');
 
-//Trang admin
-Route::get('Admin',function(){
-    return view('Admin.AdminPage');
-});
 
 //Comment
 Route::post('product','CommentController@postComment');
@@ -76,3 +72,23 @@ Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware
 // Bình luận sản phẩm
 Route::get('product/comment/{id}','PageController@comment');
 Route::post("product/comment/{id}","PageController@comment");
+
+
+//Trang admin
+Route::get('Admin',function(){
+    return view('Admin.indexAdmin');
+});
+//index adim
+Route::get('/index-admin', 'AdminController@index_Admin');
+// view customer admin
+Route::get('/view-customer', 'AdminController@view_Customer');
+// add customer admin
+Route::get('/add-customer', 'AdminController@add_Customer');
+// product admin
+Route::get('/view-product', 'AdminController@view_Product');
+// top 10 product admin
+Route::get('/top-product', 'AdminController@top_Product');
+// view purchase admin
+Route::get('/view-purchase', 'AdminController@view_Purchase');
+// view purchase admin
+Route::get('/filter-purchase', 'AdminController@filter_Purchase');
