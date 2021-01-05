@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Trang chủ')
+@section('title',$product->name)
 @section ('sidebar')
 @parent
 @endsection
