@@ -54,7 +54,6 @@ a {
     border-radius: 0.10rem;
     margin-top: 10px
 }
-
 .card-product-grid:hover {
     -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
     box-shadow: 0 5px 15px rgba(153, 153, 153, 0.3);

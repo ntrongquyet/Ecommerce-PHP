@@ -97,4 +97,3 @@ Route::get('/top-product', 'AdminController@top_Product');
 Route::get('/view-purchase', 'AdminController@view_Purchase');
 // view purchase admin
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
->>>>>>> c4adffc93f7dd844af4e4c03329a7b2303c08688
