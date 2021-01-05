@@ -506,4 +506,24 @@ class PageController extends Controller
         ]);
         return redirect()->back();
     }
+    public function bill(){
+        $listPurchases = DB::table('Purchases')
+                    ->join('users','Purchases.id_user','=','users.id')
+                    ->join('Status','Status.id_stt','=','status')
+                    ->orderBy('Purchases.created_at', 'asc')
+                    ->select('Purchases.*','Status.description')->get();
+        $listStatus = DB::table('Status')->get();
+        return view('Admin.bill', [
+            'listPurchases' => $listPurchases,
+            'listStatus' =>$listStatus
+        ]);
+    }
+    public function changeStatus(Request $res){
+        $data = $res->input();
+        $id = $data['id'];
+        DB::table('Purchases')
+        ->where('id_purchase','=',$data['id'])
+        ->update(['status' => $data['value']]);
+
+    }
 }

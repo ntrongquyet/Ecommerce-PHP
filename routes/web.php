@@ -76,3 +76,9 @@ Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware
 // Bình luận sản phẩm
 Route::get('product/comment/{id}','PageController@comment');
 Route::post("product/comment/{id}","PageController@comment");
+
+//Quản lý đơn hàng
+Route::get('Admin/bills/view', 'PageController@bill');
+
+//Thay đổi trạng thái đơn hàng
+Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');

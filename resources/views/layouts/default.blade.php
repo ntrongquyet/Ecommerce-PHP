@@ -4,6 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url('/style/carousel.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('/style/detailProductStyle.css') }}" />
@@ -41,7 +43,7 @@
                 <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
                     placeholder="Tìm kiếm sản phẩm">
                 <button class="btn btn-outline-none my-2 my-sm-0"
-                 style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; " 
+                 style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; "
                  type="submit">Tìm kiếm</button>
             </form>
         </div>
