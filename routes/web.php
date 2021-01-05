@@ -73,11 +73,8 @@ Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware
 Route::get('product/comment/{id}','PageController@comment');
 Route::post("product/comment/{id}","PageController@comment");
 
-//Quản lý đơn hàng
-Route::get('Admin/bills/view', 'PageController@bill');
 
-//Thay đổi trạng thái đơn hàng
-Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
+
 
 //Trang admin
 Route::get('Admin',function(){
@@ -94,7 +91,8 @@ Route::get('/view-product', 'AdminController@view_Product');
 // top 10 product admin
 Route::get('/top-product', 'AdminController@top_Product');
 // view purchase admin
-Route::get('/view-purchase', 'AdminController@view_Purchase');
+Route::get('/view-purchase', 'PageController@bill');
+//Thay đổi trạng thái đơn hàng
+Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
 // view purchase admin
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
->>>>>>> c4adffc93f7dd844af4e4c03329a7b2303c08688
