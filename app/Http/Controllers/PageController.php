@@ -159,7 +159,7 @@ class PageController extends Controller
         $keyword = $res->input('keyword');
 
         if ($keyword == null) {
-            $keyword = '#';
+            return redirect()->back();
         }
 
         $listProduct = array();
@@ -460,7 +460,7 @@ class PageController extends Controller
             ->first();
 
         if ($userLikeProduct == null) {
-            //insert
+            //insert nếu chưa tồn tại
             DB::table('UserLikeProduct')->insert([
                 'user_id' => $user->id,
                 'product_id' => $idProduct,
@@ -473,7 +473,7 @@ class PageController extends Controller
 
             $liked = true;
         } else {
-            //delete
+            //delete nếu đã tồn tại
             DB::table('UserLikeProduct')
                 ->where('id', $userLikeProduct->id)
                 ->delete();
