@@ -38,7 +38,7 @@
             </a>
         </div>
         <div>
-            <form class="form-inline my-2 my-lg-0" action="/default" method="post" role="form">
+            <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
                 {{ csrf_field() }}
                 <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
                     placeholder="Tìm kiếm sản phẩm">

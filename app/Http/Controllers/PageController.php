@@ -159,7 +159,7 @@ class PageController extends Controller
         $keyword = $res->input('keyword');
 
         if ($keyword == null) {
-            $keyword = '#';
+            return redirect()->back();
         }
 
         $listProduct = array();
