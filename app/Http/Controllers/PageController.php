@@ -81,34 +81,37 @@ class PageController extends Controller
             ->get();
         // Lấy các comment về sản phẩm
         $listComments = DB::table('Comments')
-        ->join('users','users.id','=','id_user')
-        ->orderBy('Comments.id_comment', 'desc')
-        ->where('id_product', '=', $idProduct)
-        ->paginate($this->limitComment);
+
+            ->join('users', 'users.id', '=', 'id_user')
+            ->orderBy('Comments.id_comment', 'desc')
+            ->where('id_product', '=', $idProduct)
+            ->paginate($this->limitComment);
 
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
-
-        if($user != null)
-        {
+        $checkAdmin =false;
+        if($user->role==1){
+            $checkAdmin = true;
+        }
+        if ($user != null) {
             // tìm xem user đã like sản phẩm đó chưa
             $userLikeProduct = DB::table('UserLikeProduct')
-            ->where('user_id', '=', $user->id)
-            ->where('product_id', '=', $idProduct)
-            ->get()
-            ->first();
+                ->where('user_id', '=', $user->id)
+                ->where('product_id', '=', $idProduct)
+                ->get()
+                ->first();
 
             if ($userLikeProduct != null) {
                 $liked = true;
             }
-
         }
         return view("frontend.Products.detailProduct", [
             'product' => $product,
             'listProductAsCat' => $cat,
             'imageDetail' => $imageDetail,
             'listComments' => $listComments,
-            'liked' => $liked
+            'liked' => $liked,
+            'checkAdmin' => $checkAdmin
         ]);
     }
 
@@ -326,7 +329,7 @@ class PageController extends Controller
                     'img' => $product->avatar,
                 ]
             ));
-        }else{
+        } else {
             Cart::add(array(
                 'id'    => $idProduct,
                 'name'  => $product->name,
@@ -449,7 +452,6 @@ class PageController extends Controller
     public function likeProduct(Request $res)
     {
         $idProduct = $res->input('id');
-        $liked = false;
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
 
@@ -471,8 +473,6 @@ class PageController extends Controller
             DB::table('Products')
                 ->where('id_product', '=', $idProduct)
                 ->increment('liked');
-
-            $liked = true;
         } else {
             //delete nếu đã tồn tại
             DB::table('UserLikeProduct')
@@ -486,24 +486,27 @@ class PageController extends Controller
         }
         //lấy thông tin sản phẩm
         $product = DB::table('Products')
-                    ->where('id_product', '=', $idProduct)
-                    ->get()
-                    ->first();
-        return response()->json(['data'=>$product,'check'=>$liked],200); // 200 là mã lỗi
+            ->where('id_product', '=', $idProduct)
+            ->get()
+            ->first();
+        return response()->json(['product' => $product, 'liked' => $liked]); // 200 là mã lỗi
     }
-    public function profile($user){
+
+    public function profile($user)
+    {
         $listPurchases = DB::table('Purchases')
-                    ->join('users','Purchases.id_user','=','users.id')
-                    ->join('Status','Status.id_stt','=','status')
-                    ->where('users.username','=',$user)
-                    ->orderBy('Purchases.created_at', 'asc')
-                    ->select('Purchases.*','Status.description')->get();
+            ->join('users', 'Purchases.id_user', '=', 'users.id')
+            ->join('Status', 'Status.id_stt', '=', 'status')
+            ->where('users.username', '=', $user)
+            ->orderBy('Purchases.created_at', 'asc')
+            ->select('Purchases.*', 'Status.description')->get();
         return view('Users.Profile', [
             'listPurchases' => $listPurchases
         ]);
     }
 
-    public function comment(Request $res,$id){
+    public function comment(Request $res, $id)
+    {
         $data = $res->input();
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
         DB::table('Comments')->insert([
@@ -513,24 +516,99 @@ class PageController extends Controller
         ]);
         return redirect()->back();
     }
-    public function bill(){
+    public function bill()
+    {
         $listPurchases = DB::table('Purchases')
-                    ->join('users','Purchases.id_user','=','users.id')
-                    ->join('Status','Status.id_stt','=','status')
-                    ->orderBy('Purchases.created_at', 'asc')
-                    ->select('Purchases.*','Status.description')->get();
+            ->join('users', 'Purchases.id_user', '=', 'users.id')
+            ->join('Status', 'Status.id_stt', '=', 'status')
+            ->orderBy('Purchases.created_at', 'asc')
+            ->select('Purchases.*', 'Status.description')->get();
         $listStatus = DB::table('Status')->get();
         return view('Admin.bill', [
             'listPurchases' => $listPurchases,
-            'listStatus' =>$listStatus
+            'listStatus' => $listStatus
         ]);
     }
-    public function changeStatus(Request $res){
+    public function changeStatus(Request $res)
+    {
         $data = $res->input();
         $id = $data['id'];
         DB::table('Purchases')
-        ->where('id_purchase','=',$data['id'])
-        ->update(['status' => $data['value']]);
+            ->where('id_purchase', '=', $data['id'])
+            ->update(['status' => $data['value']]);
+    }
+    public function getEdit($id)
+    {
+        $product = DB::table('Products')
+            ->where('id_product', '=', $id)->get()->first();
+        $categories = DB::table('Categories')->get();
+        $image = DB::table('Image')->where('id_product', '=', $id)->get();
 
+        return view('Admin.Products.editProduct', [
+            'product' => $product,
+            'categoryList' => $categories,
+            'listImage' => $image
+        ]);
+    }
+    public function postEdit(Request $res, $id)
+    {
+        $data = $res->input();
+        $rule = [
+            'name' => 'required',
+            'price' => 'required',
+            'about' => 'required',
+            'qty' => 'required',
+
+        ];
+        $customMessage = [
+            // Tên sản phẩm
+            'name.required' => 'Tên sản phẩm không được để trống',
+            // Giá
+            'price.required' => 'Giá sản phẩm không được để trống',
+
+            // Chi tiết
+            'about.required' => 'Chi tiết sản phẩm không được để trống',
+            // Sản phẩm
+            'qty.required' => 'Số lượng sản phẩm không được để trống',
+
+        ];
+        $msg = '';
+        $validator = Validator::make($res->all(), $rule, $customMessage);
+        if ($validator->fails()) {
+            return redirect()->route('editProduct')
+                ->withInput()
+                ->withErrors($validator);
+        } else {
+
+            DB::table('Products')
+            ->where('id_product',$id)
+            ->update([
+                'name' => $data['name'],
+                'id_Cat' => $data['cats'],
+                'quantity' => $data['qty'],
+                'description' => $data['about'],
+                'price' => $data['price'],
+                'updated_at' => Carbon::now(),
+                'avatar' => $data['image'],
+            ]);
+
+            $msg = "Thêm sản phẩm thành công";
+
+            $msg = "Thêm sản phẩm thất bại, số lượng ảnh tối thiểu phải là 3";
+
+            $product = DB::table('Products')
+                ->where('id_product', '=', $id)->get()->first();
+            $categories = DB::table('Categories')->get();
+            $image = DB::table('Image')->where('id_product', '=', $id)->get();
+            return view('Admin.Products.editProduct', [
+                'product' => $product,
+                'categoryList' => $categories,
+                'listImage' => $image,
+            ]);
+        }
+    }
+    public function remove($id){
+        DB::table('Products')->where('id_product', '=', $id)->delete();
+        return redirect('/');
     }
 }

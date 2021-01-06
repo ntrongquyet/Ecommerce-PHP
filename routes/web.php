@@ -65,17 +65,17 @@ Route::get('product/cart/checkout','PageController@chitietdathang')->middleware(
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
 //like sản phẩm
+// Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
+// Route::post('ajax/likeProduct','PageController@likeProduct')->name('ajax.likeProduct')->middleware('Logged');
+//
 Route::post('ajax/likeProduct','PageController@likeProduct')->middleware('Logged')->name('ajax.likeProduct');
 
 // Bình luận sản phẩm
 Route::get('product/comment/{id}','PageController@comment');
 Route::post("product/comment/{id}","PageController@comment");
 
-//Quản lý đơn hàng
-Route::get('Admin/bills/view', 'PageController@bill');
 
-//Thay đổi trạng thái đơn hàng
-Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
+
 
 //Trang admin
 Route::get('Admin',function(){
@@ -92,8 +92,11 @@ Route::get('/view-product', 'AdminController@view_Product');
 // top 10 product admin
 Route::get('/top-product', 'AdminController@top_Product');
 // view purchase admin
-Route::get('/view-purchase', 'AdminController@view_Purchase');
+Route::get('/view-purchase', 'PageController@bill');
+//Thay đổi trạng thái đơn hàng
+Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
 // view purchase admin
+Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 
 // revenue date
@@ -104,3 +107,12 @@ Route::get('/revenue-month', 'AdminController@revenue_Month');
 Route::get('/revenue-quarter', 'AdminController@revenue_Quarter');
 // revenue year
 Route::get('/revenue-year', 'AdminController@revenue_Year');
+
+// edit sản phẩm
+
+Route::get('/product/edit/{id}', 'PageController@getEdit')->name('editProduct')->middleware('RoleCheck');
+Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductDB')->middleware('RoleCheck');
+
+
+// delete
+Route::get('/product/remove/{id}', 'PageController@remove')->name('removeProduct')->middleware('RoleCheck');
