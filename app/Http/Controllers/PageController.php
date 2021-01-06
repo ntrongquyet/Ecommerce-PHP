@@ -452,7 +452,6 @@ class PageController extends Controller
     public function likeProduct(Request $res)
     {
         $idProduct = $res->input('id');
-        $liked = false;
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
 
@@ -474,8 +473,6 @@ class PageController extends Controller
             DB::table('Products')
                 ->where('id_product', '=', $idProduct)
                 ->increment('liked');
-
-            $liked = true;
         } else {
             //delete nếu đã tồn tại
             DB::table('UserLikeProduct')
@@ -609,5 +606,9 @@ class PageController extends Controller
                 'listImage' => $image,
             ]);
         }
+    }
+    public function remove($id){
+        DB::table('Products')->where('id_product', '=', $id)->delete();
+        return redirect('/');
     }
 }

@@ -54,7 +54,7 @@
                     <h3 class="product-title" style="font-size: 24;"> {{$product->name}}
                     @if($checkAdmin)
                     <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-edit"></i></a>
-                    <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
+                    <a href="{{ route('removeProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
                     @endif
                         <button class="like btn btn-default d-inline" type="button" id="{{$product->id_product}}"
                             style="transform: translate(-30%, 0%);
@@ -148,47 +148,37 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.like').click(function() {
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var id = $(this).attr('id');
-            console.log(id);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('ajax.likeProduct') }}",
-                data: {
-                    id: id,
-                },
-                success: function(response) {
-                    var test = response.check;
-                    console.log(test);
-                    $('#likes').text(response.liked);
-                    var heart = document.getElementById("heart");
-                    var likes = document.getElementById("likes");
-                    var check = response.liked;
-                    var product = response.product;
-                    if (check == undefined) {
-                        window.location.replace("/login");
-                    }
-                    if (check) {
-                        heart.style.color = "red";
-                        likes.innerHTML = product.liked;
-                    } else {
-                        heart.style.color = "black";
-
-                        likes.innerHTML = product.liked;
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    //xử lý lỗi tại đây
-                }
-            })
+like = {{$product->liked}};
+$(document).ready(function() {
+    $('.like').click(function() {
+        checkHeart();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('ajax.likeProduct') }}",
+            data: {
+                id: {{$product->id_product}}
+            }
         })
-    });
+    })
+});
+function checkHeart()
+{
+    var heart = document.getElementById("heart");
+    if(heart.style.color == "red")
+    {
+        heart.style.color = "black";
+        $('#likes').text(--like);
+    }
+    else
+    {
+        heart.style.color = "red";
+        $('#likes').text(++like);
+    }
+}
 </script>
 @endsection

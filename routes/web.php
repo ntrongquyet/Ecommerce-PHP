@@ -112,3 +112,7 @@ Route::get('/revenue-year', 'AdminController@revenue_Year');
 
 Route::get('/product/edit/{id}', 'PageController@getEdit')->name('editProduct')->middleware('RoleCheck');
 Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductDB')->middleware('RoleCheck');
+
+
+// delete
+Route::get('/product/remove/{id}', 'PageController@remove')->name('removeProduct')->middleware('RoleCheck');
