@@ -42,9 +42,7 @@ Route::get('profile/{username}','PageController@profile')->middleware('CheckVali
 Route::get("/{idCat}/{idProduct}",'PageController@chitietsanpham');
 
 // tìm kiếm sản phẩm
-Route::get('default','PageController@SearchProduct');
-Route::post('default','PageController@SearchProduct');
-
+Route::get('search','PageController@SearchProduct');
 
 //Comment
 Route::post('product','CommentController@postComment');
@@ -68,7 +66,9 @@ Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Log
 
 //like sản phẩm
 // Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
-Route::post('ajax/likeProduct','PageController@likeProduct')->name('ajax.likeProduct')->middleware('Logged');
+// Route::post('ajax/likeProduct','PageController@likeProduct')->name('ajax.likeProduct')->middleware('Logged');
+//
+Route::post('ajax/likeProduct','PageController@likeProduct')->middleware('Logged')->name('ajax.likeProduct');
 
 // Bình luận sản phẩm
 Route::get('product/comment/{id}','PageController@comment');
@@ -98,3 +98,17 @@ Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.chang
 // view purchase admin
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
+
+// revenue date
+Route::get('/revenue-date', 'AdminController@revenue_Date');
+// revenue month
+Route::get('/revenue-month', 'AdminController@revenue_Month');
+// revenue quarter
+Route::get('/revenue-quarter', 'AdminController@revenue_Quarter');
+// revenue year
+Route::get('/revenue-year', 'AdminController@revenue_Year');
+
+// edit sản phẩm
+
+Route::get('/product/edit/{id}', 'PageController@getEdit')->name('editProduct')->middleware('RoleCheck');
+Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductDB')->middleware('RoleCheck');

@@ -52,6 +52,10 @@
             <div class="col-md-6">
                 <div class="details">
                     <h3 class="product-title" style="font-size: 24;"> {{$product->name}}
+                    @if($checkAdmin)
+                    <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-edit"></i></a>
+                    <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
+                    @endif
                         <button class="like btn btn-default d-inline" type="button" id="{{$product->id_product}}"
                             style="transform: translate(-30%, 0%);
                             font-size: 24;">
@@ -87,6 +91,11 @@
                             </form>
                         </div>
 
+                    </div>
+                    <div class="row mt-2">
+                        <nav aria-label="Page navigation example" style="margin: 0 auto">
+                            {{ $listComments->links() }}
+                        </nav>
                     </div>
                 </div>
 

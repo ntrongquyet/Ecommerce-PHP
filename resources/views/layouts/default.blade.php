@@ -28,16 +28,17 @@
 <body>
 
     @section('sidebar')
+<div class="col-12">
     <nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
                 <img class="img-nav"
                     src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                    alt="Girl in a jacket" width="65px" height="auto"></li>
+                    alt="Girl in a jacket" width="60px" height="auto"></li>
             </a>
         </div>
         <div>
-            <form class="form-inline my-2 my-lg-0" action="/default" method="post" role="form">
+            <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
                 {{ csrf_field() }}
                 <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
                     placeholder="Tìm kiếm sản phẩm">
@@ -76,10 +77,15 @@
             <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
             <div class="nav-link" style="float: right;">Giỏ hàng</div>
         </a>
+        <a href="/product/view/cart" type="button" class="btn btn-danger">
+            <img src="{{url('/image/icon/invoice.svg')}}" width="30px" height="auto" alt="user">
+            <div class="nav-link" style="float: right;">Thông tin đơn hàng</div>
+        </a>
     </nav>
+</div>
     @show
 
-    <div class="container-fluid mt-1">
+    <div class="container-fluid">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

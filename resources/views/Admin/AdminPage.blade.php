@@ -71,10 +71,10 @@
                         <i class="fas fa-info-circle"></i><span>Thống kê<i class="fas fa-chevron-down drop-down"></i></span>
                     </a>
                     <div class="sub-menu">
-                        <a href="#"><i class="fas fa-lock"></i><span>Doanh thu theo ngày</span></a>
-                        <a href="#"><i class="fas fa-lock"></i><span>Doanh thu theo tháng</span></a>
-                        <a href="#"><i class="fas fa-language"></i><span>Doanh thu theo quý</span></a>
-                        <a href="#"><i class="fas fa-language"></i><span>Doanh thu theo năm</span></a>
+                        <a href="{{ URL::to('/revenue-date') }}"><i class="fas fa-lock"></i><span>Doanh thu theo ngày</span></a>
+                        <a href="{{ URL::to('/revenue-month') }}"><i class="fas fa-lock"></i><span>Doanh thu theo tháng</span></a>
+                        <a href="{{ URL::to('/revenue-quarter') }}"><i class="fas fa-language"></i><span>Doanh thu theo quý</span></a>
+                        <a href="{{ URL::to('/revenue-year') }}"><i class="fas fa-language"></i><span>Doanh thu theo năm</span></a>
                     </div>
                 </li>
             </div>

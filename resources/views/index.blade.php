@@ -4,22 +4,35 @@
 @parent
 @endsection
 @section('content')
-
+<div class="menu-main">
+        <nav class="nav">
+            <ul class="menu">
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/mobile-phone.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="phone">
+                    <a href="#" class="menu-link">Điện thoại</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/laptop.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="laptop">
+                    <a href="#" class="menu-link">Laptop</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/tablet.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="tablet">
+                    <a href="#" class="menu-link">Máy tính bảng</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/television.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="tivi">
+                    <a href="#" class="menu-link">Tivi</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/speaker.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="loa">
+                    <a href="#" class="menu-link">Loa - Karaoke</i> </a>
+                </li>
+            </ul>
+        </nav>
+</div>
 @if(isset($categoryList))
-<div class="row justify-content-center">
-    <div class="col-3 bg-white">
-        <div class="btn-group-vertical">
-
-            @foreach($categoryList as $itemCat)
-            <div class="btn-group dropright">
-                <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{$itemCat->name}}
-                </a>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-6 mt-3 pt-3 pb-3 bg-white">
+<div class="row">
+    <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide carousel" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -52,18 +65,19 @@
 @endif
 
 @if(isset($topSaleProduct))
-<div class="popular-product section">
+<div class="section-main">
+<div class="popular-product section-1"> 
     <div class="section-title">
         <h2 class="title-best-product">Sản phẩm bán chạy nhất</h2>
     </div>
     <div class="row container-fluid">
         <div class="col-lg-12 grid-margin stretch-card">
-
             <div class="owl-carousel">
-
                 @foreach($topSaleProduct as $product)
                 <div>
-                    <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
+                    <figure class="card card-product-grid card-lg">
+                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}" 
+                         class="img-wrap" data-abc="true">
                             <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                         <figcaption class="info-wrap">
                             <div class="row">
@@ -85,6 +99,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <div class="all-product section">

@@ -12,7 +12,8 @@ use Darryldecode\Cart\Cart as CartCart;
 
 class PageController extends Controller
 {
-    private $limit = 9;
+    private $limit = 9; //số sản phẩm/1 trang
+    private $limitComment = 5; //số lượng comment/1 trang
     public function index()
     {
         $categories = DB::table('Categories')->get();
@@ -80,14 +81,18 @@ class PageController extends Controller
             ->get();
         // Lấy các comment về sản phẩm
         $listComments = DB::table('Comments')
+
             ->join('users', 'users.id', '=', 'id_user')
             ->orderBy('Comments.id_comment', 'desc')
             ->where('id_product', '=', $idProduct)
-            ->get();
+            ->paginate($this->limitComment);
 
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
-
+        $checkAdmin =false;
+        if($user->role==1){
+            $checkAdmin = true;
+        }
         if ($user != null) {
             // tìm xem user đã like sản phẩm đó chưa
             $userLikeProduct = DB::table('UserLikeProduct')
@@ -105,7 +110,8 @@ class PageController extends Controller
             'listProductAsCat' => $cat,
             'imageDetail' => $imageDetail,
             'listComments' => $listComments,
-            'liked' => $liked
+            'liked' => $liked,
+            'checkAdmin' => $checkAdmin
         ]);
     }
 
@@ -157,7 +163,7 @@ class PageController extends Controller
         $keyword = $res->input('keyword');
 
         if ($keyword == null) {
-            $keyword = '#';
+            return redirect()->back();
         }
 
         $listProduct = array();
@@ -458,7 +464,7 @@ class PageController extends Controller
             ->first();
 
         if ($userLikeProduct == null) {
-            //insert
+            //insert nếu chưa tồn tại
             DB::table('UserLikeProduct')->insert([
                 'user_id' => $user->id,
                 'product_id' => $idProduct,
@@ -471,7 +477,7 @@ class PageController extends Controller
 
             $liked = true;
         } else {
-            //delete
+            //delete nếu đã tồn tại
             DB::table('UserLikeProduct')
                 ->where('id', $userLikeProduct->id)
                 ->delete();
@@ -533,5 +539,75 @@ class PageController extends Controller
         DB::table('Purchases')
             ->where('id_purchase', '=', $data['id'])
             ->update(['status' => $data['value']]);
+    }
+    public function getEdit($id)
+    {
+        $product = DB::table('Products')
+            ->where('id_product', '=', $id)->get()->first();
+        $categories = DB::table('Categories')->get();
+        $image = DB::table('Image')->where('id_product', '=', $id)->get();
+
+        return view('Admin.Products.editProduct', [
+            'product' => $product,
+            'categoryList' => $categories,
+            'listImage' => $image
+        ]);
+    }
+    public function postEdit(Request $res, $id)
+    {
+        $data = $res->input();
+        $rule = [
+            'name' => 'required',
+            'price' => 'required',
+            'about' => 'required',
+            'qty' => 'required',
+
+        ];
+        $customMessage = [
+            // Tên sản phẩm
+            'name.required' => 'Tên sản phẩm không được để trống',
+            // Giá
+            'price.required' => 'Giá sản phẩm không được để trống',
+
+            // Chi tiết
+            'about.required' => 'Chi tiết sản phẩm không được để trống',
+            // Sản phẩm
+            'qty.required' => 'Số lượng sản phẩm không được để trống',
+
+        ];
+        $msg = '';
+        $validator = Validator::make($res->all(), $rule, $customMessage);
+        if ($validator->fails()) {
+            return redirect()->route('editProduct')
+                ->withInput()
+                ->withErrors($validator);
+        } else {
+
+            DB::table('Products')
+            ->where('id_product',$id)
+            ->update([
+                'name' => $data['name'],
+                'id_Cat' => $data['cats'],
+                'quantity' => $data['qty'],
+                'description' => $data['about'],
+                'price' => $data['price'],
+                'updated_at' => Carbon::now(),
+                'avatar' => $data['image'],
+            ]);
+
+            $msg = "Thêm sản phẩm thành công";
+
+            $msg = "Thêm sản phẩm thất bại, số lượng ảnh tối thiểu phải là 3";
+
+            $product = DB::table('Products')
+                ->where('id_product', '=', $id)->get()->first();
+            $categories = DB::table('Categories')->get();
+            $image = DB::table('Image')->where('id_product', '=', $id)->get();
+            return view('Admin.Products.editProduct', [
+                'product' => $product,
+                'categoryList' => $categories,
+                'listImage' => $image,
+            ]);
+        }
     }
 }

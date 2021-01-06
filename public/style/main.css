@@ -5,7 +5,108 @@ body {
     color: #000000;
     overflow-x: hidden;
 }
+.container-fluid{
+    padding: 0px 0px !important;
+}
+.col-12{
+    background-color:  #dc3545;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin: auto;
+}
 
+/* Menu */
+.icon-menu{
+    float: left;
+}
+.menu {
+    display: flex;
+    margin-bottom: 0px;
+ }
+ 
+ .menu-link {
+    font-size: 1rem;
+    float: left;
+    color: #817b7b;
+    display: block;
+ }
+ .menu-link-icon {
+    font-size: 1rem; 
+    color: #817b7b;
+    margin-right: 3px;
+    display: block;
+    float: left;
+ }
+ 
+ .menu-link:hover {
+    color: #e43e3e;
+ }
+ 
+ .menu-item {
+    position: relative;
+ }
+
+ .nav {
+    position: relative;
+    justify-content: center;
+    padding: .8rem;
+ }
+ 
+
+ @media screen and (min-width: 1024px) {
+
+    .menu-item:not(:first-child) {
+       margin-left: 2rem;
+    }
+
+ @media screen and (max-width: 1023px) {
+    .menu {
+       position: absolute;
+       right: 0;
+       top: 100%;
+       min-width: 20rem;
+       background-color: white;
+       box-shadow: var(--shadow);
+       flex-direction: column;
+       display: none;
+       z-index: 100;
+    }
+ 
+    .menu-item:not(:last-child) {
+       border-bottom: 1px solid #eee;
+    }
+    .menu-link {
+       padding: 1.5rem;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+    }
+ }
+/*  */
+/* SECTION PRODUCT*/
+.section-main{
+    position: relative; 
+    margin: -20px;
+    margin-top: 30px;
+}
+.section-main::before{
+    content: "";
+    background-image: url('/image/background/Background.png');
+    position: absolute;
+    width: 100vw;
+    background-size: cover;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: .7;
+}
+
+.section-1{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
 .container {
     margin-top: 50px;
     margin-bottom: 50px
@@ -33,7 +134,6 @@ a {
 .card-product-grid {
     margin-bottom: 0
 }
-
 .card {
     position: relative;
     display: -webkit-box;
@@ -54,7 +154,6 @@ a {
     border-radius: 0.10rem;
     margin-top: 10px
 }
-
 .card-product-grid:hover {
     -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
     box-shadow: 0 5px 15px rgba(153, 153, 153, 0.3);
@@ -64,7 +163,7 @@ a {
 
 .card-product-grid .img-wrap {
     border-radius: 0.2rem 0.2rem 0 0;
-    height: 220px
+    height: 300px
 }
 
 .card .img-wrap {
@@ -192,11 +291,11 @@ a {
 }
 
 .section-title .title-best-product {
-    font-size: 30px;
+    font-size: 35px;
     margin-bottom: 0;
     text-transform: capitalize;
     position: relative;
-    color: black;
+    color: white;
     font-weight: 600;
     margin-bottom: 10px;
     padding-bottom: 15px;
@@ -205,9 +304,9 @@ a {
 .section-title .title-best-product::before {
     position: absolute;
     content: "";
-    width: 15%;
-    height: 2px;
-    background: #F7941D;
+    width: 14%;
+    height: 3px;
+    background: #f88800;
     bottom: 0px;
     left: 43%;
 }
