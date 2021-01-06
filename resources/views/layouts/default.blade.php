@@ -29,7 +29,8 @@
 
     @section('sidebar')
 <div class="col-12-nav">
-    <nav class="navbar navbar-expand-md navbar-dark bg-danger">
+<div class="col-9">
+<nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
                 <img class="img-nav"
@@ -40,7 +41,7 @@
         <div class="form-search-nav">
             <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
                 {{ csrf_field() }}
-                <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
+                <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 25em;"
                     placeholder="Tìm kiếm sản phẩm">
                 <button class="btn btn-outline-none my-2 my-sm-0"
                  style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; "
@@ -82,6 +83,7 @@
             <div class="nav-link" style="float: right;">Thông tin đơn hàng</div>
         </a>
     </nav>
+</div>
 </div>
     @show
 
