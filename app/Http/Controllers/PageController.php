@@ -80,27 +80,25 @@ class PageController extends Controller
             ->get();
         // Lấy các comment về sản phẩm
         $listComments = DB::table('Comments')
-        ->join('users','users.id','=','id_user')
-        ->orderBy('Comments.id_comment', 'desc')
-        ->where('id_product', '=', $idProduct)
-        ->get();
+            ->join('users', 'users.id', '=', 'id_user')
+            ->orderBy('Comments.id_comment', 'desc')
+            ->where('id_product', '=', $idProduct)
+            ->get();
 
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
 
-        if($user != null)
-        {
+        if ($user != null) {
             // tìm xem user đã like sản phẩm đó chưa
             $userLikeProduct = DB::table('UserLikeProduct')
-            ->where('user_id', '=', $user->id)
-            ->where('product_id', '=', $idProduct)
-            ->get()
-            ->first();
+                ->where('user_id', '=', $user->id)
+                ->where('product_id', '=', $idProduct)
+                ->get()
+                ->first();
 
             if ($userLikeProduct != null) {
                 $liked = true;
             }
-
         }
         return view("frontend.Products.detailProduct", [
             'product' => $product,
@@ -325,7 +323,7 @@ class PageController extends Controller
                     'img' => $product->avatar,
                 ]
             ));
-        }else{
+        } else {
             Cart::add(array(
                 'id'    => $idProduct,
                 'name'  => $product->name,
@@ -445,8 +443,9 @@ class PageController extends Controller
         }
     }
 
-    public function likeProduct($idProduct)
+    public function likeProduct(Request $res)
     {
+        $idProduct = $res->input('id');
         $liked = false;
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
@@ -482,21 +481,29 @@ class PageController extends Controller
                 ->where('id_product', '=', $idProduct)
                 ->decrement('liked');
         }
-        return redirect()->back()->with('liked', $liked);
+        //lấy thông tin sản phẩm
+        $product = DB::table('Products')
+            ->where('id_product', '=', $idProduct)
+            ->get()
+            ->first();
+        return response()->json(['product' => $product, 'liked' => $liked]); // 200 là mã lỗi
     }
-    public function profile($user){
+
+    public function profile($user)
+    {
         $listPurchases = DB::table('Purchases')
-                    ->join('users','Purchases.id_user','=','users.id')
-                    ->join('Status','Status.id_stt','=','status')
-                    ->where('users.username','=',$user)
-                    ->orderBy('Purchases.created_at', 'asc')
-                    ->select('Purchases.*','Status.description')->get();
+            ->join('users', 'Purchases.id_user', '=', 'users.id')
+            ->join('Status', 'Status.id_stt', '=', 'status')
+            ->where('users.username', '=', $user)
+            ->orderBy('Purchases.created_at', 'asc')
+            ->select('Purchases.*', 'Status.description')->get();
         return view('Users.Profile', [
             'listPurchases' => $listPurchases
         ]);
     }
 
-    public function comment(Request $res,$id){
+    public function comment(Request $res, $id)
+    {
         $data = $res->input();
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
         DB::table('Comments')->insert([
@@ -506,24 +513,25 @@ class PageController extends Controller
         ]);
         return redirect()->back();
     }
-    public function bill(){
+    public function bill()
+    {
         $listPurchases = DB::table('Purchases')
-                    ->join('users','Purchases.id_user','=','users.id')
-                    ->join('Status','Status.id_stt','=','status')
-                    ->orderBy('Purchases.created_at', 'asc')
-                    ->select('Purchases.*','Status.description')->get();
+            ->join('users', 'Purchases.id_user', '=', 'users.id')
+            ->join('Status', 'Status.id_stt', '=', 'status')
+            ->orderBy('Purchases.created_at', 'asc')
+            ->select('Purchases.*', 'Status.description')->get();
         $listStatus = DB::table('Status')->get();
         return view('Admin.bill', [
             'listPurchases' => $listPurchases,
-            'listStatus' =>$listStatus
+            'listStatus' => $listStatus
         ]);
     }
-    public function changeStatus(Request $res){
+    public function changeStatus(Request $res)
+    {
         $data = $res->input();
         $id = $data['id'];
         DB::table('Purchases')
-        ->where('id_purchase','=',$data['id'])
-        ->update(['status' => $data['value']]);
-
+            ->where('id_purchase', '=', $data['id'])
+            ->update(['status' => $data['value']]);
     }
 }

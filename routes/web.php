@@ -67,7 +67,8 @@ Route::get('product/cart/checkout','PageController@chitietdathang')->middleware(
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
 //like sản phẩm
-Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
+// Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
+Route::post('ajax/likeProduct','PageController@likeProduct')->name('ajax.likeProduct')->middleware('Logged');
 
 // Bình luận sản phẩm
 Route::get('product/comment/{id}','PageController@comment');
@@ -95,4 +96,5 @@ Route::get('/view-purchase', 'PageController@bill');
 //Thay đổi trạng thái đơn hàng
 Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
 // view purchase admin
+Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');

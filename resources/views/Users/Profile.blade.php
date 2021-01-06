@@ -34,30 +34,6 @@
                                         <td><label class="badge {{$item->status == '1'?'badge-secondary':($item->status == '2'?'badge-danger':($item->status == '3'?'badge-light':($item->status == '4'?'badge-warning':'badge-success')))}}">{{$item->description}}</label></td>
                                     </tr>
                                     @endforeach
-                                    <!-- <tr>
-                                        <td>Samso Palto</td>
-                                        <td>Brakes</td>
-                                        <td class="text-danger"> 11.06% <i class="fa fa-arrow-down"></i></td>
-                                        <td><label class="badge badge-warning">In progress</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tiplis mang</td>
-                                        <td>Window</td>
-                                        <td class="text-danger"> 35.00% <i class="fa fa-arrow-down"></i></td>
-                                        <td><label class="badge badge-info">Fixed</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pter parker</td>
-                                        <td>Head light</td>
-                                        <td class="text-success"> 22.00% <i class="fa fa-arrow-up"></i></td>
-                                        <td><label class="badge badge-success">Completed</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ankit Dave</td>
-                                        <td>Back light</td>
-                                        <td class="text-success"> 28.05% <i class="fa fa-arrow-up"></i></td>
-                                        <td><label class="badge badge-warning">In progress</label></td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
