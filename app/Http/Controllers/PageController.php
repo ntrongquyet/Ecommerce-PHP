@@ -90,10 +90,11 @@ class PageController extends Controller
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
         $checkAdmin =false;
-        if($user->role==1){
-            $checkAdmin = true;
-        }
+        
         if ($user != null) {
+            if($user->role==1){
+                $checkAdmin = true;
+            }
             // tìm xem user đã like sản phẩm đó chưa
             $userLikeProduct = DB::table('UserLikeProduct')
                 ->where('user_id', '=', $user->id)
