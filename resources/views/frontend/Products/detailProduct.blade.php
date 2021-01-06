@@ -156,8 +156,10 @@
     </div>
 </body>
 <script type="text/javascript">
+like = {{$product->liked}};
 $(document).ready(function() {
     $('.like').click(function() {
+        checkHeart();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -167,26 +169,25 @@ $(document).ready(function() {
             type: 'POST',
             url: "{{ route('ajax.likeProduct') }}",
             data: {
-                id: {
-                    {
-                        $product - > id_product
-                    }
-                }
-            },
-            success: function(response) {
-                $('#likes').text(response.data.liked);
-                var heart = document.getElementById("heart");
-                if (response.check) {
-                    heart.style.color = "red";
-                } else {
-                    heart.style.color = "black";
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                //xử lý lỗi tại đây
+                id: {{$product->id_product}}
             }
         })
     })
 });
+
+function checkHeart()
+{
+    var heart = document.getElementById("heart");
+    if(heart.style.color == "red")
+    {
+        heart.style.color = "black";
+        $('#likes').text(--like);
+    }
+    else
+    {
+        heart.style.color = "red";
+        $('#likes').text(++like);
+    }
+}
 </script>
 @endsection
