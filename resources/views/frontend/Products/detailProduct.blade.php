@@ -128,6 +128,11 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="row mt-2">
+                        <nav aria-label="Page navigation example" style="margin: 0 auto">
+                            {{ $listComments->links() }}
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,8 +166,12 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: "{{ route('ajax.likeProduct') }}",
-            data:{
-                id: {{$product->id_product}}
+            data: {
+                id: {
+                    {
+                        $product - > id_product
+                    }
+                }
             },
             success: function(response) {
                 $('#likes').text(response.data.liked);
