@@ -111,7 +111,7 @@
     <div class="section-title">
         <h2 class="title-all-product">Tất cả sản phẩm</h2>
     </div>
-    <div class="row">
+    <div class="row justify-content-md-center">
         @foreach($productList as $product)
         <div class="col-md-4">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
@@ -150,9 +150,9 @@
     <div class="section-title">
         <h2 class="title-product-like">Sản Phẩm Được Yêu Thích Nhất</h2>
     </div>
-    <div class="row">
+    <div class="row justify-content-md-center">
         @foreach($topLikeProduct as $product)
-        <div class="col-md-4">
+        <div class="col-md-3">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
@@ -179,9 +179,9 @@
     <div class="section-title">
         <h2 class="title-new-product">Sản Phẩm Mới Nhất</h2>
     </div>
-    <div class="row">
+    <div class="row justify-content-md-center">
         @foreach($topNewProduct as $product)
-        <div class="col-md-4">
+        <div class="col-md-3">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">

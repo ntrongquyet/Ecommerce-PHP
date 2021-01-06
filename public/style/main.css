@@ -343,7 +343,7 @@ a {
 }
 
 .section-title .title-all-product {
-    font-size: 30px;
+    font-size: 35px;
     margin-bottom: 0;
     text-transform: capitalize;
     position: relative;
@@ -356,11 +356,11 @@ a {
 .section-title .title-all-product::before {
     position: absolute;
     content: "";
-    width: 10%;
-    height: 2px;
+    width: 12%;
+    height: 3px;
     background: #F7941D;
     bottom: 0px;
-    left: 45%;
+    left: 44%;
 }
 
 .section-title .title-product-like {
