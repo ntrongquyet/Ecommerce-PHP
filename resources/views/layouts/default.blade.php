@@ -29,7 +29,7 @@
 <body>
 
     @section('sidebar')
-<div class="col-12">
+<div class="col-12-nav">
     <nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
