@@ -29,7 +29,6 @@
 
     @section('sidebar')
 <div class="col-12-nav">
-    <div class="col-9">
     <nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
@@ -83,7 +82,6 @@
             <div class="nav-link" style="float: right;">Thông tin đơn hàng</div>
         </a>
     </nav>
-    </div>
 </div>
     @show
 
