@@ -27,6 +27,10 @@
                     <img src="{{url('/image/icon/speaker.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="loa">
                     <a href="#" class="menu-link">Loa - Karaoke</i> </a>
                 </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/information.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="loa">
+                    <a href="#" class="menu-link">Tin công nghệ</i> </a>
+                </li>
             </ul>
         </nav>
 </div>
@@ -102,7 +106,8 @@
 </div>
 </div>
 
-<div class="all-product section">
+<div class="section-main-2">
+<div class="all-product section-2">
     <div class="section-title">
         <h2 class="title-all-product">Tất cả sản phẩm</h2>
     </div>
@@ -129,6 +134,7 @@
         </div>
         @endforeach
     </div>
+</div>
 </div>
 
 </div>

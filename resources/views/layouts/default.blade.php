@@ -30,15 +30,16 @@
 
     @section('sidebar')
 <div class="col-12-nav">
+    <div class="col-9">
     <nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
                 <img class="img-nav"
                     src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                    alt="Girl in a jacket" width="60px" height="auto"></li>
+                    alt="Girl in a jacket" width="50px" height="auto"></li>
             </a>
         </div>
-        <div>
+        <div class="form-search-nav">
             <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
                 {{ csrf_field() }}
                 <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 30em;"
@@ -48,7 +49,7 @@
                  type="submit">Tìm kiếm</button>
             </form>
         </div>
-        <div class="collapse navbar-collapse nav-login-register" id="collapsibleNavId">
+        <div class="collapse navbar-collapse nav-login-register login-register-icon" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
@@ -57,9 +58,9 @@
                 <li class="nav-item-account" style="margin-right: 10px ;">
                     <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                     <a class="nav-link" style="float:right;" href="profile/{{session()->get('user')}}">Tôi</a>
-                </li>
+                </li>   
                 <li class="nav-item-account">
-                    <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
+                    <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
                     <a class="nav-link" style="float:right;" href="/Logout">Đăng xuất</a>
                 </li>
                 @else
@@ -79,10 +80,11 @@
             <div class="nav-link" style="float: right;">Giỏ hàng</div>
         </a>
         <a href="/product/view/cart" type="button" class="btn btn-danger">
-            <img src="{{url('/image/icon/invoice.svg')}}" width="30px" height="auto" alt="user">
+            <img class="img-invoice" src="{{url('/image/icon/invoice.png')}}" width="30px" height="auto" alt="user">
             <div class="nav-link" style="float: right;">Thông tin đơn hàng</div>
         </a>
     </nav>
+    </div>
 </div>
     @show
 
