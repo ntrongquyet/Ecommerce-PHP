@@ -12,7 +12,8 @@ use Darryldecode\Cart\Cart as CartCart;
 
 class PageController extends Controller
 {
-    private $limit = 9;
+    private $limit = 9; //số sản phẩm/1 trang
+    private $limitComment = 5; //số lượng comment/1 trang
     public function index()
     {
         $categories = DB::table('Categories')->get();
@@ -83,7 +84,7 @@ class PageController extends Controller
         ->join('users','users.id','=','id_user')
         ->orderBy('Comments.id_comment', 'desc')
         ->where('id_product', '=', $idProduct)
-        ->get();
+        ->paginate($this->limitComment);
 
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
