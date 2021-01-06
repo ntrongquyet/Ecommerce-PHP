@@ -45,4 +45,24 @@ class AdminController extends Controller
     {
         return view('Admin.Purchase.filterPurchase');
     }
+
+    public function revenue_Date()
+    {
+        return view('Admin.Revenue.revenueDate');
+    }
+
+    public function revenue_Month()
+    {
+        return view('Admin.Revenue.revenueMonth');
+    }
+
+    public function revenue_Quarter()
+    {
+        return view('Admin.Revenue.revenueQuarter');
+    }
+    
+    public function revenue_Year()
+    {
+        return view('Admin.Revenue.revenueYear');
+    }
 }

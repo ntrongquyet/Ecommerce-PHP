@@ -95,3 +95,14 @@ Route::get('/top-product', 'AdminController@top_Product');
 Route::get('/view-purchase', 'AdminController@view_Purchase');
 // view purchase admin
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
+<<<<<<< HEAD
+=======
+// revenue date
+Route::get('/revenue-date', 'AdminController@revenue_Date');
+// revenue month
+Route::get('/revenue-month', 'AdminController@revenue_Month');
+// revenue quarter
+Route::get('/revenue-quarter', 'AdminController@revenue_Quarter');
+// revenue year
+Route::get('/revenue-year', 'AdminController@revenue_Year');
+>>>>>>> 1e889500e2c2ece674d1aab087656f032642c9b9

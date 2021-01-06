@@ -4,22 +4,20 @@
 @parent
 @endsection
 @section('content')
-
-@if(isset($categoryList))
-<div class="row justify-content-center">
-    <div class="col-3 bg-white">
-        <div class="btn-group-vertical">
-
+<div class="menu-main">
+        <nav class="nav">
+            <ul class="menu">
             @foreach($categoryList as $itemCat)
-            <div class="btn-group dropright">
-                <a type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{$itemCat->name}}
-                </a>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-6 mt-3 pt-3 pb-3 bg-white">
+                <li class="menu-item">
+                    <a href="#" class="menu-link">{{$itemCat->name}}</i> </a>
+                </li>
+             @endforeach
+            </ul>
+        </nav>
+</div>
+@if(isset($categoryList))
+<div class="row">
+    <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide carousel" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -59,12 +57,12 @@
     </div>
     <div class="row container-fluid">
         <div class="col-lg-12 grid-margin stretch-card">
-
             <div class="owl-carousel">
-
                 @foreach($topSaleProduct as $product)
                 <div>
-                    <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
+                    <figure class="card card-product-grid card-lg">
+                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}" 
+                         class="img-wrap" data-abc="true">
                             <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                         <figcaption class="info-wrap">
                             <div class="row">

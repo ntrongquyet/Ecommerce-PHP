@@ -80,7 +80,7 @@
     </nav>
     @show
 
-    <div class="container-fluid mt-1">
+    <div class="container-fluid">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

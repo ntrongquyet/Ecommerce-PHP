@@ -5,6 +5,72 @@ body {
     color: #000000;
     overflow-x: hidden;
 }
+.container-fluid{
+    padding: 0px 0px !important;
+}
+.col-12{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+/* Menu */
+
+.menu {
+    display: flex;
+    margin-bottom: 0px;
+ }
+ 
+ .menu-link {
+    font-size: 1.4rem;
+    color: #000000;
+    display: block;
+ }
+ 
+ .menu-link:hover {
+    color: #e43e3e;
+ }
+ 
+ .menu-item {
+    position: relative;
+ }
+
+ .nav {
+    position: relative;
+    justify-content: center;
+    padding: 10px;
+ }
+ 
+
+ @media screen and (min-width: 1024px) {
+
+    .menu-item:not(:first-child) {
+       margin-left: 2rem;
+    }
+
+ @media screen and (max-width: 1023px) {
+    .menu {
+       position: absolute;
+       right: 0;
+       top: 100%;
+       min-width: 20rem;
+       background-color: white;
+       box-shadow: var(--shadow);
+       flex-direction: column;
+       display: none;
+       z-index: 100;
+    }
+ 
+    .menu-item:not(:last-child) {
+       border-bottom: 1px solid #eee;
+    }
+    .menu-link {
+       padding: 1.5rem;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+    }
+ }
+/*  */
 /* SECTION PRODUCT*/
 .section-main{
     position: relative; 
@@ -15,6 +81,7 @@ body {
     content: "";
     background-image: url('/image/background/Background.png');
     position: absolute;
+    width: 100vw;
     background-size: cover;
     top: 0px;
     right: 0px;
@@ -55,7 +122,6 @@ a {
 .card-product-grid {
     margin-bottom: 0
 }
-
 .card {
     position: relative;
     display: -webkit-box;
@@ -85,7 +151,7 @@ a {
 
 .card-product-grid .img-wrap {
     border-radius: 0.2rem 0.2rem 0 0;
-    height: 220px
+    height: 300px
 }
 
 .card .img-wrap {
