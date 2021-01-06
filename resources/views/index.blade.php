@@ -7,11 +7,26 @@
 <div class="menu-main">
         <nav class="nav">
             <ul class="menu">
-            @foreach($categoryList as $itemCat)
                 <li class="menu-item">
-                    <a href="#" class="menu-link">{{$itemCat->name}}</i> </a>
+                    <img src="{{url('/image/icon/mobile-phone.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="phone">
+                    <a href="#" class="menu-link">Điện thoại</i> </a>
                 </li>
-             @endforeach
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/laptop.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="laptop">
+                    <a href="#" class="menu-link">Laptop</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/tablet.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="tablet">
+                    <a href="#" class="menu-link">Máy tính bảng</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/television.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="tivi">
+                    <a href="#" class="menu-link">Tivi</i> </a>
+                </li>
+                <li class="menu-item">
+                    <img src="{{url('/image/icon/speaker.svg')}}" class="menu-link-icon" width="20px" height="auto" alt="loa">
+                    <a href="#" class="menu-link">Loa - Karaoke</i> </a>
+                </li>
             </ul>
         </nav>
 </div>

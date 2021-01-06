@@ -29,12 +29,13 @@
 <body>
 
     @section('sidebar')
+<div class="col-12">
     <nav class="navbar navbar-expand-md navbar-dark bg-danger">
         <div>
             <a class="navbar-brand" href="/">
                 <img class="img-nav"
                     src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                    alt="Girl in a jacket" width="65px" height="auto"></li>
+                    alt="Girl in a jacket" width="60px" height="auto"></li>
             </a>
         </div>
         <div>
@@ -77,7 +78,12 @@
             <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
             <div class="nav-link" style="float: right;">Giỏ hàng</div>
         </a>
+        <a href="/product/view/cart" type="button" class="btn btn-danger">
+            <img src="{{url('/image/icon/invoice.svg')}}" width="30px" height="auto" alt="user">
+            <div class="nav-link" style="float: right;">Thông tin đơn hàng</div>
+        </a>
     </nav>
+</div>
     @show
 
     <div class="container-fluid">

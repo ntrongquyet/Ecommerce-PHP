@@ -9,20 +9,31 @@ body {
     padding: 0px 0px !important;
 }
 .col-12{
+    background-color:  #dc3545;
     padding-right: 0px !important;
     padding-left: 0px !important;
+    margin: auto;
 }
 
 /* Menu */
-
+.icon-menu{
+    float: left;
+}
 .menu {
     display: flex;
     margin-bottom: 0px;
  }
  
  .menu-link {
-    font-size: 1.4rem;
-    color: #000000;
+    font-size: 1rem;
+    float: left;
+    color: #817b7b;
+    display: block;
+ }
+ .menu-link-icon {
+    font-size: 1rem; 
+    color: #817b7b;
+    margin-right: 3px;
     display: block;
  }
  
@@ -37,7 +48,7 @@ body {
  .nav {
     position: relative;
     justify-content: center;
-    padding: 10px;
+    padding: .8rem;
  }
  
 
