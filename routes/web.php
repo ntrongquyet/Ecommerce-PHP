@@ -67,7 +67,8 @@ Route::get('product/cart/checkout','PageController@chitietdathang')->middleware(
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
 //like sản phẩm
-Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
+// Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
+Route::post('ajax/likeProduct','PageController@likeProduct')->middleware('Logged')->name('ajax.likeProduct');
 
 // Bình luận sản phẩm
 Route::get('product/comment/{id}','PageController@comment');

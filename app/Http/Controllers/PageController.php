@@ -445,8 +445,9 @@ class PageController extends Controller
         }
     }
 
-    public function likeProduct($idProduct)
+    public function likeProduct(Request $res)
     {
+        $idProduct = $res->input('id');
         $liked = false;
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
@@ -482,7 +483,12 @@ class PageController extends Controller
                 ->where('id_product', '=', $idProduct)
                 ->decrement('liked');
         }
-        return redirect()->back()->with('liked', $liked);
+        //lấy thông tin sản phẩm
+        $product = DB::table('Products')
+                    ->where('id_product', '=', $idProduct)
+                    ->get()
+                    ->first();
+        return response()->json(['data'=>$product,'check'=>$liked],200); // 200 là mã lỗi
     }
     public function profile($user){
         $listPurchases = DB::table('Purchases')

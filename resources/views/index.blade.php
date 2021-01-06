@@ -52,7 +52,8 @@
 @endif
 
 @if(isset($topSaleProduct))
-<div class="popular-product section">
+<div class="section-main">
+<div class="popular-product section-1"> 
     <div class="section-title">
         <h2 class="title-best-product">Sản phẩm bán chạy nhất</h2>
     </div>
@@ -85,6 +86,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <div class="all-product section">

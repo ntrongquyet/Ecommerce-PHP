@@ -5,7 +5,29 @@ body {
     color: #000000;
     overflow-x: hidden;
 }
+/* SECTION PRODUCT*/
+.section-main{
+    position: relative; 
+    margin: -20px;
+    margin-top: 30px;
+}
+.section-main::before{
+    content: "";
+    background-image: url('/image/background/Background.png');
+    position: absolute;
+    background-size: cover;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: .7;
+}
 
+.section-1{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
 .container {
     margin-top: 50px;
     margin-bottom: 50px
@@ -191,11 +213,11 @@ a {
 }
 
 .section-title .title-best-product {
-    font-size: 30px;
+    font-size: 35px;
     margin-bottom: 0;
     text-transform: capitalize;
     position: relative;
-    color: black;
+    color: white;
     font-weight: 600;
     margin-bottom: 10px;
     padding-bottom: 15px;
@@ -204,9 +226,9 @@ a {
 .section-title .title-best-product::before {
     position: absolute;
     content: "";
-    width: 15%;
-    height: 2px;
-    background: #F7941D;
+    width: 14%;
+    height: 3px;
+    background: #f88800;
     bottom: 0px;
     left: 43%;
 }
