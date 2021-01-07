@@ -51,17 +51,21 @@ class AdminController extends Controller
         return view('Admin.Revenue.revenueStatistics');
     }
 
-    public function revenue_Month()
+    public function revenue_Day(Request $res)
+    {
+        return response()->json(['product' => [1, 2, 3]]); // 200 là mã lỗi
+    }
+    public function revenue_Month(Request $res)
     {
         return view('Admin.Revenue.revenueMonth');
     }
 
-    public function revenue_Quarter()
+    public function revenue_Quarter(Request $res)
     {
         return view('Admin.Revenue.revenueQuarter');
     }
     
-    public function revenue_Year()
+    public function revenue_Year(Request $res)
     {
         return view('Admin.Revenue.revenueYear');
     }
