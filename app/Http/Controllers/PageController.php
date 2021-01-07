@@ -511,12 +511,15 @@ class PageController extends Controller
     public function comment(Request $res, $id)
     {
         $data = $res->input();
-        $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
-        DB::table('Comments')->insert([
-            'id_product' => $id,
-            'id_user' => $user->id,
-            'content' => $data['textComment']
-        ]);
+        if($data['textComment'])
+        {
+            $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+            DB::table('Comments')->insert([
+                'id_product' => $id,
+                'id_user' => $user->id,
+                'content' => $data['textComment']
+            ]);
+        }
         return redirect()->back();
     }
     public function bill()
