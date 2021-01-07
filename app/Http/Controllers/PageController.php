@@ -90,7 +90,7 @@ class PageController extends Controller
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
         $checkAdmin =false;
-        
+
         if ($user != null) {
             if($user->role==1){
                 $checkAdmin = true;
@@ -328,6 +328,7 @@ class PageController extends Controller
                 'quantity'   => $qtt,
                 'attributes' => [
                     'img' => $product->avatar,
+                    'cat' => $product->id_Cat
                 ]
             ));
         } else {
@@ -338,6 +339,7 @@ class PageController extends Controller
                 'quantity'   => $qtt,
                 'attributes' => [
                     'img' => $product->avatar,
+                    'cat' => $product->id_Cat,
                 ]
             ));
         }
