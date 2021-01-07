@@ -29,61 +29,67 @@
 
     @section('sidebar')
 <div class="col-12-nav">
-<div class="col-9">
-<nav class="navbar navbar-expand-md navbar-dark bg-danger">
-        <div>
-            <a class="navbar-brand" href="/">
-                <img class="img-nav"
-                    src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                    alt="Girl in a jacket" width="50px" height="auto"></li>
-            </a>
-        </div>
-        <div class="form-search-nav">
-            <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
-                {{ csrf_field() }}
-                <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 25em;"
-                    placeholder="Tìm kiếm sản phẩm">
-                <button class="btn btn-outline-none my-2 my-sm-0"
-                 style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; "
-                 type="submit">Tìm kiếm</button>
-            </form>
-        </div>
-        <div class="collapse navbar-collapse nav-login-register login-register-icon" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-                </li>
-                @if (session()->has('user'))
-                <li class="nav-item-account" style="margin-right: 10px ;">
-                    <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="/profile/{{session()->get('user')}}">Tôi</a>
-                </li>   
-                <li class="nav-item-account">
-                    <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="/Logout">Đăng xuất</a>
-                </li>
-                @else
-                <li class="nav-item-account" style="margin-right: 10px ;">
-                    <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="/login">Đăng nhập</a>
-                </li>
-                <li class="nav-item-account">
-                    <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
-                    <a class="nav-link" style="float:right;" href="/Register">Đăng kí</a>
-                </li>
-                @endif
-            </ul>
-        </div>
-        <a href="/product/view/cart" type="button" class="btn btn-danger">
-            <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
-            <div class="nav-link" style="float: right;">Giỏ hàng</div>
-        </a>
-        <a href="/product/view/cart" type="button" class="btn btn-danger">
-            <img class="img-invoice" src="{{url('/image/icon/invoice.png')}}" width="30px" height="auto" alt="user">
-            <div class="nav-link" style="float: right;">Thông tin đơn hàng</div>
-        </a>
-    </nav>
-</div>
+    <div class="col-9">
+        <div class="row row-nav"> 
+            <div class="col-0.5">
+                <a class="navbar-brand" href="/">
+                    <img class="img-nav"
+                        src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
+                        alt="Girl in a jacket" width="50px" height="auto"></li>
+                </a>
+            </div>
+            <div class="col-5 col-search">
+                <div class="form-search-nav">
+                    <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
+                        {{ csrf_field() }}
+                        <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 15em;"
+                            placeholder="Tìm kiếm sản phẩm">
+                        <button class="btn btn-outline-none my-2 my-sm-0"
+                        style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; "
+                        type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-3 col-account">
+                <div class="login-register-icon" id="collapsibleNavId">
+                    <ul class="nav-login">
+                        <li class="nav-item-active">
+                            <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                        </li>
+                        @if (session()->has('user'))
+                        <li class="nav-item-account">
+                            <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
+                            <a class="nav-link-content" href="/profile/{{session()->get('user')}}">Tôi</a>
+                        </li>   
+                        <li class="nav-item-account">
+                            <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
+                            <a class="nav-link-content" href="/Logout">Đăng xuất</a>
+                        </li>
+                        @else
+                        <li class="nav-item-account">
+                            <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
+                            <a class="nav-link-content" href="/login">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item-account">
+                            <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
+                            <a class="nav-link-content" href="/Register">Đăng kí</a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+            <div class="col-3 col-price">
+                <a href="/product/view/cart" type="button" class="btn btn-danger">
+                    <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
+                    <div class="nav-link-price">Giỏ hàng</div>
+                </a>
+                <a href="/product/view/cart" type="button" class="btn btn-danger">
+                    <img class="img-invoice" src="{{url('/image/icon/invoice.png')}}" width="30px" height="auto" alt="user">
+                    <div class="nav-link-price">Lịch sử mua hàng</div>
+                </a>
+            </div>
+        </div> 
+    </div>
 </div>
     @show
 
@@ -91,7 +97,7 @@
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        integrity="sha383-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">

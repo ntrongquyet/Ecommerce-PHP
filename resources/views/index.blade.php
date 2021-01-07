@@ -87,8 +87,8 @@
                             <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                         <figcaption class="info-wrap">
                             <div class="row ">
-                                <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
-                                <div class="col-md-4 rating-edit">
+                                <div class="col-md-9"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                                <div class="col-md-3 rating-edit">
                                     <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}
                                     </div>
                                 </div>
@@ -125,8 +125,8 @@
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
                     <div class="row">
-                        <div class="col-md-8 "> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4 rating-edit">
+                        <div class="col-md-9 "> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                        <div class="col-md-3 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
@@ -169,8 +169,8 @@
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
                     <div class="row">
-                        <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4 rating-edit">
+                        <div class="col-md-9"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                        <div class="col-md-3 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>
@@ -205,8 +205,8 @@
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
                     <div class="row">
-                        <div class="col-md-8"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
-                        <div class="col-md-4 rating-edit">
+                        <div class="col-md-9"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
+                        <div class="col-md-3 rating-edit">
                             <div class="rating text-right"> <i class="fas fa-heart"></i> {{$product->liked}}</div>
                         </div>
                     </div>

@@ -5,12 +5,47 @@ body {
     color: #000000;
     overflow-x: hidden;
 }
+/* NAVBAR */
+.col-search{
+    margin: auto auto;
+}
+.row-nav .col-account{
+    margin: auto auto;
+}
+.nav-login{
+    float: right;
+    display: flex;
+    margin: auto 0px;
+}
+.nav-login li{
+    margin-left: 20px;
+}
+.nav-login .nav-link-content{
+    float: right;
+    display: block;
+    color: #fff;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.col-price{
+    display: flex;
+    margin: auto auto;
+}
+.nav-link-price{
+    float: right;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: block;
+}
 .navbar{
     padding: 10px 0px !important;
     margin: 0px 0px !important;
 }
 .container-fluid{
     padding: 0px 0px !important;
+}
+.row-nav{
+    padding: 10px 0px;
 }
 .col-12-nav{
     background-color:  #dc3545;
@@ -95,7 +130,8 @@ body {
     }
  }
 /*  */
-/* SECTION PRODUCT*/
+/* #region SECTION PRODUCT*/
+
 .section-main{
     position: relative; 
     margin-top: 30px;
@@ -250,36 +286,39 @@ a {
 }
 
 .card-product-grid .img-wrap {
-    border-radius: 0.2rem 0.2rem 0 0;
-    height: 228px;
+    border-radius: 0.2rem 0.2rem;
+    height: 20em;
 }
 
 [class*='card-product'] .img-wrap img {
-    height: 100%;
+    height: auto;
     max-width: 100%;
     border-radius: 0.5rem;
-    width: auto;
+    width: 100%;
     display: inline-block;
-    -o-object-fit: cover;
-    object-fit: cover
+    -o-object-fit: contain;
+    object-fit: contain
 }
 
 .img-wrap {
     text-align: center;
     display: block
 }
-
+.col-md-8{
+    margin: auto 0px;
+}
 .card-product-grid .info-wrap {
     overflow: hidden;
-    padding: 18px 20px
+    padding: 15px 20px 0px 20px;    
 }
 
 [class*='card-product'] a.title {
     color: #212529;
+    margin: 0;
     overflow: hidden;
-    width: 100px;
+    width: 90%;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
@@ -357,15 +396,14 @@ a {
     color: #0c0300
 }
 
-
+/* #endregion */
 /* Popular-Product */
 .col-md-4{
     margin:20px 0px;
 }
 .section-title {
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin: 30px 0px;
 }
 
 .section-title .title-best-product {
@@ -774,3 +812,4 @@ p {
 .reply a {
     text-decoration: none
 }
+ }
