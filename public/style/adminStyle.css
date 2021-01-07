@@ -12,6 +12,30 @@ body {
 }
 
 
+/* #region Purchase */
+
+.table-responsive {
+    position: absolute;
+    width: calc(100% - 20px) !important;
+    height: 50vh;
+}
+
+.my-table {
+    position: relative;
+    width: calc(100% - 20px) !important;
+    font-size: 18px !important;
+    margin-top: 30px;
+    padding-left: 20px;
+}
+
+.table {
+    border-radius: 7px;
+}
+
+
+/* #endregion */
+
+
 /* #region Manipulation Icon */
 
 .manipulation {
