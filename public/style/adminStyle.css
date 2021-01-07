@@ -11,6 +11,238 @@ body {
     background: #fff;
 }
 
+
+/* #region Manipulation Icon */
+
+.manipulation {
+    margin: 0 !important;
+}
+
+
+/* #endregion Manipulation Icon   */
+
+
+/*#region Navbar template*/
+
+.nav-admin {
+    position: relative;
+    background-color: #2F323A;
+    height: 70px;
+    margin: 20px 20px 0px 20px;
+    border-radius: 4px;
+}
+
+.admin-nav {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 100%;
+}
+
+.admin-nav--item {
+    justify-content: center;
+    padding: 5px;
+    color: #fff;
+    font-size: 30px;
+    margin: auto 0;
+}
+
+.grid-item--right {
+    text-align: right;
+    vertical-align: center;
+}
+
+.content-item-left {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-item-right {
+    margin-right: 20px;
+}
+
+.text-header {
+    padding: 0;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+
+/*#endregion Navbar template*/
+
+
+/* #region Content User Control template */
+
+.content-usercontrol {
+    position: absolute;
+    background-color: #2F323A;
+    height: 80vh;
+    width: calc(100% - 40px);
+    margin: 20px 40px 60px 20px;
+    border-radius: 4px;
+}
+
+.uc-content {
+    margin: 70px;
+}
+
+
+/* #region checkbox */
+
+.text-checkbox {
+    color: #fff;
+    margin-left: 40px;
+}
+
+.header-option {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.checkbox-option {
+    color: #fff;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.switch {
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    height: 15px;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 100rem;
+    background-color: #222831;
+    transition: background-color 0.1s linear;
+}
+
+.switch:after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    left: -.5px;
+    transition: background-color 0.1s linear, transform 0.1s linear;
+}
+
+.switch-input {
+    display: none;
+}
+
+.switch-input:checked+.switch {
+    background-color: #222831;
+}
+
+.switch-input:checked+.switch:after {
+    transform: translateX(15px);
+    background-color: #4CCEE8;
+}
+
+
+/* #endregion */
+
+
+/* #region Datepiker */
+
+.my-datepicker {
+    margin-top: 20px;
+    position: relative;
+}
+
+.my-background {
+    background-color: #222831 !important;
+    color: #fff !important;
+}
+
+
+/* #endregion */
+
+
+/* #region Select Month */
+
+.chose-month {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* #endregion */
+
+
+/* #region Select Quarter */
+
+.chose-quarter {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* #endregion */
+
+
+/* #region Select Year */
+
+.chose-year {
+    margin-top: 20px;
+    position: relative;
+}
+
+
+/* #endregion */
+
+
+/* #region Button Finishing */
+
+.btn-statisic {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 30px);
+    margin-bottom: 60px;
+}
+
+
+/* #endregion */
+
+
+/* #endregion Content User Control template */
+
+.sidebar {
+    height: 100% !important;
+}
+
+.main-container {
+    width: 100%;
+    padding: 0 !important;
+}
+
+.my-font {
+    font-size: 100px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user-control {
+    position: absolute;
+    width: calc(100% - 250px);
+    background-color: #222831;
+    height: 100%;
+}
+
 .icon-nav {
     margin-top: 8px;
 }
@@ -190,7 +422,6 @@ body {
     margin-top: 70px;
     margin-left: 250px;
     padding: 15px;
-    background: url(background.jpg)no-repeat;
     background-size: cover;
     height: 100vh;
     transition: 0.3s;

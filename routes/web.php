@@ -99,8 +99,8 @@ Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.chang
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 
-// revenue date
-Route::get('/revenue-date', 'AdminController@revenue_Date');
+// revenue statistic
+Route::get('/revenue-statistic', 'AdminController@revenue_Statistic');
 // revenue month
 Route::get('/revenue-month', 'AdminController@revenue_Month');
 // revenue quarter
