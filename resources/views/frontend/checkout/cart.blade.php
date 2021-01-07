@@ -20,7 +20,7 @@
                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-around">
                                     <div class="cart_item_name cart_info_col">
                                         <div class="cart_item_title">Tên SP</div>
-                                        <div class="cart_item_text">{{$item->name}}</div>
+                                        <div class="cart_item_text"><a href="/{{$item->attributes->cat}}/{{$item->id}}">{{$item->name}}</a></div>
                                     </div>
 
                                     <div class="cart_item_quantity cart_info_col">

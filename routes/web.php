@@ -92,7 +92,8 @@ Route::get('/view-product', 'AdminController@view_Product');
 // top 10 product admin
 Route::get('/top-product', 'AdminController@top_Product');
 // view purchase admin
-Route::get('/view-purchase', 'PageController@bill');
+// Route::get('/view-purchase', 'PageController@bill');
+Route::get('/view-purchase', 'AdminController@view_Purchase');
 //Thay đổi trạng thái đơn hàng
 Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
 // view purchase admin
