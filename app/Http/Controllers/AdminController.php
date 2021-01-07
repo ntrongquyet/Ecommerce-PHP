@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    private $limit = 5;
     public function index_Admin()
     {
         return view('Admin.indexAdmin');
@@ -38,7 +39,16 @@ class AdminController extends Controller
 
     public function view_Purchase()
     {
-        return view('Admin.Purchase.viewPurchase');
+        $listPurchases = DB::table('Purchases')
+            ->join('users', 'Purchases.id_user', '=', 'users.id')
+            ->join('Status', 'Status.id_stt', '=', 'status')
+            ->orderBy('Purchases.created_at', 'asc')
+            ->select('Purchases.*', 'Status.description')->paginate($this->limit);
+        $listStatus = DB::table('Status')->get();
+        return view('Admin.Purchase.viewPurchase', [
+            'listPurchases' => $listPurchases,
+            'listStatus' => $listStatus
+        ]);
     }
 
     public function filter_Purchase()
@@ -69,4 +79,5 @@ class AdminController extends Controller
     {
         return view('Admin.Revenue.revenueYear');
     }
+
 }

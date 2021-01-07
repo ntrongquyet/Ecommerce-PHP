@@ -57,6 +57,9 @@ body {
 .col-9{
     margin: auto;
 }
+.col-12{
+    margin: auto;
+}
 .img-invoice{
     color: #817b7b;
 }
