@@ -102,12 +102,15 @@ Route::get('/filter-purchase', 'AdminController@filter_Purchase');
 
 // revenue statistic
 Route::get('/revenue-statistic', 'AdminController@revenue_Statistic');
+
+// revenue day
+Route::post('ajax/revenueDay', 'AdminController@revenue_Day')->name('ajax.revenueDay');
 // revenue month
-Route::get('/revenue-month', 'AdminController@revenue_Month');
+Route::post('ajax/revenueMonth', 'AdminController@revenue_Month')->name('ajax.revenueMonth');
 // revenue quarter
-Route::get('/revenue-quarter', 'AdminController@revenue_Quarter');
+Route::post('ajax/revenueQuarter', 'AdminController@revenue_Quarter')->name('ajax.revenueQuarter');
 // revenue year
-Route::get('/revenue-year', 'AdminController@revenue_Year');
+Route::post('ajax/revenueYear', 'AdminController@revenue_Year')->name('ajax.revenueYear');
 
 // edit sản phẩm
 
