@@ -87,6 +87,9 @@ body {
     margin: 70px;
 }
 
+
+/* #region checkbox */
+
 .text-checkbox {
     color: #fff;
     margin-left: 40px;
@@ -118,7 +121,7 @@ body {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 100rem;
     background-color: #222831;
-    transition: background-color 0.25s linear;
+    transition: background-color 0.1s linear;
 }
 
 .switch:after {
@@ -129,7 +132,7 @@ body {
     border-radius: 50%;
     background-color: #fff;
     left: -.5px;
-    transition: background-color 0.25s linear, transform 0.25s linear;
+    transition: background-color 0.1s linear, transform 0.1s linear;
 }
 
 .switch-input {
@@ -144,6 +147,75 @@ body {
     transform: translateX(15px);
     background-color: #4CCEE8;
 }
+
+
+/* #endregion */
+
+
+/* #region Datepiker */
+
+.my-datepicker {
+    margin-top: 20px;
+    position: relative;
+}
+
+.my-background {
+    background-color: #222831 !important;
+    color: #fff !important;
+}
+
+
+/* #endregion */
+
+
+/* #region Select Month */
+
+.chose-month {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* #endregion */
+
+
+/* #region Select Quarter */
+
+.chose-quarter {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* #endregion */
+
+
+/* #region Select Year */
+
+.chose-year {
+    margin-top: 20px;
+    position: relative;
+}
+
+
+/* #endregion */
+
+
+/* #region Button Finishing */
+
+.btn-statisic {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 30px);
+    margin-bottom: 60px;
+}
+
+
+/* #endregion */
 
 
 /* #endregion Content User Control template */
