@@ -72,7 +72,7 @@
 <div class="row">
     <div class="col-9">
     <div class="section-main">
-<div class="popular-product section-1"> 
+<div class="popular-product section-1">
     <div class="section-title">
         <h2 class="title-best-product">Sản phẩm bán chạy nhất</h2>
     </div>
@@ -82,7 +82,7 @@
                 @foreach($topSaleProduct as $product)
                 <div>
                     <figure class="card card-product-grid card-lg">
-                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}" 
+                         <a href="/{{$product->id_Cat}}/{{$product->id_product}}"
                          class="img-wrap" data-abc="true">
                             <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                         <figcaption class="info-wrap">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         </figcaption>
-                        <div class="bottom-wrap"> 
+                        <div class="bottom-wrap">
                             <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br>
                                 <small class="text-success">Free shipping</small> </div>
                         </div>
@@ -175,9 +175,9 @@
                         </div>
                     </div>
                 </figcaption>
-                <div class="bottom-wrap"> 
+                <div class="bottom-wrap">
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
-                            VNĐ</span> <br> <small class="text-success">Free shipping</small> 
+                            VNĐ</span> <br> <small class="text-success">Free shipping</small>
                         </div>
                 </div>
                 <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
@@ -211,9 +211,9 @@
                         </div>
                     </div>
                 </figcaption>
-                <div class="bottom-wrap">                    
+                <div class="bottom-wrap">
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
-                            VNĐ</span> <br> <small class="text-success">Free shipping</small> 
+                            VNĐ</span> <br> <small class="text-success">Free shipping</small>
                         </div>
                     </div>
                       <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
