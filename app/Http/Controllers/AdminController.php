@@ -46,9 +46,9 @@ class AdminController extends Controller
         return view('Admin.Purchase.filterPurchase');
     }
 
-    public function revenue_Date()
+    public function revenue_Statistic()
     {
-        return view('Admin.Revenue.revenueDate');
+        return view('Admin.Revenue.revenueStatistics');
     }
 
     public function revenue_Month()
