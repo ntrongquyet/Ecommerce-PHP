@@ -65,7 +65,7 @@ class ForgotController extends Controller
             }
             else
             {
-                return redirect('Forgot')->with('status',"$email->email chưa đăng ký tài khoản");
+                return redirect('Forgot')->with('status',"{$data['email']} chưa đăng ký tài khoản");
             }
         }
     }

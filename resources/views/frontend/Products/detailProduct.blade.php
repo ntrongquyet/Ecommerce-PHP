@@ -148,36 +148,44 @@
     </div>
 </div>
 <script type="text/javascript">
-like = {{$product->liked}};
+
 $(document).ready(function() {
+
+    let like = {value:{{$product->liked}}};
+
     $('.like').click(function() {
-        checkHeart();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('ajax.likeProduct') }}",
-            data: {
-                id: {{$product->id_product}}
-            }
-        })
+        
+        if ({{session()->has('user')}})
+        {
+            checkHeart(like);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('ajax.likeProduct') }}",
+                data: {
+                    id: {{$product->id_product}}
+                }
+            })
+        }
     })
 });
-function checkHeart()
+
+function checkHeart(like)
 {
     var heart = document.getElementById("heart");
     if(heart.style.color == "red")
     {
         heart.style.color = "black";
-        $('#likes').text(--like);
+        $('#likes').text(--like.value);
     }
     else
     {
         heart.style.color = "red";
-        $('#likes').text(++like);
+        $('#likes').text(++like.value);
     }
 }
 </script>
