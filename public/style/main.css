@@ -5,12 +5,47 @@ body {
     color: #000000;
     overflow-x: hidden;
 }
+/* NAVBAR */
+.col-search{
+    margin: auto auto;
+}
+.row-nav .col-account{
+    margin: auto auto;
+}
+.nav-login{
+    float: right;
+    display: flex;
+    margin: auto 0px;
+}
+.nav-login li{
+    margin-left: 20px;
+}
+.nav-login .nav-link-content{
+    float: right;
+    display: block;
+    color: #fff;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.col-price{
+    display: flex;
+    margin: auto auto;
+}
+.nav-link-price{
+    float: right;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: block;
+}
 .navbar{
     padding: 10px 0px !important;
     margin: 0px 0px !important;
 }
 .container-fluid{
     padding: 0px 0px !important;
+}
+.row-nav{
+    padding: 10px 0px;
 }
 .col-12-nav{
     background-color:  #dc3545;
@@ -774,3 +809,4 @@ p {
 .reply a {
     text-decoration: none
 }
+ }
