@@ -32,6 +32,10 @@ body {
     border-radius: 7px;
 }
 
+.w-25 {
+    text-align: center !important;
+}
+
 
 /* #endregion */
 

@@ -86,7 +86,7 @@
                                     </select>
                                 </div>
                             </td>
-                            <!-- <td><label class="badge {{ $item->status == '1' ? 'badge-secondary' : ($item->status == '2' ? 'badge-danger' : ($item->status == '3' ? 'badge-light' : ($item->status == '4' ? 'badge-warning' : 'badge-success'))) }}">{{ $item->description }}</label></td> -->
+                            {{-- <!-- <td><label class="badge {{ $item->status == '1' ? 'badge-secondary' : ($item->status == '2' ? 'badge-danger' : ($item->status == '3' ? 'badge-light' : ($item->status == '4' ? 'badge-warning' : 'badge-success'))) }}">{{ $item->description }}</label></td> --> --}}
                         </tr>
                     @endforeach
                 </tbody>
