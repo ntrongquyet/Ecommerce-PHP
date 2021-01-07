@@ -36,6 +36,7 @@
 <body>
 
     @section('sidebar')
+<<<<<<< HEAD
     <div class="col-12-nav">
         <div class="col-9">
             <div class="row row-nav">
@@ -56,6 +57,18 @@
                                 style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; "
                                 type="submit">Tìm kiếm</button>
                         </form>
+=======
+
+        <div class="col-12-nav">
+            <div class="col-9">
+                <div class="row row-nav">
+                    <div class="col-0.5">
+                        <a class="navbar-brand" href="/">
+                            <img class="img-nav"
+                                src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
+                                alt="Girl in a jacket" width="50px" height="auto"></li>
+                        </a>
+>>>>>>> dd585da7c6955b8100df66c7668bca4a2a12b6e9
                     </div>
                 </div>
                 <div class="col-3 col-account">
@@ -99,7 +112,10 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+>>>>>>> dd585da7c6955b8100df66c7668bca4a2a12b6e9
     @show
 
     <div class="container-fluid">
