@@ -51,8 +51,8 @@
                     <input id="datepicker" class="my-background" />
 
                 </div>
-
-                <div class="chose-month">
+ 
+                <div class="chose-month" type="hidden">
 
                     <div class="col-sm-3">
                         <select class="form-control my-background">
