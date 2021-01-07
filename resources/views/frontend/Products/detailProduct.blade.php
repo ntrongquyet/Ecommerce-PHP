@@ -51,24 +51,22 @@
             </div>
             <div class="col-md-6">
                 <div class="details">
-                    <h3 class="product-title" style="font-size: 24;"> {{$product->name}}
-                    @if($checkAdmin)
-                    <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-edit"></i></a>
-                    <a href="{{ route('removeProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
-                    @endif
+                    <h3 class="product-title" style="font-size: 24;"> {{$product->name}}</h3>
+                    <div class="button-edit-admin">
+                        @if($checkAdmin)
+                            <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-edit"></i></a>
+                            <a href="{{ route('removeProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
+                        @endif   
                         <button class="like btn btn-default d-inline" type="button" id="{{$product->id_product}}"
-                            style="transform: translate(-30%, 0%);
-                            font-size: 24;">
-
+                            style="transform: translate(-20%, 0%);
+                            font-size: 20;">
                             @if($liked)
                             <a class="fa fa-heart" style="color: red;" id="heart"></a>
-
                             @else
                             <a class="fa fa-heart" id="heart"></a>
-
                             @endif
                         </button>
-                    </h3>
+                    </div>
                     <p class="product-description">{{$product->description}}</p>
                     <h4 class="price">Giá: <span><?php echo number_format($product->price, 0); ?> VNĐ</span></h4>
                     <p>Số lượt thích <strong id="likes">{{$product->liked}}</strong></p>
@@ -77,16 +75,15 @@
                         <div class="row mt-4 no-gutters mx-auto">
 
                             <form method="get" action="/product/addToCart/{{$product->id_product}}">
-
                                 <div class="mr-2">
                                     {{ csrf_field() }}
                                     <p>Số lượng</p>
-
                                     <input type="number" step="1" min="1" max="{{$product->quantity}}" name="quantity" class="form-control" />
                                 </div>
                                 <div>
-                                    <button type="submit" style="margin-top:20px " class="btn btn-outline-dark text-primary font-weight-bold add-item-btn">Thêm
-                                        vào giỏ hàng</button>
+                                    <button type="submit" style="margin-top:20px " 
+                                    class="btn btn-outline-dark text-primary font-weight-bold add-item-btn">
+                                    Thêm vào giỏ hàng</button>
                                 </div>
                             </form>
                         </div>

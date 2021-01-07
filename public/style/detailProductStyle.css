@@ -147,7 +147,16 @@ img {
 .sizes {
     margin-bottom: 15px;
 }
-
+.product-description{
+    text-align: justify;
+}
+.button-edit-admin{
+    position: absolute;
+    right: 0;
+}
+.button-edit-admin a{
+    margin: 0px 8px;
+}
 .product-title {
     margin-top: 0;
 }
@@ -175,9 +184,10 @@ img {
 }
 
 .add-to-cart,
+
 .like {
     background: #dc3545;
-    padding: 1.2em 1.5em;
+    padding: 1em 1em;
     border: none;
     text-transform: UPPERCASE;
     font-weight: bold;
@@ -196,6 +206,25 @@ img {
 .not-available {
     text-align: center;
     line-height: 2em;
+}
+
+.action .text-primary{
+    color: #fff !important;
+    font-weight: 500;
+}
+
+.action .font-weight-bold{
+    font-weight: 400 !important; 
+}
+
+.action .btn-outline-dark{
+    background-color: #dc3545 !important;
+    border: solid 1px #dc3545;
+}
+
+.action .btn-outline-dark:hover{
+    background-color: #f17582 !important;
+    border: solid 1px #f17582;
 }
 
 .not-available:before {

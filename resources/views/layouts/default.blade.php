@@ -31,14 +31,14 @@
 <div class="col-12-nav">
     <div class="col-9">
         <div class="row row-nav"> 
-            <div class="col-0.5">
+            <div class="col-md-1">
                 <a class="navbar-brand" href="/">
                     <img class="img-nav"
                         src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
                         alt="Girl in a jacket" width="50px" height="auto"></li>
                 </a>
             </div>
-            <div class="col-5 col-search">
+            <div class="col-md-4 col-search">
                 <div class="form-search-nav">
                     <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
                         {{ csrf_field() }}
@@ -50,7 +50,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-3 col-account">
+            <div class="col-md-3 col-account">
                 <div class="login-register-icon" id="collapsibleNavId">
                     <ul class="nav-login">
                         <li class="nav-item-active">
@@ -78,7 +78,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-3 col-price">
+            <div class="col-md-3 col-price">
                 <a href="/product/view/cart" type="button" class="btn btn-danger">
                     <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Giỏ hàng</div>

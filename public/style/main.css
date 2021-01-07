@@ -29,6 +29,7 @@ body {
 }
 .col-price{
     display: flex;
+    font-size: 1em;
     margin: auto auto;
 }
 .nav-link-price{
