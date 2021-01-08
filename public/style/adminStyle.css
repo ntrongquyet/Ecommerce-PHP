@@ -112,7 +112,22 @@ body {
 }
 
 .uc-content {
-    margin: 70px;
+    margin: 30px;
+}
+
+.display-grid {
+    display: grid;
+    grid-template-columns: 30% auto;
+}
+
+.grid-right {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#statusFind {
+    color: #fff;
 }
 
 
@@ -202,7 +217,7 @@ body {
     margin-top: 20px;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 
@@ -215,7 +230,7 @@ body {
     margin-top: 20px;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 
@@ -238,7 +253,6 @@ body {
 .btn-statisic {
     position: absolute;
     bottom: 0;
-    left: calc(50% - 30px);
     margin-bottom: 60px;
 }
 
