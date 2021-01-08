@@ -78,21 +78,63 @@ class AdminController extends Controller
 
     public function revenue_Day(Request $res)
     {
-        return response()->json(['product' => [1, 2, 3]]); // 200 là mã lỗi
+        $day = $res->input('day');
+        $statistics = DB::table('Purchases')
+                        ->join('users', 'Purchases.id_user', '=', 'users.id')
+                        ->select('Purchases.id_purchase', 'users.email', 'Purchases.address', 'Purchases.total', 'Purchases.created_at')
+                        ->whereDate('Purchases.created_at', $day)
+                        ->get();
+        $total_price = DB::table('Purchases')
+                ->select(DB::raw('SUM(total) as total_price'))
+                ->whereDate('Purchases.created_at', $day)
+                ->get();
+        $total_purchase = DB::table('Purchases')
+                        ->whereDate('Purchases.created_at', $day)
+                        ->count();
+        return response()->json(['statistics' => $statistics, 'total_price' => $total_price, 'total_purchase' => $total_purchase],200);
     }
     public function revenue_Month(Request $res)
     {
-        return view('Admin.Revenue.revenueMonth');
+        $data = $res->input();
+        $statistics = DB::table('Purchases')
+                        ->join('users', 'Purchases.id_user', '=', 'users.id')
+                        ->select('Purchases.id_purchase', 'users.email', 'Purchases.address', 'Purchases.total', 'Purchases.created_at')
+                        ->whereMonth('Purchases.created_at', $data['month'])
+                        ->whereYear('Purchases.created_at', $data['year'])
+                        ->get();
+        $total_price = DB::table('Purchases')
+                ->select(DB::raw('SUM(total) as total_price'))
+                ->whereMonth('Purchases.created_at', $data['month'])
+                ->whereYear('Purchases.created_at', $data['year'])
+                ->get();
+        $total_purchase = DB::table('Purchases')
+                        ->whereMonth('Purchases.created_at', $data['month'])
+                        ->whereYear('Purchases.created_at', $data['year'])
+                        ->count();
+        return response()->json(['statistics' => $statistics, 'total_price' => $total_price, 'total_purchase' => $total_purchase],200);
     }
 
     public function revenue_Quarter(Request $res)
     {
-        return view('Admin.Revenue.revenueQuarter');
+        
     }
     
     public function revenue_Year(Request $res)
     {
-        return view('Admin.Revenue.revenueYear');
+        $year = $res->input('year');
+        $statistics = DB::table('Purchases')
+                        ->join('users', 'Purchases.id_user', '=', 'users.id')
+                        ->select('Purchases.id_purchase', 'users.email', 'Purchases.address', 'Purchases.total', 'Purchases.created_at')
+                        ->whereYear('Purchases.created_at', $year)
+                        ->get();
+        $total_price = DB::table('Purchases')
+                ->select(DB::raw('SUM(total) as total_price'))
+                ->whereYear('Purchases.created_at', $year)
+                ->get();
+        $total_purchase = DB::table('Purchases')
+                        ->whereYear('Purchases.created_at', $year)
+                        ->count();
+        return response()->json(['statistics' => $statistics, 'total_price' => $total_price, 'total_purchase' => $total_purchase],200);
     }
 
 }
