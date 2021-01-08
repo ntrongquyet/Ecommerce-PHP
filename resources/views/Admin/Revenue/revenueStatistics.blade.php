@@ -166,8 +166,7 @@
             })
 
             $('#tk').click(function() {
-                showElement("statusFind");
-                $("#statusFind").html("<span>"+"Đang tải dữ liệu..."+"</span>");
+                
                 $("tbody").empty();
                 let url;
                 let day;
@@ -175,6 +174,8 @@
                 let year;
                 let quarter;
                 if (checked) {
+                    showElement("statusFind");
+                    $("#statusFind").html("<span>"+"Đang tải dữ liệu..."+"</span>");
                     if (id == "date") {
 
                         day = $("input[name='day']").val();

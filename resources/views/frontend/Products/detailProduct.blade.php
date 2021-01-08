@@ -132,20 +132,12 @@
                             $(document).ready(function() {
 
                                 let like = {
-                                    value: {
-                                        {
-                                            $product - > liked
-                                        }
-                                    }
+                                    value: {{$product->liked}}
                                 };
 
                                 $('.like').click(function() {
 
-                                    if ({
-                                            {
-                                                session() - > has('user')
-                                            }
-                                        }) {
+                                    if ({{session()->has('user')}}) {
                                         checkHeart(like);
                                         $.ajaxSetup({
                                             headers: {
@@ -156,11 +148,7 @@
                                             type: 'POST',
                                             url: "{{ route('ajax.likeProduct') }}",
                                             data: {
-                                                id: {
-                                                    {
-                                                        $product - > id_product
-                                                    }
-                                                }
+                                                id: {{$product->id_product}}
                                             }
                                         })
                                     }
