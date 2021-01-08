@@ -223,7 +223,7 @@
     </div>
 </div>
 </div>
-    </div>
+</div>
 </div>
 <script>
     var msg = '{{Session::get('
@@ -234,6 +234,5 @@
         alert(msg);
     }
 </script>
-@endif
-
+    @endif
 @endsection

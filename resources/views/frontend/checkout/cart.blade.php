@@ -14,7 +14,6 @@
                     <div class="cart_items flex-column d-flex justify-content-around">
                         <ul class="cart_list">
                             @foreach($list as $item)
-
                             <li class="cart_item clearfix">
                                 <div class="cart_item_image"><img src="{{url('/image/products')}}/{{$item->attributes->img}}" alt=""></div>
                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-around">
@@ -31,7 +30,6 @@
                                             {{$item->quantity}}
                                             <a class="cart_quantity_up" href="/product/tang-san-pham/{{$item->id}}"> <i class="fas fa-plus"></i>  </a>
                                         </div>
-
                                     </div>
                                     <div class="cart_item_price cart_info_col">
                                         <div class="cart_item_title">Giá tiền</div>
@@ -45,7 +43,6 @@
                                         <div class="cart_item_title">Xoá</div>
                                         <div class="cart_item_text">
                                             <a href="/product/xoa-san-pham/{{$item->id}}" onclick="return  confirm('Bạn có muốn xóa không?')">X</a>
-
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +58,7 @@
                     </div>
                     <div class="cart_buttons">
                     <a href="/" class="btn btn-secondary cart-btn-transform m-1" data-abc="true">Tiếp tục mua sắm</a>
-                    <a href="/product/cart/checkout" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Thanh toán</a>
+                    <a href="/product/cart/checkout" class="btn btn-primary cart-btn-transform m-3 btn-price-end" data-abc="true">Thanh toán</a>
                 </div>
                 </div>
             </div>
