@@ -106,6 +106,17 @@
         </div>
 
         <table>
+            <thead>
+                <tr>
+                    <td class="font-weight-bold">Mã đơn hàng</td>
+                    <td class="font-weight-bold">email khách hàng</td>
+                    <td class="font-weight-bold">địa chỉ</td>
+                    <td class="font-weight-bold">Tổng tiền</td>
+                    <td class="font-weight-bold">Ngày đặt</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
     </div>
 
@@ -139,6 +150,7 @@ $(document).ready(function() {
     })
 
     $('#tk').click(function() {
+        $("tbody").empty();
         let url;
         let day;
         let month;
@@ -179,14 +191,17 @@ $(document).ready(function() {
                     quarter: quarter
                 },
                 success: function(response) {
+                    response.statistics.forEach(item => {
+                        $("tbody").append("<tr><td>" +
+                            item.id_purchase + "</td><td>" + item.email + "</td><td>" + 
+                            item.address + "</td><td>" + item.total + "</td><td>" +
+                            item.created_at + "</td></tr>");
+                    });
 
-                    for (let i = 0; i < response.product.length; i++) {
-                        $("table").append("<li>"+i+"</li>");
-                    }
-
+                    alert(response.total_purchase);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    //xử lý lỗi tại đây
+                    alert("lỗi");
                 }
             });
         }
@@ -216,7 +231,7 @@ function Hidden() {
     document.getElementById("input-year").hidden = true;
 }
 $('#datepicker').datepicker({
-    format: 'dd/mm/yyyy',
+    format: 'yyyy-mm-dd',
     uiLibrary: 'bootstrap4'
 });
 </script>
