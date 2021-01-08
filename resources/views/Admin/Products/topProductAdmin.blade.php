@@ -67,7 +67,7 @@
                     <th scope="col">ID</th>
                     <th scope="col head-img" style="text-align: center">Hình ảnh</th>
                     <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Tổng số lượng bán</th>
+                    <th scope="col">Đã bán</th>
                     <th scope="col">Tổng doanh thu</th>
                     <th scope="col">Lượt mua</th>
                 </tr>
