@@ -5,6 +5,12 @@
             max-width: 100% !important;
             margin-bottom: 20px !important;: 
         }
+        .btn-export--excel:active{
+            color: #fff !important;
+        }
+        .btn-export--excel:hover{
+            color: #4CCEE8 !important;
+        }
 
     </style>
 
@@ -20,7 +26,7 @@
 
                 <div class="admin-nav--item grid-item--right">
                     <div class="content-item-right" title="Tải tài liệu xuống" data-toggle="tooltip">
-                       <a class="btn"><i class="fas fa-download "></i></a>
+                       <a class="btn-export--excel" id="btn-export"><i class="fas fa-download "></i></a>
                     </div>
                 </div>
             </div>
@@ -113,8 +119,9 @@
                     </div>
                 </div>
 
-                <div class="grid-right">
-                    <table class="table table-image table-dark table-hover">
+                <div class="grid-right" id="tablePurchase">
+                    <div id="dvData">
+                    <table class="table table-image table-dark table-hover" >
                         <thead>
                             <tr>
                                 <th scope="col" class="font-weight-bold">Mã đơn hàng</th>
@@ -127,6 +134,7 @@
                         <tbody>
                         </tbody>
                     </table>
+                    </div>
                     <div id="statusFind" hidden="true" ></div>
                 </div>
                 <div class="row mt-2">
@@ -137,7 +145,7 @@
             </div>
         </div>
     </div>
-
+    {{-- <script type="text/javascript" src="{{ url('/js//jquery.table2excel.js') }}"> --}}
     <script>
         $(document).ready(function() {
             let id;
@@ -266,42 +274,29 @@
             format: 'yyyy-mm-dd',
             uiLibrary: 'bootstrap4'
         });
+        
+        $("#btn-export").click(function () {
+            // window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+            // e.preventDefault();
+            var startDate = $(".startDate").val();
+            var endDate = $(".endDate").val();
 
-        function exportTableToExcel(tableID, filename = ''){
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById(tableID);
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-            
-            // Specify file name
-            filename = filename?filename+'.xls':'excel_data.xls';
-            
-            // Create download link element
-            downloadLink = document.createElement("a");
-            
-            document.body.appendChild(downloadLink);
-            
-            if(navigator.msSaveOrOpenBlob)
-            {
-                var blob = new Blob(['\ufeff', tableHTML], 
-                {
-                    type: dataType
-                });
-                navigator.msSaveOrOpenBlob(blob, filename);
-            }
-            else
-            {
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-            
-                // Setting the file name
-                downloadLink.download = filename;
-                
-                //triggering the function
-                downloadLink.click();
-            }
-        }
+            $("#exportExcel").click(function(){
+                $('<table>')
+                    .append(
+                        $("#dvData").DataTable().$('tr').clone()
+                    )
+                    .table2excel({
+                        exclude: ".excludeThisClass",
+                        name: "Worksheet Name",
+                        filename: "SomeFile" //do not include extension
+                    });
+            });
 
+            $("#dvData").dataTable();
+        });
+
+        
     </script>
     </div>
 

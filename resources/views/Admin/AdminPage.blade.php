@@ -24,6 +24,8 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <!--#endregion -->
 
+    {{-- <script src="{{ url('/js/jquery.table2excel.js') }}"></script> --}}
+
     <!-- nhan -->
 
     <title>@yield('Administrator')</title>
