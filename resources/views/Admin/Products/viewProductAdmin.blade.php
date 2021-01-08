@@ -51,7 +51,7 @@
             font-size: 15px !important;
         }
 
-        .add {
+        .view {
             color: #4CCEE8 !important;
         }
 
@@ -74,6 +74,12 @@
                         <div class="text-header"> DANH SÁCH CÁC LOẠI SẢN PHẨM</div>
                     </div>
                 </div>
+    
+                <div class="admin-nav--item grid-item--right">
+                    <a class="content-item-right" title="Thêm sản phẩm mới" data-toggle="tooltip">
+                        <i class="fas fa-plus-square"></i>
+                    </a>
+                </div>
             </div>
         </nav>
 
@@ -88,7 +94,6 @@
                         <th scope="col">Đơn giá</th>
                         <th scope="col">Lượt thích</th>
                         <th scope="col">Thao tác</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -104,13 +109,12 @@
                             <td>{{ number_format($item->price, 0, '', '.') }} VNĐ</td>
                             <td>{{ $item->liked }}</td>
                             <td>
-                                <a class="manipulation add" href="#" title="Add" data-toggle="tooltip"><i
-                                        class="fas fa-plus-circle"></i></a>
-                                <a class="manipulation delete" href="#" title="Delete" data-toggle="tooltip"><i
+                                <a class="manipulation view" href="/{{$item->id_Cat}}/{{$item->id_product}}" title="Xem" data-toggle="tooltip"><i
+                                        class="fas fa-eye"></i></a>
+                                <a class="manipulation delete" href="{{ route('removeProduct', ['id' => $item->id_product]) }}" title="Xóa" data-toggle="tooltip"><i
                                         class="fas fa-minus-circle "></i></a>
-                                <a class="manipulation edit" href="#" title="Edit" data-toggle="tooltip"><i
+                                <a class="manipulation edit" href="#" title="Sửa" data-toggle="tooltip"><i
                                         class="fas fa-pen-square"></i></a>
-
                             </td>
                         </tr>
                     @endforeach
