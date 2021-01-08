@@ -3,7 +3,18 @@
     <style>
         .col-sm-3 {
             max-width: 100% !important;
-            margin-bottom: 20px !important;: 
+            margin-bottom: 20px !important;
+            :
+        }
+
+        .btn-export--excel:hover {
+            index: 100;
+            color: #4CCEE8;
+        }
+
+        .btn-export--excel:active {
+            index: 100;
+            color: #fff;
         }
 
     </style>
@@ -19,8 +30,8 @@
                 </div>
 
                 <div class="admin-nav--item grid-item--right">
-                    <div class="content-item-right" title="Tải tài liệu xuống" data-toggle="tooltip">
-                       <a class="btn"><i class="fas fa-download "></i></a>
+                    <div class="content-item-right btn-export--excel" id="download-data" title="Tải tài liệu xuống" data-toggle="tooltip">
+                        <a><i class="fas fa-download "></i></a>
                     </div>
                 </div>
             </div>
@@ -127,7 +138,7 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <div id="statusFind" hidden="true" ></div>
+                    <div id="statusFind" hidden="true"></div>
                 </div>
             </div>
         </div>
@@ -148,7 +159,6 @@
                     // and the current value is retrieved using .prop() method
                     $(group).prop("checked", false);
                     $box.prop("checked", true);
-
                     id = $box.attr("id");
                     //show ra các input dựa theo id
                     show(id);
@@ -159,9 +169,8 @@
                     checked = false;
                 }
             })
-
             $('#tk').click(function() {
-                
+
                 let url;
                 let day;
                 let month;
@@ -169,16 +178,14 @@
                 let quarter;
                 if (checked) {
                     showElement("statusFind");
-                    $("#statusFind").html("<span>"+"Đang tải dữ liệu..."+"</span>");
+                    HiddenNumberPagegin();
+                    $("#statusFind").html("<span>" + "Đang tải dữ liệu..." + "</span>");
                     if (id == "date") {
-
                         day = $("input[name='day']").val();
                         url = "{{ route('ajax.revenueDay') }}";
-
                     } else if (id == "month") {
                         month = $("#selectMonth").val();
                         year = $("input[name='m-year']").val();
-
                         url = "{{ route('ajax.revenueMonth') }}";
                     } else if (id == "quarter") {
                         quarter = $("#selectQuarter").val();
@@ -188,7 +195,6 @@
                         year = $("input[name='y-year']").val();
                         url = "{{ route('ajax.revenueYear') }}";
                     }
-
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -214,33 +220,39 @@
                                     "</td><td>" +
                                     item.created_at + "</td></tr>");
                             });
-
-                            $("#statusFind").html("<span>"+"Có " + response.total_purchase + " đơn hàng được tìm thấy!"+"</span>");
+                            $("#statusFind").html("<span>" + "Có " + response.total_purchase +
+                                " đơn hàng được tìm thấy!" + "</span>");
                             showElement("statusFind");
-
                             //phân trang
-                            $('#data').after('<div id="nav"></div>');
+                            $('#data').after(
+                                '<nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+                                );
                             var rowsShown = 4;
                             var rowsTotal = $('#data tbody tr').length;
-                            var numPages = rowsTotal/rowsShown;
-                            for(i = 0;i < numPages;i++) {
+                            var numPages = rowsTotal / rowsShown;
+                            for (i = 0; i < numPages; i++) {
                                 var pageNum = i + 1;
-                                $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                                $('#nav').append(
+                                    '<li class="page-item"><a class="page-link" href="#" rel="' +
+                                    i + '">' + pageNum + '</a></li> ');
                             }
                             $('#data tbody tr').hide();
                             $('#data tbody tr').slice(0, rowsShown).show();
                             $('#nav a:first').addClass('active');
-                            $('#nav a').bind('click', function(){
-
+                            $('#nav a').bind('click', function() {
                                 $('#nav a').removeClass('active');
                                 $(this).addClass('active');
                                 var currPage = $(this).attr('rel');
                                 var startItem = currPage * rowsShown;
                                 var endItem = startItem + rowsShown;
-                                $('#data tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
-                                css('display','table-row').animate({opacity:1}, 300);
+                                $('#data tbody tr').css('opacity', '0.0').hide().slice(
+                                    startItem, endItem).
+                                css('display', 'table-row').animate({
+                                    opacity: 1
+                                }, 300);
                             });
                             //phân trang
+
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             showElement("statusFind");
@@ -267,11 +279,20 @@
             }
         }
 
-        function showElement(id){
+        function showElement(id) {
             document.getElementById(id).hidden = false;
         }
-        function hiddenElement(id){
+
+        function hiddenElement(id) {
             document.getElementById(id).hidden = true;
+        }
+
+        function HiddenNumberPagegin() {
+            var CheckElement = document.getElementById("pageginNum");
+            if (CheckElement) {
+                document.getElementById("pageginNum").hidden = true;
+            }
+
         }
 
         function Hidden() {
@@ -285,42 +306,83 @@
             uiLibrary: 'bootstrap4'
         });
 
-        function exportTableToExcel(tableID, filename = ''){
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById(tableID);
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-            
-            // Specify file name
-            filename = filename?filename+'.xls':'excel_data.xls';
-            
-            // Create download link element
-            downloadLink = document.createElement("a");
-            
-            document.body.appendChild(downloadLink);
-            
-            if(navigator.msSaveOrOpenBlob)
-            {
-                var blob = new Blob(['\ufeff', tableHTML], 
-                {
-                    type: dataType
+        jQuery(function($) {
+            $("#download-data").click(function() {
+                // parse the HTML table element having an id=exportTable
+                var dataSource = shield.DataSource.create({
+                    data: "#exportTable",
+                    schema: {
+                        type: "table",
+                        fields: {
+                            Name: {
+                                type: String
+                            },
+                            Age: {
+                                type: Number
+                            },
+                            Email: {
+                                type: String
+                            }
+                        }
+                    }
                 });
-                navigator.msSaveOrOpenBlob(blob, filename);
-            }
-            else
-            {
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-            
-                // Setting the file name
-                downloadLink.download = filename;
-                
-                //triggering the function
-                downloadLink.click();
-            }
-        }
+
+                // when parsing is done, export the data to Excel
+                dataSource.read().then(function(data) {
+                    new shield.exp.OOXMLWorkbook({
+                        author: "PrepBootstrap",
+                        worksheets: [{
+                            name: "PrepBootstrap Table",
+                            rows: [{
+                                cells: [{
+                                        style: {
+                                            bold: true
+                                        },
+                                        type: String,
+                                        value: "Name"
+                                    },
+                                    {
+                                        style: {
+                                            bold: true
+                                        },
+                                        type: String,
+                                        value: "Age"
+                                    },
+                                    {
+                                        style: {
+                                            bold: true
+                                        },
+                                        type: String,
+                                        value: "Email"
+                                    }
+                                ]
+                            }].concat($.map(data, function(item) {
+                                return {
+                                    cells: [{
+                                            type: String,
+                                            value: item.Name
+                                        },
+                                        {
+                                            type: Number,
+                                            value: item.Age
+                                        },
+                                        {
+                                            type: String,
+                                            value: item.Email
+                                        }
+                                    ]
+                                };
+                            }))
+                        }]
+                    }).saveAs({
+                        fileName: "PrepBootstrapExcel"
+                    });
+                });
+            });
+        });
 
     </script>
+
     </div>
 
 @endsection
