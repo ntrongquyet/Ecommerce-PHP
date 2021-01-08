@@ -45,13 +45,13 @@
             </ol>
             <div class="carousel-inner">
                      <div class="carousel-item active">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                    <img src="{{url('/image/background/reno5-800-300-800x300-1.png')}}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                    <img src="{{url('/image/background/800-300-800x300-15.png')}}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lenxetv.com/wp-content/uploads/2020/05/Xe-VinFast-Power-wallpaper-len-xe-tv-1.jpg" class="d-block w-100" alt="...">
+                    <img src="{{url('/image/background/800-300-800x300-13.png')}}" class="d-block w-100" alt="...">
                 </div>
 
             </div>

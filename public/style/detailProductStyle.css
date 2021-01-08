@@ -75,6 +75,7 @@ img {
     background: #eee;
     padding: 3em;
     line-height: 1.5em;
+    box-shadow: 0px 0px 0px 0px !important;
 }
 
 @media screen and (min-width: 997px) {
@@ -143,17 +144,32 @@ img {
 .product-description{
     text-align: justify;
 }
-.button-edit-admin{
-    position: absolute;
-    right: 0;
-}
 .button-edit-admin a{
-    margin: 0px 8px;
+    margin: 0px 5px;
+    height: 38px;
 }
+
+.button-edit-admin a .fa-edit,.fa-trash-alt{
+    font-size: 24px;
+    color: #dc3545;
+}
+.button-edit-admin a .fa-edit,.fa-trash-alt:hover{
+    font-size: 24px;
+    color: #f16371;
+}
+
 .product-title {
     margin-top: 0;
 }
+.well .btn-cmt{
+    background-color: #dc3545;
+    border: solid 1px #dc3545;
+}
 
+.well .btn-cmt:hover{
+    background-color: #f16371;
+    border: solid 1px #f16371;
+}
 .size {
     margin-right: 10px;
     text-transform: uppercase;
@@ -180,7 +196,6 @@ img {
 
 .like {
     background: #dc3545;
-    padding: 1em 1em;
     border: none;
     text-transform: UPPERCASE;
     font-weight: bold;
