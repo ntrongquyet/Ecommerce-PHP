@@ -53,10 +53,6 @@
                 <div class="details">
                     <h3 class="product-title" style="font-size: 24;"> {{$product->name}}</h3>
                     <div class="button-edit-admin">
-                        @if($checkAdmin)
-                            <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-edit"></i></a>
-                            <a href="{{ route('removeProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
-                        @endif   
                         <button class="like btn btn-default d-inline" type="button" id="{{$product->id_product}}"
                             style="transform: translate(-20%, 0%);
                             font-size: 20;">
@@ -66,6 +62,10 @@
                             <a class="fa fa-heart" id="heart"></a>
                             @endif
                         </button>
+                        @if($checkAdmin)
+                            <a href="{{ route('editProduct', ['id' => $product->id_product]) }}"><i class="far fa-edit"></i></a>
+                            <a href="{{ route('removeProduct', ['id' => $product->id_product]) }}"><i class="far fa-trash-alt"></i></a>
+                        @endif   
                     </div>
                     <p class="product-description">{{$product->description}}</p>
                     <h4 class="price">Giá: <span><?php echo number_format($product->price, 0); ?> VNĐ</span></h4>
@@ -87,12 +87,6 @@
                                 </div>
                             </form>
                         </div>
-
-                    </div>
-                    <div class="row mt-2">
-                        <nav aria-label="Page navigation example" style="margin: 0 auto">
-                            {{ $listComments->links() }}
-                        </nav>
                     </div>
                 </div>
 
@@ -101,13 +95,12 @@
     </div>
 </div>
 <div class="container mb-5 mt-5 comment">
-
     <div class="card">
         <div class="row">
             <div class="col-md-12">
                 @if (session()->has('user'))
                 <div class="well">
-                    <h3 class="text-center mb-5">Viết bình luận</h3>
+                    <h3 class="text-center mb-5 title-cmt">Viết bình luận</h3>
                     <form action="/product/comment/{{$product->id_product}}" method="post">
                         @csrf
 
@@ -115,7 +108,7 @@
                         <div class="form mb-2">
                             <textarea class="form-control" rows="2" name="textComment"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+                        <button type="submit" class="btn btn-primary btn-cmt">Gửi bình luận</button>
                     </form>
                 </div>
                 @endif
@@ -129,16 +122,19 @@
                             <div class="media-body">
                                 <div class="row">
                                     <div class="col-8 d-flex">
-                                        <h5>{{$cmt->username}}</h5> <span> -
+                                        <h5>{{$cmt->username}}</h5> <span>  -
                                             {{date("d-m-Y", strtotime($cmt->time))}}</span>
                                     </div>
-
                                 </div> {{$cmt->content}}
-
                             </div>
                         </div>
                     </div>
                     @endforeach
+                </div>
+                <div class="row mt-2">
+                    <nav aria-label="Page navigation example" style="margin: 0 auto">
+                        {{ $listComments->links() }}
+                    </nav>
                 </div>
             </div>
         </div>
