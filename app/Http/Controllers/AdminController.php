@@ -19,12 +19,26 @@ class AdminController extends Controller
 
     public function view_Product()
     {
-        return view('Admin.Products.viewProductAdmin');
+        $listProducts = DB::table('Products')
+        ->select('Products.*')
+        ->paginate($this->limit);
+        return view('Admin.Products.viewProductAdmin',[
+            'listProducts' => $listProducts
+        ]);
     } 
 
     public function top_Product()
     {
-        return view('Admin.Products.topProductAdmin');
+        $listProducts = DB::table('PurchaseDetail')
+        ->join('Products', 'Products.id_product', '=', 'PurchaseDetail.id_product')
+        ->select('PurchaseDetail.id_product','Products.name','Products.avatar', DB::raw('SUM(PurchaseDetail.quantity) as total_quantity'), DB::raw('SUM(PurchaseDetail.unit_price) as total_price'), DB::raw('count(*) as countBought'))
+        ->groupBy('PurchaseDetail.id_product','Products.name','Products.avatar')
+        ->orderBy('countBought', 'desc')
+        ->take(10)
+        ->paginate($this->limit);
+        return view('Admin.Products.topProductAdmin',[
+            'listProducts' => $listProducts
+        ]);
     }
 
     public function view_Customer()
@@ -43,7 +57,8 @@ class AdminController extends Controller
             ->join('users', 'Purchases.id_user', '=', 'users.id')
             ->join('Status', 'Status.id_stt', '=', 'status')
             ->orderBy('Purchases.created_at', 'asc')
-            ->select('Purchases.*', 'Status.description')->paginate($this->limit);
+            ->select('Purchases.*', 'Status.description')
+            ->paginate($this->limit);
         $listStatus = DB::table('Status')->get();
         return view('Admin.Purchase.viewPurchase', [
             'listPurchases' => $listPurchases,
@@ -61,17 +76,21 @@ class AdminController extends Controller
         return view('Admin.Revenue.revenueStatistics');
     }
 
-    public function revenue_Month()
+    public function revenue_Day(Request $res)
+    {
+        return response()->json(['product' => [1, 2, 3]]); // 200 là mã lỗi
+    }
+    public function revenue_Month(Request $res)
     {
         return view('Admin.Revenue.revenueMonth');
     }
 
-    public function revenue_Quarter()
+    public function revenue_Quarter(Request $res)
     {
         return view('Admin.Revenue.revenueQuarter');
     }
     
-    public function revenue_Year()
+    public function revenue_Year(Request $res)
     {
         return view('Admin.Revenue.revenueYear');
     }
