@@ -166,7 +166,7 @@
             })
 
             $('#tk').click(function() {
-                
+                hiddenElement("statusFind");
                 $("tbody").empty();
                 let url;
                 let day;
@@ -250,6 +250,9 @@
 
         function showElement(id){
             document.getElementById(id).hidden = false;
+        }
+        function hiddenElement(id){
+            document.getElementById(id).hidden = true;
         }
 
         function Hidden() {
