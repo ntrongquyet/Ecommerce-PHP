@@ -5,13 +5,6 @@
             max-width: 100% !important;
             margin-bottom: 20px !important;: 
         }
-        .btn-export--excel:active{
-            color: #fff !important;
-        }
-        .btn-export--excel:hover{
-            color: #4CCEE8 !important;
-        }
-
     </style>
 
     <div class="user-control">
@@ -26,7 +19,7 @@
 
                 <div class="admin-nav--item grid-item--right">
                     <div class="content-item-right" title="Tải tài liệu xuống" data-toggle="tooltip">
-                       <a class="btn-export--excel" id="btn-export"><i class="fas fa-download "></i></a>
+                       <a class="btn"><i class="fas fa-download "></i></a>
                     </div>
                 </div>
             </div>
@@ -133,13 +126,12 @@
                         <tbody>
                         </tbody>
                     </table>
-                    </div>
                     <div id="statusFind" hidden="true" ></div>
                 </div>
             </div>
         </div>
     </div>
-    {{-- <script type="text/javascript" src="{{ url('/js//jquery.table2excel.js') }}"> --}}
+
     <script>
         $(document).ready(function() {
             let id;
@@ -155,7 +147,6 @@
                     // and the current value is retrieved using .prop() method
                     $(group).prop("checked", false);
                     $box.prop("checked", true);
-
                     id = $box.attr("id");
                     //show ra các input dựa theo id
                     show(id);
@@ -166,7 +157,6 @@
                     checked = false;
                 }
             })
-
             $('#tk').click(function() {
                 
                 let url;
@@ -178,14 +168,11 @@
                     showElement("statusFind");
                     $("#statusFind").html("<span>"+"Đang tải dữ liệu..."+"</span>");
                     if (id == "date") {
-
                         day = $("input[name='day']").val();
                         url = "{{ route('ajax.revenueDay') }}";
-
                     } else if (id == "month") {
                         month = $("#selectMonth").val();
                         year = $("input[name='m-year']").val();
-
                         url = "{{ route('ajax.revenueMonth') }}";
                     } else if (id == "quarter") {
                         quarter = $("#selectQuarter").val();
@@ -195,7 +182,6 @@
                         year = $("input[name='y-year']").val();
                         url = "{{ route('ajax.revenueYear') }}";
                     }
-
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -221,10 +207,8 @@
                                     "</td><td>" +
                                     item.created_at + "</td></tr>");
                             });
-
                             $("#statusFind").html("<span>"+"Có " + response.total_purchase + " đơn hàng được tìm thấy!"+"</span>");
                             showElement("statusFind");
-
                             //phân trang
                             $('#data').after('<div id="nav"></div>');
                             var rowsShown = 4;
@@ -238,7 +222,6 @@
                             $('#data tbody tr').slice(0, rowsShown).show();
                             $('#nav a:first').addClass('active');
                             $('#nav a').bind('click', function(){
-
                                 $('#nav a').removeClass('active');
                                 $(this).addClass('active');
                                 var currPage = $(this).attr('rel');
@@ -257,7 +240,6 @@
                 }
             });
         });
-
         function show(id) {
             if (id == "date") {
                 Hidden();
@@ -273,14 +255,12 @@
                 document.getElementById("input-year").hidden = false;
             }
         }
-
         function showElement(id){
             document.getElementById(id).hidden = false;
         }
         function hiddenElement(id){
             document.getElementById(id).hidden = true;
         }
-
         function Hidden() {
             document.getElementById("input-day").hidden = true;
             document.getElementById("input-month").hidden = true;
@@ -291,29 +271,40 @@
             format: 'yyyy-mm-dd',
             uiLibrary: 'bootstrap4'
         });
-        
-        $("#btn-export").click(function () {
-            // window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
-            // e.preventDefault();
-            var startDate = $(".startDate").val();
-            var endDate = $(".endDate").val();
-
-            $("#exportExcel").click(function(){
-                $('<table>')
-                    .append(
-                        $("#dvData").DataTable().$('tr').clone()
-                    )
-                    .table2excel({
-                        exclude: ".excludeThisClass",
-                        name: "Worksheet Name",
-                        filename: "SomeFile" //do not include extension
-                    });
-            });
-
-            $("#dvData").dataTable();
-        });
-
-        
+        function exportTableToExcel(tableID, filename = ''){
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            
+            // Specify file name
+            filename = filename?filename+'.xls':'excel_data.xls';
+            
+            // Create download link element
+            downloadLink = document.createElement("a");
+            
+            document.body.appendChild(downloadLink);
+            
+            if(navigator.msSaveOrOpenBlob)
+            {
+                var blob = new Blob(['\ufeff', tableHTML], 
+                {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            }
+            else
+            {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            
+                // Setting the file name
+                downloadLink.download = filename;
+                
+                //triggering the function
+                downloadLink.click();
+            }
+        }
     </script>
     </div>
 
