@@ -129,8 +129,8 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="font-weight-bold">Mã đơn hàng</th>
-                                <th scope="col" class="font-weight-bold">email khách hàng</th>
-                                <th scope="col" class="font-weight-bold">địa chỉ</th>
+                                <th scope="col" class="font-weight-bold">Email khách hàng</th>
+                                <th scope="col" class="font-weight-bold">Địa chỉ</th>
                                 <th scope="col" class="font-weight-bold">Tổng tiền</th>
                                 <th scope="col" class="font-weight-bold">Ngày đặt</th>
                             </tr>
@@ -143,6 +143,10 @@
             </div>
         </div>
     </div>
+<!-- you need to include the shieldui css and js assets in order for the components to work -->
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -310,23 +314,29 @@
             $("#download-data").click(function() {
                 // parse the HTML table element having an id=exportTable
                 var dataSource = shield.DataSource.create({
-                    data: "#exportTable",
+                    data: "#data",
                     schema: {
                         type: "table",
                         fields: {
-                            Name: {
-                                type: String
-                            },
-                            Age: {
+                            "Mã đơn hàng": {
                                 type: Number
                             },
-                            Email: {
+                            "Email khách hàng": {
                                 type: String
+                            },
+                            "Địa chỉ": {
+                                type: String
+                            },
+                            "Tổng tiền": {
+                                type: Number
+                            },
+                            "Ngày đặt":{
+                                type: Date
                             }
                         }
                     }
                 });
-
+                console.log(dataSource);
                 // when parsing is done, export the data to Excel
                 dataSource.read().then(function(data) {
                     new shield.exp.OOXMLWorkbook({
@@ -339,37 +349,60 @@
                                             bold: true
                                         },
                                         type: String,
-                                        value: "Name"
+                                        value: "Mã đơn hàng"
                                     },
                                     {
                                         style: {
                                             bold: true
                                         },
                                         type: String,
-                                        value: "Age"
+                                        value: "Email khách hàng"
                                     },
                                     {
                                         style: {
                                             bold: true
                                         },
                                         type: String,
-                                        value: "Email"
+                                        value: "Địa chỉ"
+                                    },
+                                    {
+                                        style: {
+                                            bold: true
+                                        },
+                                        type: String,
+                                        value: "Tổng tiền"
+                                    },
+                                    {
+                                        style: {
+                                            bold: true
+                                        },
+                                        type: String,
+                                        value: "Ngày đặt"
                                     }
+                                    
                                 ]
                             }].concat($.map(data, function(item) {
                                 return {
                                     cells: [{
-                                            type: String,
-                                            value: item.Name
+                                            type: Number,
+                                            value: item["Mã đơn hàng"]
                                         },
                                         {
                                             type: Number,
-                                            value: item.Age
+                                            value: item["Email khách hàng"]
                                         },
                                         {
                                             type: String,
-                                            value: item.Email
-                                        }
+                                            value: item["Địa chỉ"]
+                                        },
+                                        {
+                                            type: Number,
+                                            value: item["Tổng tiền"]
+                                        },
+                                        {
+                                            type: Date,
+                                            value: item["Ngày đặt"]
+                                        },
                                     ]
                                 };
                             }))
