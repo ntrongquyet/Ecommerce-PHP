@@ -39,14 +39,14 @@
 <div class="col-12-nav">
     <div class="col-12">
         <div class="row row-nav"> 
-            <div class="col-md-1">
+            <div class="col-md-.5">
                 <a class="navbar-brand" href="/">
                     <img class="img-nav"
                         src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
                         alt="Girl in a jacket" width="50px" height="auto"></li>
                 </a>
             </div>
-            <div class="col-4 col-search">
+            <div class="col-3 col-search">
                 <div class="form-search-nav">
                     <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
                         {{ csrf_field() }}
@@ -58,13 +58,17 @@
                     </form>
                 </div>
             </div>
-            <div class="col-3 col-account">
+            <div class="col-4.5 col-account">
                 <div class="login-register-icon" id="collapsibleNavId">
                     <ul class="nav-login">
                         <li class="nav-item-active">
                             <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
                         </li>
                         @if (session()->has('user'))
+                        <li class="nav-item-account">
+                            <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
+                            <a class="nav-link-content" href="#">Admin Dashboard</a>
+                        </li> 
                         <li class="nav-item-account">
                             <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                             <a class="nav-link-content" href="/profile/{{session()->get('user')}}">Tôi</a>
@@ -87,7 +91,7 @@
                 </div>
             </div>
             <div class="col-3 col-price">
-                <a href="/product/view/cart" type="button" class="btn btn-danger">
+                <a href="/product/view/cart" type="button" class="btn btn-danger btn-outline">
                     <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Giỏ hàng</div>
                 </a>
@@ -100,7 +104,7 @@
     </div>
 </div>
     @show
-
+    
     <div class="container-fluid">
         @yield('content')
     </div>
@@ -126,5 +130,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
 
 </body>
-
+<div class="container-footer">
+    <div class="col-9">
+        <div class="row">
+            <div class="col-3">
+                <div class="content-main">Thông tin nhóm</div>
+                <div class="content">18600011 - Nguyễn Trọng Quyết</div>
+                <div class="content">18600014 - Ngô Tất Tố</div>
+                <div class="content">18600038 - Phạm Phong Phú Cường</div>
+                <div class="content">18600190 - Mai Thanh Nhân</div>
+            </div>
+            <div class="col-3">
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam molestiae laboriosam soluta repellendus asperiores fuga eligendi corrupti praesentium? Sit, inventore iusto at molestiae voluptatibus veritatis minima quidem quam quasi.   
+            </div>
+            <div class="col-3">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus dicta autem rerum, enim alias, illum ratione quaerat velit voluptas vitae non amet esse, voluptatum aliquid placeat fugiat earum. Nobis.
+            </div>
+        </div>
+    </div>
+</div>
 </html>

@@ -38,6 +38,10 @@ body {
     margin-left: 5px;
     display: block;
 }
+.btn-danger{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
 .navbar{
     padding: 10px 0px !important;
     margin: 0px 0px !important;
@@ -49,7 +53,8 @@ body {
     padding: 10px 0px;
 }
 .col-12-nav{
-    background-color:  #dc3545;
+    background-image: url('/image/background/Background-44.png');
+    background-size: cover;
     padding-right: 0px !important ;
     padding-left: 0px !important;
     margin: auto;
@@ -203,7 +208,7 @@ body {
 
 .section-main-4{
     position: relative; 
-    margin: 30px 0px;
+    margin: 30px 0px 10px 0px;
 }
 .section-main-4::before{
     content: "";
@@ -367,6 +372,14 @@ a {
     border: 1px solid #dc3545;
 }
 
+.order_total .btn-price-end{
+    background-color: #dc3545 !important;
+    border: 1px solid #dc3545 !important;
+}
+.order_total .btn-price-end:hover{
+    background-color: #f35666 !important;
+    border: 1px solid #f35666 !important;
+}
 .card-lg .btn-price:hover {
     background-color: #f35666;
     border: 1px solid #f35666;
@@ -746,7 +759,23 @@ ul {
     font-weight: 400;
     color: #76838f
 }
-
+/* FOOTER */
+.container-footer{
+    background-image: url('/image/background/Background-44.png');
+    background-size: cover;
+    height:200px;
+    color: #FFFFFF;
+}
+.container-footer .col-3{
+    margin: auto;
+}
+.container-footer .col-3 .content-main{
+    font-weight: 600;
+}
+.container-footer .col-3 .content{
+    margin: 10px 0px;
+}
+/*  */
 p {
     font-size: 0.875rem;
     margin-bottom: .5rem;
