@@ -3,6 +3,7 @@
     <style>
         .col-sm-3 {
             max-width: 100% !important;
+            margin-bottom: 20px !important;: 
         }
 
     </style>
@@ -18,7 +19,7 @@
                 </div>
 
                 <div class="admin-nav--item grid-item--right">
-                    <div class="content-item-right">
+                    <div class="content-item-right" title="Tải tài liệu xuống" data-toggle="tooltip">
                         <i class="fas fa-download "></i>
                     </div>
                 </div>
@@ -116,17 +117,22 @@
                     <table class="table table-image table-dark table-hover">
                         <thead>
                             <tr>
-                                <td class="font-weight-bold">Mã đơn hàng</td>
-                                <td class="font-weight-bold">email khách hàng</td>
-                                <td class="font-weight-bold">địa chỉ</td>
-                                <td class="font-weight-bold">Tổng tiền</td>
-                                <td class="font-weight-bold">Ngày đặt</td>
+                                <th scope="col" class="font-weight-bold">Mã đơn hàng</th>
+                                <th scope="col" class="font-weight-bold">email khách hàng</th>
+                                <th scope="col" class="font-weight-bold">địa chỉ</th>
+                                <th scope="col" class="font-weight-bold">Tổng tiền</th>
+                                <th scope="col" class="font-weight-bold">Ngày đặt</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                     <div id="statusFind" hidden="true" ></div>
+                </div>
+                <div class="row mt-2">
+                    <nav aria-label="Page navigation example pagination-secondary" style="margin: 0 auto">
+                        {{-- {{ $listProducts->links() }} --}}
+                    </nav>
                 </div>
             </div>
         </div>
@@ -160,6 +166,8 @@
             })
 
             $('#tk').click(function() {
+                showElement("statusFind");
+                $("#statusFind").html("<span>"+"Đang tải dữ liệu..."+"</span>");
                 $("tbody").empty();
                 let url;
                 let day;
@@ -210,12 +218,13 @@
                                     item.created_at + "</td></tr>");
                             });
 
-                            $("#statusFind").val("<span>"+"Có " + response.total_purchase + " đơn hàng được tìm thấy!"+"</span>");
+                            $("#statusFind").html("<span>"+"Có " + response.total_purchase + " đơn hàng được tìm thấy!"+"</span>");
                             showElement("statusFind");
                             //alert(response.total_purchase);
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
-                            alert("lỗi");
+                            showElement("statusFind");
+                            $("#statusFind").html("Lỗi...");
                         }
                     });
                 }

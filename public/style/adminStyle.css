@@ -253,7 +253,8 @@ body {
 .btn-statisic {
     position: absolute;
     bottom: 0;
-    margin-bottom: 60px;
+    margin-bottom: 200px;
+    margin-left: 15px;
 }
 
 

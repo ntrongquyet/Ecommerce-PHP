@@ -72,7 +72,7 @@
                             <td>
                                 {{ csrf_field() }}
                                 <div class="col-sm-10">
-                                    <select name="status" class="form-control my-background">
+                                    <select name="status" class="form-control my-background changeStatus">
 
                                         @foreach ($listStatus as $status)
                                             @if ($status->id_stt == $item->status)
