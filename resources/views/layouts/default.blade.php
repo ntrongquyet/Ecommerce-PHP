@@ -33,7 +33,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body>
+<body class="position-relative">
 
     @section('sidebar')
 <div class="col-12-nav">
@@ -128,25 +128,24 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
-
-</body>
-<div class="container-footer">
-    <div class="col-9">
-        <div class="row">
-            <div class="col-3">
-                <div class="content-main">Thông tin nhóm</div>
-                <div class="content">18600011 - Nguyễn Trọng Quyết</div>
-                <div class="content">18600014 - Ngô Tất Tố</div>
-                <div class="content">18600038 - Phạm Phong Phú Cường</div>
-                <div class="content">18600190 - Mai Thanh Nhân</div>
-            </div>
-            <div class="col-3">
-                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam molestiae laboriosam soluta repellendus asperiores fuga eligendi corrupti praesentium? Sit, inventore iusto at molestiae voluptatibus veritatis minima quidem quam quasi.   
-            </div>
-            <div class="col-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus dicta autem rerum, enim alias, illum ratione quaerat velit voluptas vitae non amet esse, voluptatum aliquid placeat fugiat earum. Nobis.
+    <footer class="container-footer">
+        <div class="col-9">
+            <div class="row">
+                <div class="col-3">
+                    <div class="content-main">Thông tin nhóm</div>
+                    <div class="content">18600011 - Nguyễn Trọng Quyết</div>
+                    <div class="content">18600014 - Ngô Tất Tố</div>
+                    <div class="content">18600038 - Phạm Phong Phú Cường</div>
+                    <div class="content">18600190 - Mai Thanh Nhân</div>
+                </div>
+                <div class="col-3">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam molestiae laboriosam soluta repellendus asperiores fuga eligendi corrupti praesentium? Sit, inventore iusto at molestiae voluptatibus veritatis minima quidem quam quasi.   
+                </div>
+                <div class="col-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus dicta autem rerum, enim alias, illum ratione quaerat velit voluptas vitae non amet esse, voluptatum aliquid placeat fugiat earum. Nobis.
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </footer>
+</body>
 </html>
