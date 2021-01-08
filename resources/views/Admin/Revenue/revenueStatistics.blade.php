@@ -109,12 +109,12 @@
                         </div>
                     </div>
                     <div class="btn-statisic">
-                        <a class="btn btn-secondary my-background" href="#" role="button" id="tk">Thống kê</a>
+                        <button class="btn btn-secondary my-background" href="#" role="button" id="tk">Thống kê</button>
                     </div>
                 </div>
 
                 <div class="grid-right">
-                    <table class="table table-image table-dark table-hover">
+                    <table class="table table-image table-dark table-hover" id="data">
                         <thead>
                             <tr>
                                 <th scope="col" class="font-weight-bold">Mã đơn hàng</th>
@@ -128,11 +128,6 @@
                         </tbody>
                     </table>
                     <div id="statusFind" hidden="true" ></div>
-                </div>
-                <div class="row mt-2">
-                    <nav aria-label="Page navigation example pagination-secondary" style="margin: 0 auto">
-                        {{-- {{ $listProducts->links() }} --}}
-                    </nav>
                 </div>
             </div>
         </div>
@@ -167,7 +162,6 @@
 
             $('#tk').click(function() {
                 
-                // hiddenElement("statusFind");
                 let url;
                 let day;
                 let month;
@@ -211,6 +205,7 @@
                         },
                         success: function(response) {
                             $("tbody").empty();
+                            $("#nav").empty();
                             response.statistics.forEach(item => {
                                 $("tbody").append("<tr><td>" +
                                     item.id_purchase + "</td><td>" + item.email +
@@ -222,7 +217,30 @@
 
                             $("#statusFind").html("<span>"+"Có " + response.total_purchase + " đơn hàng được tìm thấy!"+"</span>");
                             showElement("statusFind");
-                            //alert(response.total_purchase);
+
+                            //phân trang
+                            $('#data').after('<div id="nav"></div>');
+                            var rowsShown = 4;
+                            var rowsTotal = $('#data tbody tr').length;
+                            var numPages = rowsTotal/rowsShown;
+                            for(i = 0;i < numPages;i++) {
+                                var pageNum = i + 1;
+                                $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                            }
+                            $('#data tbody tr').hide();
+                            $('#data tbody tr').slice(0, rowsShown).show();
+                            $('#nav a:first').addClass('active');
+                            $('#nav a').bind('click', function(){
+
+                                $('#nav a').removeClass('active');
+                                $(this).addClass('active');
+                                var currPage = $(this).attr('rel');
+                                var startItem = currPage * rowsShown;
+                                var endItem = startItem + rowsShown;
+                                $('#data tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                                css('display','table-row').animate({opacity:1}, 300);
+                            });
+                            //phân trang
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             showElement("statusFind");
