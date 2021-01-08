@@ -45,7 +45,7 @@
                 @if(Session::has('thatbai'))
                 <div class="alert alert-danger">{{Session::get('thatbai')}}</div>
                 @endif
-        <button class="btn btn-primary mt-5">Thanh toán<i class="fa fa-long-arrow-right ml-2 mt-1"></i></button>
+        <button class="btn btn-primary mt-5">Thanh toán<i class="fa fa-long-arrow-right ml-2 mt-1 icon-next"></i></button>
         </form>
 
     </div>

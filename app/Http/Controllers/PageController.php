@@ -352,9 +352,10 @@ class PageController extends Controller
         $remove = \Cart::remove($idProduct);
         return redirect()->back();
     }
-    public function giamsanpham($idProduct)
+    public function giamsanpham(Request $res)
     {
-
+        $data = $res->input();
+        $idProduct = $data['id'];
         $item = \Cart::get($idProduct);
         if ($item->quantity == 1) {
             $remove = \Cart::remove($idProduct);

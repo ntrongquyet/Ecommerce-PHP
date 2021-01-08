@@ -58,7 +58,7 @@ Route::post('AddProduct','PageController@insertProductToDB')->middleware('RoleCh
 Route::get("product/addToCart/{idProduct}",'PageController@themgiohang')->middleware('Logged');
 Route::get('product/view/cart','PageController@cart')->middleware('Logged');
 Route::get('product/xoa-san-pham/{id}','PageController@xoasanpham')->middleware('Logged');
-Route::get('product/giam-san-pham/{id}','PageController@giamsanpham')->middleware('Logged');
+Route::get('product/giam-san-pham','PageController@giamsanpham')->middleware('Logged')->name('giam-san-pham');
 Route::get('product/tang-san-pham/{id}','PageController@tangsanpham')->middleware('Logged');
 // Đặt hàng
 Route::get('product/cart/checkout','PageController@chitietdathang')->middleware('Logged');
