@@ -15,6 +15,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.5",
+        "jrm2k6/cloudder": "0.4.*",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.5"
     },
@@ -52,6 +53,13 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "laravel/dusk"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
@@ -66,4 +74,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
+
 }

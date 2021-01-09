@@ -127,17 +127,17 @@
                             <p>1860038 - Phạm Phong Phú Cường</p>
                             <p>1860190 - Mai Thanh Nhân</p>
                         </div>
-                        <div class="col-1">    
+                        <div class="col-1">
                         </div>
-                        <div class="col-3"> 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, perspiciatis. Ipsa, unde numquam fugiat id illo quisquam saepe blanditiis facere cum, quae odit necessitatibus atque quod veritatis nihil earum distinctio!   
+                        <div class="col-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, perspiciatis. Ipsa, unde numquam fugiat id illo quisquam saepe blanditiis facere cum, quae odit necessitatibus atque quod veritatis nihil earum distinctio!
                         </div>
-                        <div class="col-1">    
+                        <div class="col-1">
                         </div>
-                        <div class="col-1">    
+                        <div class="col-1">
                         </div>
-                        <div class="col-3">  
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero quisquam ex excepturi voluptatem veritatis voluptatibus. Iure cum dicta quas id harum accusamus dignissimos quaerat, animi omnis libero eveniet esse ducimus! 
+                        <div class="col-3">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero quisquam ex excepturi voluptatem veritatis voluptatibus. Iure cum dicta quas id harum accusamus dignissimos quaerat, animi omnis libero eveniet esse ducimus!
                         </div>
                     </div>
                 </div>

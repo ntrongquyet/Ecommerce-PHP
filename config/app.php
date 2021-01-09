@@ -164,8 +164,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
-
-
+        JD\Cloudder\CloudderServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -234,7 +233,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
-
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
 
     ],
 

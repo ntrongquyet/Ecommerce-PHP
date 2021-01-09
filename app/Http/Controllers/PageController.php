@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Image;
 use Cart;
 use Darryldecode\Cart\Cart as CartCart;
-
+use Cloudder;
 class PageController extends Controller
 {
     public function index()
@@ -236,13 +236,13 @@ class PageController extends Controller
                 $id_Product = $lastItem->id_product;
                 foreach ($res->file('images') as $img) {
                     // Cấp quyền lưu file
+                    Cloudder::upload($img->getRealPath(),"" ,array("width"=>200, "height"=>200));
 
-                    $name = uniqid('img_') . '.' . $img->getClientOriginalExtension();
-                    $image_resize = Image::make($img->path())->resize(200, 200);
-                    $image_resize->save(public_path('/image/products/' . $name), 80);
+
+                    $name = Cloudder::getResult();
                     DB::table('Image')->insert([
                         'id_product' => $id_Product,
-                        'image' => $name
+                        'image' => $name['url'],
                     ]);
                 }
                 // Cập nhật avatar mặc định cho sản phẩm
