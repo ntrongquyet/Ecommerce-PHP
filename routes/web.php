@@ -55,11 +55,11 @@ Route::post('Forgot','ForgotController@forgotPassword');
 Route::get('AddProduct','PageController@insertProduct')->middleware('RoleCheck');
 Route::post('AddProduct','PageController@insertProductToDB')->middleware('RoleCheck');
 // Giỏ hàng
-Route::get("product/addToCart/{idProduct}",'PageController@themgiohang')->middleware('Logged');
+Route::post("product/addToCart",'PageController@themgiohang')->middleware('Logged')->name('addToCart');
 Route::get('product/view/cart','PageController@cart')->middleware('Logged');
 Route::get('product/xoa-san-pham/{id}','PageController@xoasanpham')->middleware('Logged');
-Route::get('product/giam-san-pham','PageController@giamsanpham')->middleware('Logged')->name('giam-san-pham');
-Route::get('product/tang-san-pham/{id}','PageController@tangsanpham')->middleware('Logged');
+Route::post('product/giam-san-pham','PageController@giamsanpham')->middleware('Logged')->name('giamsanpham');
+Route::post('product/tang-san-pham','PageController@tangsanpham')->middleware('Logged')->name('tangsanpham');
 // Đặt hàng
 Route::get('product/cart/checkout','PageController@chitietdathang')->middleware('Logged');
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');

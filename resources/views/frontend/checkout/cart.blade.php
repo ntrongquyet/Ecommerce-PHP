@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Trang chủ')
+@section('title','Giỏ hàng')
 @section ('sidebar')
 @parent
 @endsection
@@ -12,7 +12,7 @@
                 <div class="cart_container">
                     <div class="cart_title">Giỏ hàng<small> ({{count($list)}} sản phẩm trong giỏ) </small></div>
                     <div class="cart_items flex-column d-flex justify-content-around">
-                        <ul class="cart_list">
+                        <ul class="cart_list" id="cartContent">
                             @foreach($list as $item)
                             <li class="cart_item clearfix" id="{{$item->id}}">
                                 <div class="cart_item_image"><img src="{{url('/image/products')}}/{{$item->attributes->img}}" alt=""></div>
@@ -26,11 +26,9 @@
                                         <div class="cart_item_title">Số lượng</div>
 
                                         <div class="cart_item_text">
-                                            <i id="cart_quantity_down" class="fas fa-minus"></i> 
-
-                                            
+                                            <i id="cart_quantity_down" class="fas fa-minus"></i>
                                             {{$item->quantity}}
-                                            <a class="cart_quantity_up" href="/product/tang-san-pham/{{$item->id}}"> <i class="fas fa-plus"></i>  </a>
+                                            <i class="fas fa-plus" id="cart_quantity_up"></i>
                                         </div>
                                     </div>
                                     <div class="cart_item_price cart_info_col">
@@ -44,10 +42,9 @@
                                     <div class="cart_item_delete cart_info_col">
                                         <div class="cart_item_title">Xoá</div>
                                         <div class="cart_item_text">
-                                            <a href="/product/xoa-san-pham/{{$item->id}}" 
-                                                onclick="return  confirm('Bạn có muốn xóa không?')">
+                                            <a href="/product/xoa-san-pham/{{$item->id}}" onclick="return  confirm('Bạn có muốn xóa không?')">
                                                 <i class="far fa-trash-alt">
-                                                    </i></a>
+                                                </i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -62,9 +59,9 @@
                         </div>
                     </div>
                     <div class="cart_buttons">
-                    <a href="/" class="btn btn-secondary cart-btn-transform m-1" data-abc="true">Tiếp tục mua sắm</a>
-                    <a href="/product/cart/checkout" class="btn btn-primary cart-btn-transform m-3 btn-price-end" data-abc="true">Thanh toán</a>
-                </div>
+                        <a href="/" class="btn btn-secondary cart-btn-transform m-1" data-abc="true">Tiếp tục mua sắm</a>
+                        <a href="/product/cart/checkout" class="btn btn-primary cart-btn-transform m-3 btn-price-end" data-abc="true">Thanh toán</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,7 +88,7 @@
 @endif
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#cart_quantity_down').on('click', function() {
+        $('#cart_quantity_down').on('click', function(e) {
             var id = $(this).closest('li').attr('id');
             console.log(id);
             $.ajaxSetup({
@@ -101,14 +98,36 @@
             });
             $.ajax({
                 type: "POST",
-                url: "{{ route('giam-san-pham') }}",
+                url: "{{ route('giamsanpham') }}",
                 data: {
                     id: id,
+                },
+                success: function(res) {
+                    location.reload(true);
+                }
+            })
+
+        });
+        $('#cart_quantity_up').on('click', function(e) {
+            var id = $(this).closest('li').attr('id');
+            console.log(id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('tangsanpham') }}",
+                data: {
+                    id: id,
+                },
+                success: function(res) {
+                    location.reload(true);
                 }
             })
 
         })
     });
-
 </script>
 @endsection
