@@ -65,7 +65,7 @@ class RegisterController extends Controller
                         'title' => "Kích hoạt tài khoản $user->username",
                         'hashCode' => "$hashCode",
                         'username' =>"$user->username",
-                        'link' => "http://127.0.0.1:8000/active?username=$user->username&hashCode=$hashCode"
+                        'link' => "https://ecommerce-18ck.herokuapp.com/active?username=$user->username&hashCode=$hashCode"
                     ];
 
                     \Mail::to($user->email)->send(new \App\Mail\MyTestMail($details));
