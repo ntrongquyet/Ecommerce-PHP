@@ -220,7 +220,6 @@
 </div>
 </div>
 </div>
-<<<<<<< HEAD
 @endif
 
 <script type="text/javascript">
