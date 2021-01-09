@@ -83,6 +83,21 @@ body {
 /* #endregion Manipulation Icon   */
 
 
+/* #ergion Form */
+
+.my-form {
+    position: relative;
+    width: calc(100% - 20px) !important;
+    font-size: 0.875rem !important;
+    margin-top: 30px;
+    padding-left: 20px;
+    color: #fff;
+}
+
+
+/* #endregion Form */
+
+
 /*#region Navbar template*/
 
 .nav-admin {
