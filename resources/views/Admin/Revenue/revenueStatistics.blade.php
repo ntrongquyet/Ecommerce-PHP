@@ -17,6 +17,56 @@
             color: #fff;
         }
 
+        .dashed-loading {
+            position: relative;
+            height: 50px;
+        }
+
+        .dashed-loading:after,
+        .dashed-loading:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .dashed-loading:before {
+            z-index: 5;
+            border: 3px dashed #fff;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            -webkit-animation: dashed 1s linear infinite;
+            animation: dashed 1s linear infinite;
+        }
+
+        .dashed-loading:after {
+            z-index: 10;
+            border: 3px solid #fff;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            -webkit-animation: dashed 1s ease infinite;
+            animation: dashed 1s ease infinite;
+        }
+
+        @keyframes dashed {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            display: flex;
+
+        }
+
+        #statusFind {
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+
     </style>
 
     <div class="user-control">
@@ -30,7 +80,8 @@
                 </div>
 
                 <div class="admin-nav--item grid-item--right">
-                    <div class="content-item-right btn-export--excel" id="download-data" title="Tải tài liệu xuống" data-toggle="tooltip">
+                    <div class="content-item-right btn-export--excel" id="download-data" title="Tải tài liệu xuống"
+                        data-toggle="tooltip">
                         <a><i class="fas fa-download "></i></a>
                     </div>
                 </div>
@@ -138,15 +189,19 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <div id="statusFind" hidden="true"></div>
+                    <div class="loading">
+                        <div class="dashed-loading" id="loadingAnimate" hidden="true"></div>
+                        <div id="statusFind" hidden="true"></div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-<!-- you need to include the shieldui css and js assets in order for the components to work -->
-<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
-<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
+    <!-- you need to include the shieldui css and js assets in order for the components to work -->
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -183,6 +238,8 @@
                 if (checked) {
                     showElement("statusFind");
                     HiddenNumberPagegin();
+                    $("#statusFind").css( { marginLeft : "40px", marginTop : "10px" })
+                    showElement("loadingAnimate");
                     $("#statusFind").html("<span>" + "Đang tải dữ liệu..." + "</span>");
                     if (id == "date") {
                         day = $("input[name='day']").val();
@@ -216,6 +273,7 @@
                         success: function(response) {
                             $("tbody").empty();
                             $("#nav").empty();
+                            $("#loadingAnimate").empty();
                             response.statistics.forEach(item => {
                                 $("tbody").append("<tr><td>" +
                                     item.id_purchase + "</td><td>" + item.email +
@@ -226,40 +284,49 @@
                             });
                             $("#statusFind").html("<span>" + "Có " + response.total_purchase +
                                 " đơn hàng được tìm thấy!" + "</span>");
+                            hiddenElement("loadingAnimate");
+                            $("#statusFind").css('margin', 0);
                             showElement("statusFind");
+                            
                             //phân trang
                             $('#data').after(
                                 '<nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
-                                );
+                            );
                             var rowsShown = 4;
                             var rowsTotal = $('#data tbody tr').length;
                             var numPages = rowsTotal / rowsShown;
-                            for (i = 0; i < numPages; i++) {
-                                var pageNum = i + 1;
-                                $('#nav').append(
-                                    '<li class="page-item"><a class="page-link" rel="' +
-                                    i + '">' + pageNum + '</a></li> ');
+                            if(numPages > 1)
+                            {
+
+                                for (i = 0; i < numPages; i++) {
+                                    var pageNum = i + 1;
+                                    $('#nav').append(
+                                        '<li class="page-item"><a class="page-link" rel="' +
+                                        i + '">' + pageNum + '</a></li> ');
+                                }
+                                $('#data tbody tr').hide();
+                                $('#data tbody tr').slice(0, rowsShown).show();
+                                $('#nav a:first').addClass('active');
+                                $('#nav a').bind('click', function() {
+                                    $('#nav a').removeClass('active');
+                                    $(this).addClass('active');
+                                    var currPage = $(this).attr('rel');
+                                    var startItem = currPage * rowsShown;
+                                    var endItem = startItem + rowsShown;
+                                    $('#data tbody tr').css('opacity', '0.0').hide().slice(
+                                        startItem, endItem).
+                                    css('display', 'table-row').animate({
+                                        opacity: 1
+                                    }, 300);
+                                });
                             }
-                            $('#data tbody tr').hide();
-                            $('#data tbody tr').slice(0, rowsShown).show();
-                            $('#nav a:first').addClass('active');
-                            $('#nav a').bind('click', function() {
-                                $('#nav a').removeClass('active');
-                                $(this).addClass('active');
-                                var currPage = $(this).attr('rel');
-                                var startItem = currPage * rowsShown;
-                                var endItem = startItem + rowsShown;
-                                $('#data tbody tr').css('opacity', '0.0').hide().slice(
-                                    startItem, endItem).
-                                css('display', 'table-row').animate({
-                                    opacity: 1
-                                }, 300);
-                            });
                             //phân trang
 
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             showElement("statusFind");
+                            hiddenElement("loadingAnimate");
+                            $("#statusFind").css('margin', 0);
                             $("#statusFind").html("Lỗi...");
                         }
                     });
@@ -330,7 +397,7 @@
                             "Tổng tiền": {
                                 type: Number
                             },
-                            "Ngày đặt":{
+                            "Ngày đặt": {
                                 type: Date
                             }
                         }
@@ -379,17 +446,20 @@
                                         type: String,
                                         value: "Ngày đặt"
                                     }
-                                    
+
                                 ]
                             }].concat($.map(data, function(item) {
                                 return {
                                     cells: [{
                                             type: Number,
-                                            value: item["Mã đơn hàng"]
+                                            value: item[
+                                                "Mã đơn hàng"]
                                         },
                                         {
                                             type: Number,
-                                            value: item["Email khách hàng"]
+                                            value: item[
+                                                "Email khách hàng"
+                                            ]
                                         },
                                         {
                                             type: String,
