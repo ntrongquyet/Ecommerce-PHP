@@ -258,7 +258,7 @@
         for (i = 0; i < numPages; i++) {
             var pageNum = i + 1;
             $('#nav').append(
-                '<li class="page-item"><a class="page-link" href="#" rel="' +
+                '<li class="page-item"><a class="page-link" rel="' +
                 i + '">' + pageNum + '</a></li> ');
         }
         $('#all-product #list-img').hide();

@@ -69,9 +69,10 @@
                                                                 name="quantity" class="form-control" />
                                                         </div>
                                                         <div>
-                                                            <button type="submit" style="margin-top:20px "
+                                                            <p style="margin-top:20px "
+                                                            data-key="{{$product->id_product}}"
                                                                 class="btn btn-outline-dark text-primary font-weight-bold add-item-btn">
-                                                                Thêm vào giỏ hàng</button>
+                                                                Thêm vào giỏ hàng</p>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -103,7 +104,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <h3 class="text-center mb-5"> Nhận xét sản phẩm </h3>
-                                        <div class="row">
+                                        <div class="row" id="data">
                                             @foreach ($listComments as $cmt)
                                                 <div class="col-md-12">
                                                     <div class="media">
@@ -119,24 +120,16 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="row mt-2">
-                                            <nav aria-label="Page navigation example" style="margin: 0 auto">
-                                                {{ $listComments->links() }}
-                                            </nav>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <script type="text/javascript">
                             $(document).ready(function() {
-
                                 let like = {
                                     value: {{$product->liked}}
                                 };
-
                                 $('.like').click(function() {
-
                                     if ({{session()->has('user')}}) {
                                         checkHeart(like);
                                         $.ajaxSetup({
@@ -153,6 +146,64 @@
                                         })
                                     }
                                 })
+                                //phân trang
+                                $('#data').after(
+                                    '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+                                    );
+                                var rowsShown = 4;
+                                var rowsTotal = $('#data .media-body').length;
+                                var numPages = rowsTotal / rowsShown;
+                                for (i = 0; i < numPages; i++) {
+                                    var pageNum = i + 1;
+                                    $('#nav').append(
+                                        '<li class="page-item"><a class="page-link" rel="' +
+                                        i + '">' + pageNum + '</a></li> ');
+                                }
+                                $('#data .media-body').hide();
+                                $('#data .media-body').slice(0, rowsShown).show();
+                                $('#nav a:first').addClass('active');
+                                $('#nav a').bind('click', function() {
+                                    $('#nav a').removeClass('active');
+                                    $(this).addClass('active');
+                                    var currPage = $(this).attr('rel');
+                                    var startItem = currPage * rowsShown;
+                                    var endItem = startItem + rowsShown;
+                                    $('#data .media-body').css('opacity', '0.0').hide().slice(
+                                        startItem, endItem).
+                                    css('display', 'table-row').animate({
+                                        opacity: 1
+                                    }, 300);
+                                });
+                                //thêm sản Phẩm
+                                $('.add-item-btn').on('click', function() {
+            var id = $(this).data('key');
+            var quantity = $("input[name=quantity]").val();
+            if (quantity === ""){
+                quantity = 0;
+            }
+            else{
+                quantity = parseInt(quantity);
+            }
+            console.log(id, quantity);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('addToCart') }}",
+                data: {
+                    id: id,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    alert(response.msg);
+                    $("input[name=quantity]").val()="";
+                }
+            })
+
+        });
                             });
 
                             function checkHeart(like) {
@@ -165,6 +216,5 @@
                                     $('#likes').text(++like.value);
                                 }
                             }
-
                         </script>
                     @endsection

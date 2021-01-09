@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <select style="width:100%" name="thanhtoan">
                     <option selected value="1">Thanh toán khi nhận hàng</option>
-                    <option value="0">Thanh toán qua ZaloPay</option>
+                    <option disabled value="0">Thanh toán qua ZaloPay</option>
                 </select>
             </div>
         </div>
