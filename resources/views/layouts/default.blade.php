@@ -40,17 +40,17 @@
             <img class="img-nav" src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
             alt="Girl in a jacket" width="50px" height="auto"></li>
         </a>
+        <form class="form-inline my-2" action="/search" method="GET" role="form">
+            {{ csrf_field() }}
+            <input class="form-control mr-sm-2" name="keyword" type="search" 
+            placeholder="Search" aria-label="Search">
+            <button class="btn btn btn-light my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-      
+        </button>  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2" action="/search" method="GET" role="form">
-                {{ csrf_field() }}
-                <input class="form-control mr-sm-2" name="keyword" type="search" 
-                placeholder="Search" aria-label="Search">
-                <button class="btn btn btn-light my-2 my-sm-0" type="submit">Tìm kiếm</button>
-            </form>
+            
           <ul class="navbar-nav ml-lg-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">
@@ -60,46 +60,39 @@
             @if (session()->has('user'))
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                         <div class="nav-link-price">Admin Dashboard</div>
                     </a>
                 </li>
                 <li class="nav-item">
                 <a href="/profile/{{session()->get('user')}}" class="nav-link">
-                    <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Tôi</div>
                 </a>
                 </li>
                 <li class="nav-item">
                     <a href="/Logout" class="nav-link">
-                        <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
                         <div class="nav-link-price">Đăng xuất</div>
                     </a>
                 </li>
               @else
               <li class="nav-item">
                 <a href="/login" class="nav-link">
-                    <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Đăng nhập</div>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/Register" class="nav-link">
-                    <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Đăng kí</div>
                 </a>
               </li>
             @endif
             <li class="nav-item">
                 <a href="/product/view/cart" type="button" class="nav-link">
-                    <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Giỏ hàng</div>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/product/view/cart" type="button" class="nav-link">
-                    <img class="img-invoice" src="{{url('/image/icon/invoice.png')}}" width="30px" height="auto" alt="user">
-                    <div class="nav-link-price">Lịch sử mua hàng</div>
+                     <div class="nav-link-price">Lịch sử mua hàng</div>
                 </a>
             </li>
           </ul>   
@@ -123,5 +116,18 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
+    <footer>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
+                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
+                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
