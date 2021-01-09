@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $listProducts = DB::table('Products')
         ->select('Products.*')
-        ->paginate($this->limit);
+        ->get();
         return view('Admin.Products.viewProductAdmin',[
             'listProducts' => $listProducts
         ]);
@@ -35,7 +35,7 @@ class AdminController extends Controller
         ->groupBy('PurchaseDetail.id_product','Products.name','Products.avatar')
         ->orderBy('countBought', 'desc')
         ->take(10)
-        ->paginate($this->limit);
+        ->get();
         return view('Admin.Products.topProductAdmin',[
             'listProducts' => $listProducts
         ]);
@@ -43,7 +43,10 @@ class AdminController extends Controller
 
     public function view_Customer()
     {
-        return view('Admin.Customers.viewCustomers');
+        $listCustomer = DB::table('users')->get();
+        return view('Admin.Customers.viewCustomers',[
+            'listCustomer' => $listCustomer
+        ]);
     }
 
     public function add_Customer()
