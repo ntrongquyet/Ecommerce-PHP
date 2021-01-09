@@ -84,7 +84,7 @@
                     <figure class="card card-product-grid card-lg">
                          <a href="/{{$product->id_Cat}}/{{$product->id_product}}"
                          class="img-wrap" data-abc="true">
-                            <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                            <img src="{{$product->avatar}}"></a>
                         <figcaption class="info-wrap">
                             <div class="row ">
                                 <div class="col-md-9"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
@@ -122,7 +122,7 @@
         @foreach($productList as $product)
         <div class="col-md-4" id="list-img">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                    <img src="{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
                     <div class="row">
                         <div class="col-md-9 "> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
@@ -161,7 +161,7 @@
         @foreach($topLikeProduct as $product)
         <div class="col-md-4">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                    <img src="{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
                     <div class="row">
                         <div class="col-md-9"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
@@ -197,7 +197,7 @@
         @foreach($topNewProduct as $product)
         <div class="col-md-4">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
-                    <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
+                    <img src="{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
                     <div class="row">
                         <div class="col-md-9"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="title" data-toggle="tooltip" data-placement="bottom" title="{{$product->name}}" data-abc="true">{{$product->name}}</a> </div>
