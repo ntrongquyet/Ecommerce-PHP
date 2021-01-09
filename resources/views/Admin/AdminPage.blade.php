@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/style/main.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('/style/Admin/adminStyle.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -55,7 +55,7 @@
             <div class="sidebar">
                 <div class="sidebar-menu">
                     <center class="profile">
-                        <img src="{{ url('/image/profile/male-profile-picture-vector-2041304.jpg') }}" alt="">
+                        <img src="{{ url('/image/profile/profileDefault.png') }}" alt="">
                         <p>Phú Cường</p>
                     </center>
                     <li class="item">

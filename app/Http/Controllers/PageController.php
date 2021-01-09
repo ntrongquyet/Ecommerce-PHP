@@ -469,14 +469,26 @@ class PageController extends Controller
 
     public function profile($user)
     {
+         // Lấy thông tin khách hàng
+         $user_id  = DB::table('users')->where('username', '=', $user)->select('id')->get()->first();
+
         $listPurchases = DB::table('Purchases')
             ->join('users', 'Purchases.id_user', '=', 'users.id')
             ->join('Status', 'Status.id_stt', '=', 'status')
             ->where('users.username', '=', $user)
             ->orderBy('Purchases.created_at', 'asc')
             ->select('Purchases.*', 'Status.description')->get();
+
+
+        $likedProducts = DB::table('UserLikeProduct')
+                        ->join('Products', 'UserLikeProduct.product_id', '=', 'Products.id_product')
+                        ->where('UserLikeProduct.user_id', '=', $user_id->id)
+                        ->select('Products.*')
+                        ->get();
+
         return view('Users.Profile', [
-            'listPurchases' => $listPurchases
+            'listPurchases' => $listPurchases,
+            'likedProducts' => $likedProducts
         ]);
     }
 

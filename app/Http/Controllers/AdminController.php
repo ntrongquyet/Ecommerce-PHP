@@ -262,4 +262,9 @@ class AdminController extends Controller
         return response()->json(['statistics' => $statistics, 'total_price' => $total_price, 'total_purchase' => $total_purchase],200);
     }
 
+    public function removeProduct($id){
+        DB::table('Products')->where('id_product', '=', $id)->delete();
+        return redirect('/');
+    }
+
 }
