@@ -241,7 +241,12 @@
                         quantity: quantity
                     },
                     success: function(response) {
-                        alert(response.msg);
+                        if(response.msg!=undefined){
+                            alert(response.msg);
+                        }
+                        else{
+                            alert("Đăng nhập để tiếp tục");
+                        }
                     }
                 })
 
