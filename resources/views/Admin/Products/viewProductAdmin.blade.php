@@ -129,7 +129,7 @@ $(document).ready(function() {
         $('#data').after(
             '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
             );
-        var rowsShown = 8;
+        var rowsShown = 5;
         var rowsTotal = $('#data tbody tr').length;
         var numPages = rowsTotal / rowsShown;
         for (i = 0; i < numPages; i++) {

@@ -74,9 +74,6 @@ Route::post('ajax/likeProduct','PageController@likeProduct')->middleware('Logged
 Route::get('product/comment/{id}','PageController@comment');
 Route::post("product/comment/{id}","PageController@comment");
 
-
-
-
 //Trang admin
 Route::get('Admin',function(){
     return view('Admin.indexAdmin');
