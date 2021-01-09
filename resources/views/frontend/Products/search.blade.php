@@ -9,9 +9,9 @@
     @if(count($listProduct) == 0)
     không tìm thấy sản phẩm
     @else
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center"  id="search">
         @foreach($listProduct as $product)
-        <div class="col-md-4">
+        <div class="col-md-4" id="img-search">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}"
                     class="img-wrap" data-abc="true">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
@@ -40,5 +40,38 @@
     @endif
     @endif
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+        //phân trang
+        $('#search').after(
+            '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+            );
+        var rowsShown = 6;
+        var rowsTotal = $('#search #img-search').length;
+        var numPages = rowsTotal / rowsShown;
+        for (i = 0; i < numPages; i++) {
+            var pageNum = i + 1;
+            $('#nav').append(
+                '<li class="page-item"><a class="page-link" rel="' +
+                i + '">' + pageNum + '</a></li> ');
+        }
+        $('#search #img-search').hide();
+        $('#search #img-search').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function() {
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#search #img-search').css('opacity', '0.0').hide().slice(
+                startItem, endItem).
+            css('display', 'table-row').animate({
+                opacity: 1
+            }, 300);
+        });
+        //phân trang
 
+});
+</script>
 @endsection

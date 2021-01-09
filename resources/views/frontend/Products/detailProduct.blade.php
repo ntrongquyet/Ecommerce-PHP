@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <h3 class="text-center mb-5"> Nhận xét sản phẩm </h3>
-                                        <div class="row">
+                                        <div class="row" id="data">
                                             @foreach ($listComments as $cmt)
                                                 <div class="col-md-12">
                                                     <div class="media">
@@ -119,11 +119,6 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="row mt-2">
-                                            <nav aria-label="Page navigation example" style="margin: 0 auto">
-                                                {{ $listComments->links() }}
-                                            </nav>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -132,20 +127,12 @@
                             $(document).ready(function() {
 
                                 let like = {
-                                    value: {
-                                        {
-                                            $product - > liked
-                                        }
-                                    }
+                                    value: {{$product->liked}}
                                 };
 
                                 $('.like').click(function() {
 
-                                    if ({
-                                            {
-                                                session() - > has('user')
-                                            }
-                                        }) {
+                                    if ({{session()->has('user')}}) {
                                         checkHeart(like);
                                         $.ajaxSetup({
                                             headers: {
@@ -156,15 +143,42 @@
                                             type: 'POST',
                                             url: "{{ route('ajax.likeProduct') }}",
                                             data: {
-                                                id: {
-                                                    {
-                                                        $product - > id_product
-                                                    }
-                                                }
+                                                id: {{$product->id_product}}
                                             }
                                         })
                                     }
                                 })
+
+                                //phân trang
+                                $('#data').after(
+                                    '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+                                    );
+                                var rowsShown = 4;
+                                var rowsTotal = $('#data .media-body').length;
+                                var numPages = rowsTotal / rowsShown;
+                                for (i = 0; i < numPages; i++) {
+                                    var pageNum = i + 1;
+                                    $('#nav').append(
+                                        '<li class="page-item"><a class="page-link" rel="' +
+                                        i + '">' + pageNum + '</a></li> ');
+                                }
+                                $('#data .media-body').hide();
+                                $('#data .media-body').slice(0, rowsShown).show();
+                                $('#nav a:first').addClass('active');
+                                $('#nav a').bind('click', function() {
+                                    $('#nav a').removeClass('active');
+                                    $(this).addClass('active');
+                                    var currPage = $(this).attr('rel');
+                                    var startItem = currPage * rowsShown;
+                                    var endItem = startItem + rowsShown;
+                                    $('#data .media-body').css('opacity', '0.0').hide().slice(
+                                        startItem, endItem).
+                                    css('display', 'table-row').animate({
+                                        opacity: 1
+                                    }, 300);
+                                });
+                                //phân trang
+
                             });
 
                             function checkHeart(like) {

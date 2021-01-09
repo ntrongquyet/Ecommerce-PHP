@@ -12,6 +12,39 @@ body {
 }
 
 
+/* #region Pagegin */
+
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+    z-index: 3;
+    color: #fff !important;
+    background-color: #2F323A !important;
+    border-color: #fff !important;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff !important;
+    background-color: #4CCEE8 !important;
+    border-color: #949494 !important;
+}
+
+.page-link {
+    color: #fff !important;
+    background-color: #212529 !important;
+    border-color: #6d6d6d !important;
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}
+
+
+/* #endregion */
+
+
 /* #region Purchase */
 
 .table-responsive {

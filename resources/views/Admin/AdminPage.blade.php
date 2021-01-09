@@ -5,19 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url('/style/carousel.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('/style/detailProductStyle.css') }}" />
+
     <link rel="stylesheet" type="text/css" href="{{ url('/style/main.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('/style/adminStyle.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/style/Admin/adminStyle.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese"
-        rel="stylesheet">
+   
     <script src="https://kit.fontawesome.com/28e407cbaa.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
@@ -27,6 +23,8 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <!--#endregion -->
+
+    {{-- <script src="{{ url('/js/jquery.table2excel.js') }}"></script> --}}
 
     <!-- nhan -->
 
