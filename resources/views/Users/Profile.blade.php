@@ -112,27 +112,30 @@ $(document).ready(function() {
         var rowsShown = 9;
         var rowsTotal = $('#like-product #list-product').length;
         var numPages = rowsTotal / rowsShown;
-        for (i = 0; i < numPages; i++) {
-            var pageNum = i + 1;
-            $('#nav').append(
-                '<li class="page-item"><a class="page-link" rel="' +
-                i + '">' + pageNum + '</a></li> ');
+        if(numPages > 1)
+        {
+            for (i = 0; i < numPages; i++) {
+                var pageNum = i + 1;
+                $('#nav').append(
+                    '<li class="page-item"><a class="page-link" rel="' +
+                    i + '">' + pageNum + '</a></li> ');
+            }
+            $('#like-product #list-product').hide();
+            $('#like-product #list-product').slice(0, rowsShown).show();
+            $('#nav a:first').addClass('active');
+            $('#nav a').bind('click', function() {
+                $('#nav a').removeClass('active');
+                $(this).addClass('active');
+                var currPage = $(this).attr('rel');
+                var startItem = currPage * rowsShown;
+                var endItem = startItem + rowsShown;
+                $('#like-product #list-product').css('opacity', '0.0').hide().slice(
+                    startItem, endItem).
+                css('display', 'table-row').animate({
+                    opacity: 1
+                }, 300);
+            });
         }
-        $('#like-product #list-product').hide();
-        $('#like-product #list-product').slice(0, rowsShown).show();
-        $('#nav a:first').addClass('active');
-        $('#nav a').bind('click', function() {
-            $('#nav a').removeClass('active');
-            $(this).addClass('active');
-            var currPage = $(this).attr('rel');
-            var startItem = currPage * rowsShown;
-            var endItem = startItem + rowsShown;
-            $('#like-product #list-product').css('opacity', '0.0').hide().slice(
-                startItem, endItem).
-            css('display', 'table-row').animate({
-                opacity: 1
-            }, 300);
-        });
         //phân trang
 
 });
