@@ -118,9 +118,9 @@
     <div class="section-title">
         <h2 class="title-all-product">Tất cả sản phẩm</h2>
     </div>
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center" id="all-product">
         @foreach($productList as $product)
-        <div class="col-md-4">
+        <div class="col-md-4" id="list-img">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
@@ -146,11 +146,6 @@
     </div>
 </div>
 
-</div>
-<div class="row mt-2">
-    <nav aria-label="Page navigation example" style="margin: 0 auto">
-        {{ $productList->links() }}
-    </nav>
 </div>
 @endif
 
@@ -225,6 +220,7 @@
 </div>
 </div>
 </div>
+<<<<<<< HEAD
 @endif
 
 <script type="text/javascript">
@@ -250,7 +246,36 @@
                     }
                 })
 
-            })
+            });
+
+         //phân trang
+         $('#all-product').after(
+            '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+            );
+        var rowsShown = 9;
+        var rowsTotal = $('#all-product #list-img').length;
+        var numPages = rowsTotal / rowsShown;
+        for (i = 0; i < numPages; i++) {
+            var pageNum = i + 1;
+            $('#nav').append(
+                '<li class="page-item"><a class="page-link" href="#" rel="' +
+                i + '">' + pageNum + '</a></li> ');
+        }
+        $('#all-product #list-img').hide();
+        $('#all-product #list-img').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function() {
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#all-product #list-img').css('opacity', '0.0').hide().slice(
+                startItem, endItem).
+            css('display', 'table-row').animate({
+                opacity: 1
+            }, 300);
         });
+    });
 </script>
 @endsection

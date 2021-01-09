@@ -12,8 +12,6 @@ use Darryldecode\Cart\Cart as CartCart;
 
 class PageController extends Controller
 {
-    private $limit = 9; //số sản phẩm/1 trang
-    private $limitComment = 5; //số lượng comment/1 trang
     public function index()
     {
         $categories = DB::table('Categories')->get();
@@ -52,8 +50,8 @@ class PageController extends Controller
             ->take(10)
             ->get();
 
-        // phân trang
-        $products = DB::table('Products')->paginate($this->limit);
+        
+        $products = DB::table('Products')->get();
 
         return view('index', [
             'categoryList' => $categories,
@@ -85,7 +83,7 @@ class PageController extends Controller
             ->join('users', 'users.id', '=', 'id_user')
             ->orderBy('Comments.id_comment', 'desc')
             ->where('id_product', '=', $idProduct)
-            ->paginate($this->limitComment);
+            ->get();
 
         // Lấy thông tin khách hàng
         $user  = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
@@ -182,34 +180,6 @@ class PageController extends Controller
         return view("frontend.Products.search", ['listProduct' => $listProduct]);
     }
 
-    // public function CalculatePagingInfo_search($currentPage)
-    // {
-    //     $totalProduct = count($products);
-
-    //     $totalPage = ceil($totalProduct / $this->limit);
-
-    //     if($currentPage > $totalPage)
-    //     {
-    //         $currentPage = $totalPage;
-    //     }
-    //     else if($currentPage < 1)
-    //     {
-    //         $currentPage = 1;
-    //     }
-
-    //     $start = ($currentPage - 1) * $this->limit;
-
-    //     $result = DB::table('Products')
-    //     ->skip($start)
-    //     ->take($this->limit)
-    //     ->get();
-
-    //     return view('index',[
-    //         'categoryList' => $categories,
-    //         'productList' =>  $products,
-    //         'topSaleProduct' => $topSaleProduct
-    //     ]);
-    // }
     public function insertProduct()
     {
         $categories = DB::table('Categories')->get();

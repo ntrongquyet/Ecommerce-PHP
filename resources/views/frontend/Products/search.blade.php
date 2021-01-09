@@ -9,9 +9,9 @@
     @if(count($listProduct) == 0)
     không tìm thấy sản phẩm
     @else
-    <div class="row justify-content-md-center"  id="data">
+    <div class="row justify-content-md-center"  id="search">
         @foreach($listProduct as $product)
-        <div class="col-md-4">
+        <div class="col-md-4" id="img-search">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}"
                     class="img-wrap" data-abc="true">
                     <img src="{{url('/image/products')}}/{{$product->avatar}}"></a>
@@ -43,11 +43,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
         //phân trang
-        $('#data').after(
-            '<nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+        $('#search').after(
+            '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
             );
-        var rowsShown = 4;
-        var rowsTotal = $('#data figure').length;
+        var rowsShown = 6;
+        var rowsTotal = $('#search #img-search').length;
         var numPages = rowsTotal / rowsShown;
         for (i = 0; i < numPages; i++) {
             var pageNum = i + 1;
@@ -55,8 +55,8 @@ $(document).ready(function() {
                 '<li class="page-item"><a class="page-link" href="#" rel="' +
                 i + '">' + pageNum + '</a></li> ');
         }
-        $('#data figure').hide();
-        $('#data figure').slice(0, rowsShown).show();
+        $('#search #img-search').hide();
+        $('#search #img-search').slice(0, rowsShown).show();
         $('#nav a:first').addClass('active');
         $('#nav a').bind('click', function() {
             $('#nav a').removeClass('active');
@@ -64,7 +64,7 @@ $(document).ready(function() {
             var currPage = $(this).attr('rel');
             var startItem = currPage * rowsShown;
             var endItem = startItem + rowsShown;
-            $('#data figure').css('opacity', '0.0').hide().slice(
+            $('#search #img-search').css('opacity', '0.0').hide().slice(
                 startItem, endItem).
             css('display', 'table-row').animate({
                 opacity: 1

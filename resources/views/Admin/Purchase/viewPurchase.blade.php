@@ -51,7 +51,7 @@
     @endisset
 
     <div class="my-table">
-        <table class="table table-dark table-hover ">
+        <table class="table table-dark table-hover " id="data">
             <thead>
                 <tr>
                     <th>Mã đơn hàng</th>
@@ -92,33 +92,56 @@
         </table>
 
     </div>
-    <div class="row mt-2">
-        <nav aria-label="Page navigation example pagination-secondary" style="margin: 0 auto">
-            {{ $listPurchases->links() }}
-        </nav>
-    </div>
 </div>
 <script type="text/javascript">
-        $(document).ready(function() {
-            $('.changeStatus').on('change', function() {
-                var id = $(this).closest('tr').attr('id');
-                var value = $(this).val();
-                console.log(id, value);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('ajax.changeStatus') }}",
-                    data: {
-                        id: id,
-                        value: value
-                    },
-                })
-
+    $(document).ready(function() {
+        $('.changeStatus').on('change', function() {
+            var id = $(this).closest('tr').attr('id');
+            var value = $(this).val();
+            console.log(id, value);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('ajax.changeStatus') }}",
+                data: {
+                    id: id,
+                    value: value
+                }
             })
+        })
+        //phân trang
+        $('#data').after(
+            '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
+        );
+        var rowsShown = 5;
+        var rowsTotal = $('#data tbody tr').length;
+        var numPages = rowsTotal / rowsShown;
+        for (i = 0; i < numPages; i++) {
+            var pageNum = i + 1;
+            $('#nav').append(
+                '<li class="page-item"><a class="page-link" href="#" rel="' +
+                i + '">' + pageNum + '</a></li> ');
+        }
+        $('#data tbody tr').hide();
+        $('#data tbody tr').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function() {
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#data tbody tr').css('opacity', '0.0').hide().slice(
+                startItem, endItem).
+            css('display', 'table-row').animate({
+                opacity: 1
+            }, 300);
         });
-    </script>
+        //phân trang
+    });
+</script>
 @endsection
