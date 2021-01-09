@@ -6,32 +6,6 @@ body {
     overflow-x: hidden;
 }
 /* NAVBAR */
-.col-search{
-    margin: auto auto;
-}
-.row-nav .col-account{
-    margin: auto auto;
-}
-.nav-login{
-    float: right;
-    display: flex;
-    margin: auto 0px;
-}
-.nav-login li{
-    margin-left: 20px;
-}
-.nav-login .nav-link-content{
-    float: right;
-    display: block;
-    color: #fff;
-    margin-top: 5px;
-    margin-left: 10px;
-}
-.col-price{
-    display: flex;
-    font-size: 1em;
-    margin: auto auto;
-}
 .nav-link-price{
     float: right;
     margin-top: 5px;
@@ -42,15 +16,32 @@ body {
     background-color: transparent !important;
     border-color: transparent !important;
 }
-.navbar{
-    padding: 10px 0px !important;
-    margin: 0px 0px !important;
-}
 .container-fluid{
     padding: 0px 0px !important;
 }
 .row-nav{
     padding: 10px 0px;
+}
+.navbar-light .navbar-toggler-icon{
+    background-image: url('/image/icon/menu.png') !important;
+}
+.navbar-light .navbar-toggler{
+    border-color: rgba(255,255,255,0.5) !important;
+}
+.navbar-light .navbar-toggler:focus{
+    box-shadow: transparent !important;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: #ffffff !important;
+}.navbar-collapse{
+    width: 20% !important;
+}
+.navbar{
+    background-image: url('/image/background/Background-44.png');
+    background-size: cover;
+    padding-right: 20px !important ;
+    padding-left: 20px !important;
+    margin: auto;
 }
 .col-12-nav{
     background-image: url('/image/background/Background-44.png');
@@ -68,9 +59,9 @@ body {
 .img-invoice{
     color: #817b7b;
 }
-.login-register-icon{
+/* .login-register-icon{
     width: auto;
-}
+} */
 /* Menu */
 .icon-menu{
     float: left;
@@ -107,8 +98,24 @@ body {
     justify-content: center;
     padding: .8rem;
  }
- 
-
+ .form-search-input-code{
+     width: auto !important;
+ }
+ .btn-sub{
+     position: absolute !important;
+     right: 1rem !important;
+     opacity: .6 !important;
+     display: block !important;
+ }
+ /* #region REPONSIVE */
+ @media (max-width: 1023px) {
+    .btn-sub{
+        position: absolute !important;
+        right: 0 !important;
+        opacity: .6 !important;
+        display: block !important;
+    }
+ }
  @media screen and (min-width: 1024px) {
 
     .menu-item:not(:first-child) {
@@ -127,7 +134,7 @@ body {
        display: none;
        z-index: 100;
     }
- 
+    
     .menu-item:not(:last-child) {
        border-bottom: 1px solid #eee;
     }
@@ -138,7 +145,9 @@ body {
        align-items: center;
     }
  }
-/*  */
+/*=================================== */
+/*=================================== */
+/* #endregion */
 /* #region SECTION PRODUCT*/
 
 .section-main{
@@ -800,8 +809,7 @@ ul {
     background-image: url('/image/background/Background-44.png');
     background-size: cover;
     height:200px;
-   
-    margin-bottom: 0;
+    display: fixed;   
     color: #FFFFFF;
 }
 .container-footer .col-3{

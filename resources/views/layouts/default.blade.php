@@ -21,7 +21,6 @@
     <script src="https://kit.fontawesome.com/28e407cbaa.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-
     <!--#region Datepicker libary -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
@@ -36,87 +35,83 @@
 <body class="position-relative">
 
     @section('sidebar')
-<div class="col-12-nav">
-    <div class="col-12">
-        <div class="row row-nav"> 
-            <div class="col-md-.5">
-                <a class="navbar-brand" href="/">
-                    <img class="img-nav"
-                        src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-                        alt="Girl in a jacket" width="50px" height="auto"></li>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">
+            <img class="img-nav" src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
+            alt="Girl in a jacket" width="50px" height="auto"></li>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2" action="/search" method="GET" role="form">
+                {{ csrf_field() }}
+                <input class="form-control mr-sm-2" name="keyword" type="search" 
+                placeholder="Search" aria-label="Search">
+                <button class="btn btn btn-light my-2 my-sm-0" type="submit">Tìm kiếm</button>
+            </form>
+          <ul class="navbar-nav ml-lg-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">
+                  <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            @if (session()->has('user'))
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
+                        <div class="nav-link-price">Admin Dashboard</div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a href="/profile/{{session()->get('user')}}" class="nav-link">
+                    <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
+                    <div class="nav-link-price">Tôi</div>
                 </a>
-            </div>
-            <div class="col-3 col-search">
-                <div class="form-search-nav">
-                    <form class="form-inline my-2 my-lg-0" action="/search" method="GET" role="form">
-                        {{ csrf_field() }}
-                        <input class="form-control mr-sm-2" name="keyword" type="text" style="min-width: 15em;"
-                            placeholder="Tìm kiếm sản phẩm">
-                        <button class="btn btn-outline-none my-2 my-sm-0"
-                        style="margin-left: -15px; background: #b2b2b2;  border: solid 1px #b2b2b2; "
-                        type="submit">Tìm kiếm</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-4.5 col-account">
-                <div class="login-register-icon" id="collapsibleNavId">
-                    <ul class="nav-login">
-                        <li class="nav-item-active">
-                            <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-                        </li>
-                        @if (session()->has('user'))
-                        <li class="nav-item-account">
-                            <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                            <a class="nav-link-content" href="#">Admin Dashboard</a>
-                        </li> 
-                        <li class="nav-item-account">
-                            <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                            <a class="nav-link-content" href="/profile/{{session()->get('user')}}">Tôi</a>
-                        </li>   
-                        <li class="nav-item-account">
-                            <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
-                            <a class="nav-link-content" href="/Logout">Đăng xuất</a>
-                        </li>
-                        @else
-                        <li class="nav-item-account">
-                            <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
-                            <a class="nav-link-content" href="/login">Đăng nhập</a>
-                        </li>
-                        <li class="nav-item-account">
-                            <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
-                            <a class="nav-link-content" href="/Register">Đăng kí</a>
-                        </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-            <div class="col-3 col-price">
-                <a href="/product/view/cart" type="button" class="btn btn-danger btn-outline">
+                </li>
+                <li class="nav-item">
+                    <a href="/Logout" class="nav-link">
+                        <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
+                        <div class="nav-link-price">Đăng xuất</div>
+                    </a>
+                </li>
+              @else
+              <li class="nav-item">
+                <a href="/login" class="nav-link">
+                    <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
+                    <div class="nav-link-price">Đăng nhập</div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/Register" class="nav-link">
+                    <img src="{{url('/image/icon/bD1K2MI.png')}}" width="30px" height="auto" alt="user">
+                    <div class="nav-link-price">Đăng kí</div>
+                </a>
+              </li>
+            @endif
+            <li class="nav-item">
+                <a href="/product/view/cart" type="button" class="nav-link">
                     <img src="{{url('/image/icon/xpO3mPl.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Giỏ hàng</div>
                 </a>
-                <a href="/product/view/cart" type="button" class="btn btn-danger">
+            </li>
+            <li class="nav-item">
+                <a href="/product/view/cart" type="button" class="nav-link">
                     <img class="img-invoice" src="{{url('/image/icon/invoice.png')}}" width="30px" height="auto" alt="user">
                     <div class="nav-link-price">Lịch sử mua hàng</div>
                 </a>
-            </div>
-        </div> 
-    </div>
-</div>
+            </li>
+          </ul>   
+        </div>
+      </nav>
     @show
-    
     <div class="container-fluid">
         @yield('content')
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha383-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <!-- nhan -->
     <script src="{{ url('/js/likeProduct.js') }}"></script>
@@ -128,24 +123,5 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
-    <footer class="container-footer">
-        <div class="col-9">
-            <div class="row">
-                <div class="col-3">
-                    <div class="content-main">Thông tin nhóm</div>
-                    <div class="content">18600011 - Nguyễn Trọng Quyết</div>
-                    <div class="content">18600014 - Ngô Tất Tố</div>
-                    <div class="content">18600038 - Phạm Phong Phú Cường</div>
-                    <div class="content">18600190 - Mai Thanh Nhân</div>
-                </div>
-                <div class="col-3">
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam molestiae laboriosam soluta repellendus asperiores fuga eligendi corrupti praesentium? Sit, inventore iusto at molestiae voluptatibus veritatis minima quidem quam quasi.   
-                </div>
-                <div class="col-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus dicta autem rerum, enim alias, illum ratione quaerat velit voluptas vitae non amet esse, voluptatum aliquid placeat fugiat earum. Nobis.
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
