@@ -120,9 +120,25 @@
             <div class="row align-items-center">
                 <div class="col-9">
                     <div class="row">
-                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
-                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
-                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
+                        <div class="col-3">
+                            <span><strong>Thông tin sinh viên</strong></span>
+                            <p>1860011 - Nguyễn Trọng Quyết</p>
+                            <p>1860014 - Ngô Tất Tố</p>
+                            <p>1860038 - Phạm Phong Phú Cường</p>
+                            <p>1860190 - Mai Thanh Nhân</p>
+                        </div>
+                        <div class="col-1">    
+                        </div>
+                        <div class="col-3"> 
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, perspiciatis. Ipsa, unde numquam fugiat id illo quisquam saepe blanditiis facere cum, quae odit necessitatibus atque quod veritatis nihil earum distinctio!   
+                        </div>
+                        <div class="col-1">    
+                        </div>
+                        <div class="col-1">    
+                        </div>
+                        <div class="col-3">  
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero quisquam ex excepturi voluptatem veritatis voluptatibus. Iure cum dicta quas id harum accusamus dignissimos quaerat, animi omnis libero eveniet esse ducimus! 
+                        </div>
                     </div>
                 </div>
             </div>
