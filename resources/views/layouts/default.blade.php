@@ -41,15 +41,15 @@
         </a>
         <form class="form-inline my-2" action="/search" method="GET" role="form">
             {{ csrf_field() }}
-            <input class="form-control mr-sm-2" name="keyword" type="search" 
+            <input class="form-control mr-sm-2" name="keyword" type="search"
             placeholder="Search" aria-label="Search">
             <button class="btn btn btn-light my-2 my-sm-0" type="submit">Tìm kiếm</button>
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>  
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
+
           <ul class="navbar-nav ml-lg-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">
@@ -107,7 +107,7 @@
 
     <!-- nhan -->
     <script src="{{ url('/js/likeProduct.js') }}"></script>
-    <script src="{{ url('/js/carousel.js') }}"></script>
+    <script src="{{ url('/JS/dist/carousel.js') }}"></script>
     <script src="{{ url('/js/scriptAdmin.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
@@ -120,9 +120,25 @@
             <div class="row align-items-center">
                 <div class="col-9">
                     <div class="row">
-                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
-                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
-                        <div class="col-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam molestiae accusamus incidunt quae nesciunt, eius accusantium esse, minus doloremque quisquam dolor laborum, odio libero iusto quis error! Adipisci, deserunt ad?</div>
+                        <div class="col-3">
+                            <span><strong>Thông tin sinh viên</strong></span>
+                            <p>1860011 - Nguyễn Trọng Quyết</p>
+                            <p>1860014 - Ngô Tất Tố</p>
+                            <p>1860038 - Phạm Phong Phú Cường</p>
+                            <p>1860190 - Mai Thanh Nhân</p>
+                        </div>
+                        <div class="col-1">    
+                        </div>
+                        <div class="col-3"> 
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, perspiciatis. Ipsa, unde numquam fugiat id illo quisquam saepe blanditiis facere cum, quae odit necessitatibus atque quod veritatis nihil earum distinctio!   
+                        </div>
+                        <div class="col-1">    
+                        </div>
+                        <div class="col-1">    
+                        </div>
+                        <div class="col-3">  
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero quisquam ex excepturi voluptatem veritatis voluptatibus. Iure cum dicta quas id harum accusamus dignissimos quaerat, animi omnis libero eveniet esse ducimus! 
+                        </div>
                     </div>
                 </div>
             </div>
