@@ -41,15 +41,15 @@
         </a>
         <form class="form-inline my-2" action="/search" method="GET" role="form">
             {{ csrf_field() }}
-            <input class="form-control mr-sm-2" name="keyword" type="search" 
+            <input class="form-control mr-sm-2" name="keyword" type="search"
             placeholder="Search" aria-label="Search">
             <button class="btn btn btn-light my-2 my-sm-0" type="submit">Tìm kiếm</button>
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>  
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
+
           <ul class="navbar-nav ml-lg-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">
@@ -107,7 +107,7 @@
 
     <!-- nhan -->
     <script src="{{ url('/js/likeProduct.js') }}"></script>
-    <script src="{{ url('/js/carousel.js') }}"></script>
+    <script src="{{ url('dist/js/carousel.js') }}"></script>
     <script src="{{ url('/js/scriptAdmin.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
