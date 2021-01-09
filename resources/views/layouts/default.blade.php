@@ -1,4 +1,3 @@
-<html>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +94,7 @@
                      <div class="nav-link-price">Lịch sử mua hàng</div>
                 </a>
             </li>
-          </ul>   
+          </ul>
         </div>
       </nav>
     @show
