@@ -98,7 +98,7 @@
                             <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}} VNĐ</span> <br>
                                 <small class="text-success">Free shipping</small> </div>
                         </div>
-                        <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
+                        <p class="btn btn-primary float-right btn-price" data-key="{{$product->id_product}}" data-abc="true"> Mua ngay </p>
                     </figure>
                 </div>
                 @endforeach
@@ -135,8 +135,8 @@
                     <div class="price-wrap"> <span class="price h5">{{number_format($product->price, 0, '', ',')}}
                             VNĐ</span> <br> <small class="text-success">Free shipping</small> </div>
                 </div>
-                <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay
-                    </a>
+                <p class="btn btn-primary float-right btn-price" data-key="{{$product->id_product}}" data-abc="true"> Mua ngay </p>
+
             </figure>
         </div>
         @endforeach
@@ -180,7 +180,7 @@
                             VNĐ</span> <br> <small class="text-success">Free shipping</small>
                         </div>
                 </div>
-                <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
+                <p class="btn btn-primary float-right btn-price" data-key="{{$product->id_product}}" data-abc="true"> Mua ngay </p>
             </figure>
         </div>
         @endforeach
@@ -216,7 +216,7 @@
                             VNĐ</span> <br> <small class="text-success">Free shipping</small>
                         </div>
                     </div>
-                      <a href="product/addToCart/{{$product->id_product}}" class="btn btn-primary float-right btn-price" data-abc="true"> Mua ngay </a>
+                      <p class="btn btn-primary float-right btn-price" data-key="{{$product->id_product}}" data-abc="true"> Mua ngay </p>
             </figure>
         </div>
         @endforeach
@@ -225,14 +225,32 @@
 </div>
 </div>
 </div>
-<script>
-    var msg = '{{Session::get('
-    jsAlert ')}}';
-    var exist = '{{Session::has('
-    jsAlert ')}}';
-    if (exist) {
-        alert(msg);
-    }
+@endif
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('.btn-price').on('click', function() {
+                var id = $(this).data('key');
+                var quantity = 0;
+                console.log(id, quantity);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('addToCart') }}",
+                    data: {
+                        id: id,
+                        quantity: quantity
+                    },
+                    success: function(response) {
+                        alert(response.msg);
+                    }
+                })
+
+            })
+        });
 </script>
-    @endif
 @endsection

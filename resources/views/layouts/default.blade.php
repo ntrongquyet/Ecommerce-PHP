@@ -1,7 +1,5 @@
-<html>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -38,7 +36,7 @@
     @section('sidebar')
 <div class="col-12-nav">
     <div class="col-12">
-        <div class="row row-nav"> 
+        <div class="row row-nav">
             <div class="col-md-.5">
                 <a class="navbar-brand" href="/">
                     <img class="img-nav"
@@ -68,11 +66,11 @@
                         <li class="nav-item-account">
                             <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                             <a class="nav-link-content" href="#">Admin Dashboard</a>
-                        </li> 
+                        </li>
                         <li class="nav-item-account">
                             <img src="{{url('/image/icon/CHl3pf0.png')}}" width="30px" height="auto" alt="user">
                             <a class="nav-link-content" href="/profile/{{session()->get('user')}}">Tôi</a>
-                        </li>   
+                        </li>
                         <li class="nav-item-account">
                             <img src="{{url('/image/icon/logout.png')}}" width="30px" height="auto" alt="user">
                             <a class="nav-link-content" href="/Logout">Đăng xuất</a>
@@ -100,11 +98,11 @@
                     <div class="nav-link-price">Lịch sử mua hàng</div>
                 </a>
             </div>
-        </div> 
+        </div>
     </div>
 </div>
     @show
-    
+
     <div class="container-fluid">
         @yield('content')
     </div>
@@ -139,7 +137,7 @@
                     <div class="content">18600190 - Mai Thanh Nhân</div>
                 </div>
                 <div class="col-3">
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam molestiae laboriosam soluta repellendus asperiores fuga eligendi corrupti praesentium? Sit, inventore iusto at molestiae voluptatibus veritatis minima quidem quam quasi.   
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam molestiae laboriosam soluta repellendus asperiores fuga eligendi corrupti praesentium? Sit, inventore iusto at molestiae voluptatibus veritatis minima quidem quam quasi.
                 </div>
                 <div class="col-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus dicta autem rerum, enim alias, illum ratione quaerat velit voluptas vitae non amet esse, voluptatum aliquid placeat fugiat earum. Nobis.

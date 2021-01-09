@@ -301,9 +301,10 @@ class PageController extends Controller
         ]);
     }
 
-    public function themgiohang(Request $res, $idProduct)
+    public function themgiohang(Request $res)
     {
         $data = $res->input();
+        $idProduct = $data['id'];
         $product = DB::table('Products')
             ->where('id_product', '=', $idProduct)
             ->get()->first();
@@ -345,7 +346,7 @@ class PageController extends Controller
         }
 
 
-        return redirect('product/view/cart')->with('jsAlert', $msg);
+        return response(['msg'=>'Thêm sản phẩm thành công']);
     }
     public function xoasanpham($idProduct)
     {
@@ -364,11 +365,11 @@ class PageController extends Controller
                 'quantity' => -1, // lấy số lượng hiện tại trong giỏ hàng trừ đi 1
             ));
         }
-        return redirect()->back();
-    }
-    public function tangsanpham($idProduct)
+        return response(['msg'=>'Post deleted','cart'=>Cart::getContent()]);    }
+    public function tangsanpham(Request $res)
     {
-        $msg = "";
+        $data = $res->input();
+        $idProduct = $data['id'];
         $itemDB = DB::table("Products")->where("id_product", "=", $idProduct)->get()->first();
 
 
