@@ -50,7 +50,7 @@ class PageController extends Controller
             ->take(10)
             ->get();
 
-        
+
         $products = DB::table('Products')->get();
 
         return view('index', [
@@ -284,7 +284,7 @@ class PageController extends Controller
                 $qtt = $data['quantity'];
             }
         }
-        $msg = "Thêm sản phẩm thành công";
+        $msg = "Thêm sản phẩm thất bại";
         $item = Cart::get($idProduct);
         if ($item != null && ($item->quantity >= $product->quantity || $item->quantity + $qtt >= $product->quantity)) {
             $qtt = $product->quantity;
@@ -302,6 +302,8 @@ class PageController extends Controller
                     'cat' => $product->id_Cat
                 ]
             ));
+            $msg = "Thêm sản phẩm thành công";
+
         } else {
             Cart::add(array(
                 'id'    => $idProduct,
@@ -313,10 +315,12 @@ class PageController extends Controller
                     'cat' => $product->id_Cat,
                 ]
             ));
+            $msg = "Thêm sản phẩm thành công";
+
         }
 
 
-        return response(['msg'=>'Thêm sản phẩm thành công']);
+        return response(['msg'=>$msg]);
     }
     public function xoasanpham($idProduct)
     {
