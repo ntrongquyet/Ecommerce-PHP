@@ -43,21 +43,22 @@ class ForgotController extends Controller
             if($email !== null)
             {
                 try{
-                    $newPassword = strtoupper(bin2hex(random_bytes(4)));
+                    $code = strtoupper(bin2hex(random_bytes(4)));
+                    $hashPassword = password_hash($code, PASSWORD_DEFAULT);
                     $details = [
-                        'title' => "Mật khẩu mới của bạn",
-                        'newpassword' => "$newPassword"
+                        'title' => "Reset tài khoản",
+                        'code' => $code,
+                        'link' => "http://127.0.0.1:8000/ResetPassword?emailreset=$email->email"
                     ];
     
                     \Mail::to($data['email'])->send(new \App\Mail\MyTestMail($details));
     
-                    //lưu mật khẩu mới vào database
-                    $hashPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                    //lưu code thành mật khẩu tạm thời
                     DB::table('users')
                     ->where('email', $data['email'])
                     ->update(['password' => $hashPassword]);
     
-                    return redirect('Forgot')->with('status',"Mã khôi phục đã được gửi đến {$data['email']}");
+                    return redirect('Forgot')->with('status',"Mã reset tài khoản đã được gửi đến {$data['email']}");
     
                 }catch(Exception $e){
                     return redirect('Forgot')->with('failed',"operation failed");
@@ -68,5 +69,63 @@ class ForgotController extends Controller
                 return redirect('Forgot')->with('status',"{$data['email']} chưa đăng ký tài khoản");
             }
         }
+    }
+
+    public function reset(Request $res)
+    {
+        $email = $res->emailreset;
+        return view('Users.ResetPassword')->with(['email' => $email]);
+    }
+
+    public function resetAccount(Request $res)
+    {
+        $rule = [
+            'code' => 'required',
+            'pwd' => 'required|string|min:4|max:32',
+            'pwd_confirm' => 'required|string|min:4|max:255|required_with:pwd|same:pwd',
+        ];
+        $customMessage = [
+            // code
+            'code.required' => ':attribute không được để trống',
+            // Mật khẩu
+            'pwd.required' => ':attribute không được để trống',
+            'pwd.min' => ':attribute tối thiểu 4 kí tự',
+            'pwd.max' => ':attribute tối đa 32 kí tự',
+            // Mật khẩu xác nhận
+            'pwd_confirm.required' => ':attribute không được để trống',
+            'pwd_confirm.min' => ':attribute tối thiểu 4 kí tự',
+            'pwd_confirm.max' => ':attribute tối đa 32 kí tự',
+            'pwd_confirm.required_with' => ':attribute không khớp',
+            'pwd_confirm.same' => ':attribute không khớp',
+        ];
+
+        $validator = Validator::make($res->all(),$rule,$customMessage);
+        if ($validator->fails()){
+			return redirect('ResetPassword')
+			->withInput()
+			->withErrors($validator);
+		}else{
+            $data = $res->input();
+
+            $user = DB::table('users')
+                ->where('email', '=', $data['email'])
+                ->get()->first();
+
+            if (password_verify($data['code'], $user->password))
+            {
+                $newPassword = password_hash($data['pwd'], PASSWORD_DEFAULT);
+                //update lại password
+                DB::table('users')
+                ->where('id', $user->id)
+                ->update(['password' => $newPassword]);
+                return redirect('Active')->with('status',"Reset tài khoản thành công");
+            }else{
+                return redirect('Active')->with('status', "Mã reset không đúng");
+            }
+        }
+
+        
+        
+        
     }
 }

@@ -51,6 +51,11 @@ Route::post('product','CommentController@postComment');
 Route::get('Forgot', 'ForgotController@forgot');
 Route::post('Forgot','ForgotController@forgotPassword');
 
+//reset password
+Route::get('ResetPassword','ForgotController@reset');
+Route::post('ResetPassword','ForgotController@resetAccount');
+
+
 // Thêm sản phẩm
 Route::get('AddProduct','PageController@insertProduct')->middleware('RoleCheck');
 Route::post('AddProduct','PageController@insertProductToDB')->middleware('RoleCheck');
