@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Trang chủ')
+@section('title','Tìm kiếm')
 @section ('sidebar')
 @parent
 @endsection
@@ -11,7 +11,7 @@
     @else
     <div class="row justify-content-md-center"  id="search">
         @foreach($listProduct as $product)
-        <div class="col-md-4">
+        <div class="col-md-4" id="img-search">
             <figure class="card card-product-grid card-lg"> <a href="/{{$product->id_Cat}}/{{$product->id_product}}" class="img-wrap" data-abc="true">
                     <img src="{{$product->avatar}}"></a>
                 <figcaption class="info-wrap">
