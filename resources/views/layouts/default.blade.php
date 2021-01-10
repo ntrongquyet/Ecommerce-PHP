@@ -57,8 +57,8 @@
               </a>
             </li>
             @if (session()->has('user'))
-            <div class="test"> <?php echo session()->get('role'); ?></div>
-                @if (session()->get('role') == 1)
+
+                @if (session()->get('role')==1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ URL::to('/index-admin')}}">
                             <div class="nav-link-price">Admin Dashboard</div>

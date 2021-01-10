@@ -14,7 +14,11 @@ class LoginController extends Controller
     public function loginValid(Request $res)
     {
         $data = $res->input();
+<<<<<<< HEAD
         $user = DB::table('users')->select('username', 'password', 'role')
+=======
+        $user = DB::table('users')
+>>>>>>> 7d73777ba878dcb7550d566980154e2de0988d70
             ->where('username', '=', $data['username'])
             ->orWhere('email', '=', $data['username'])
             ->get()->first();

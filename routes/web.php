@@ -29,6 +29,7 @@ Route::post('login','LoginController@loginValid');
 // Đăng xuất
 Route::get('Logout',function(){
     session()->forget('user');
+    session()->forget('role');
     return redirect('/');
 });
 // Active Mail
