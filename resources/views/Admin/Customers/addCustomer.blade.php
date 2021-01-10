@@ -7,7 +7,7 @@
             <div class="admin-nav--item grid-item--left">
                 <div class="content-item-left">
                     <i class="far fa-list-alt "></i>
-                    <div class="text-header"> THÊM KHÁCH HÀNG MỚI</div>
+                    <div class="text-header"> THÊM NGƯỜI DÙNG MỚI</div>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
           </div>
         </fieldset>
         
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-secondary">Sign in</button>
       </form>
     </div>
 </div>

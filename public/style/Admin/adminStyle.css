@@ -108,6 +108,10 @@ body {
     border-radius: 4px;
 }
 
+.admin-button {
+    background-color: #2F323A !important;
+}
+
 .admin-nav {
     display: grid;
     grid-template-columns: auto auto;
