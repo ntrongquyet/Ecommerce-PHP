@@ -25,7 +25,7 @@
 
             {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
             @endif
-            <form action="/AddProductAdmin" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
+            <form action="addProductAdmin" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="cats" class="col-sm-3 control-label">Loại sản phẩm</label>
