@@ -76,7 +76,7 @@
                 </div>
     
                 <div class="admin-nav--item grid-item--right">
-                    <a class="content-item-right" title="Thêm sản phẩm mới" data-toggle="tooltip">
+                    <a href="{{ URL::to('/add-product-admin') }}" class="content-item-right" title="Thêm sản phẩm mới" data-toggle="tooltip">
                         <i class="fas fa-plus-square"></i>
                     </a>
                 </div>

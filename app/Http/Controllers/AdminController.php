@@ -267,4 +267,84 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+
+    public function add_ProductAdmin(){
+        $categories = DB::table('Categories')->get();
+        $msg = "";
+        return view('Admin.Products.addProductAdmin', [
+            'categoryList' => $categories
+        ])->with('msg', "$msg");
+    }
+    public function insertProductToDB(Request $res)
+    {
+
+        $data = $res->input();
+        $images = array();
+        $rule = [
+            'name' => 'required',
+            'price' => 'required',
+            'about' => 'required',
+            'qty' => 'required',
+            'images' => 'required|min:3'
+
+        ];
+        $customMessage = [
+            // Tên sản phẩm
+            'name.required' => 'Tên sản phẩm không được để trống',
+            // Giá
+            'price.required' => 'Giá sản phẩm không được để trống',
+
+            // Chi tiết
+            'about.required' => 'Chi tiết sản phẩm không được để trống',
+            // Sản phẩm
+            'qty.required' => 'Số lượng sản phẩm không được để trống',
+            // Hình ảnh
+            'images.required' => 'Hình ảnh sản phẩm không được để trống',
+            'images.min' => 'Hình ảnh tối thiểu phải là 3',
+        ];
+        $msg = '';
+        $validator = Validator::make($res->all(), $rule, $customMessage);
+        if ($validator->fails()) {
+            return redirect('AddProductAdmin')
+                ->withInput()
+                ->withErrors($validator);
+        } else {
+            if (count($res->file('images')) >= 3) {
+                DB::table('Products')->insert([
+                    'name' => $data['name'],
+                    'id_Cat' => $data['cats'],
+                    'quantity' => $data['qty'],
+                    'description' => $data['about'],
+                    'price' => $data['price'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+                $lastItem = DB::table('Products')->latest()->first();
+                $id_Product = $lastItem->id_product;
+                foreach ($res->file('images') as $img) {
+                    // Cấp quyền lưu file
+                    Cloudder::upload($img->getRealPath(),"" ,array("width"=>200, "height"=>200));
+
+
+                    $name = Cloudder::getResult();
+                    DB::table('Image')->insert([
+                        'id_product' => $id_Product,
+                        'image' => $name['url'],
+                    ]);
+                }
+                // Cập nhật avatar mặc định cho sản phẩm
+                $images = DB::table('Image')->where('id_product', '=', $id_Product)->get()->first();
+                DB::table('Products')
+                    ->where('id_product', $id_Product)
+                    ->update(['avatar' => $images->image]);
+                $msg = "Thêm sản phẩm thành công";
+            } else {
+                $msg = "Thêm sản phẩm thất bại, số lượng ảnh tối thiểu phải là 3";
+            }
+            $categories = DB::table('Categories')->get();
+            return view('Admin.Products.addProductAdmin', [
+                'categoryList' => $categories
+            ])->with('msg', "$msg");
+        }
+    }
 }
