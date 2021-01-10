@@ -36,8 +36,8 @@
     @section('sidebar')
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/">
-            <img class="img-nav" src="https://upload.wikimedia.org/wikipedia/vi/archive/d/dc/20200125140746%21Vinfast-logo.png"
-            alt="Girl in a jacket" width="50px" height="auto"></li>
+            <img class="img-nav" src="{{url('/image/icon/icon.png')}}"
+            alt="Girl in a jacket" width="40px" height="auto"></li>
         </a>
         <form class="form-inline my-2" action="/search" method="GET" role="form">
             {{ csrf_field() }}
@@ -118,12 +118,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
     <footer>
-        <div class="container-fluid">
+        <div class="container-fluid container-footer">
             <div class="row align-items-center">
-                <div class="col-9">
-                    <div class="row">
+                <div class="col-9 col-footer">
+                    <div class="row row-footer">
                         <div class="col-3">
-                            <span><strong>Thông tin sinh viên</strong></span>
+                            <p class="info-student"><strong>Thông tin sinh viên</strong></p>
                             <p>1860011 - Nguyễn Trọng Quyết</p>
                             <p>1860014 - Ngô Tất Tố</p>
                             <p>1860038 - Phạm Phong Phú Cường</p>
@@ -131,15 +131,20 @@
                         </div>
                         <div class="col-1">
                         </div>
-                        <div class="col-3">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, perspiciatis. Ipsa, unde numquam fugiat id illo quisquam saepe blanditiis facere cum, quae odit necessitatibus atque quod veritatis nihil earum distinctio!
+                        <div class="col-4 col-info-center">
+                            <p class="info-uni"><strong>ĐẠI HỌC KHOA HỌC TỰ NHIÊN</strong></p>
+                            <p class="info-uni"><strong>ĐẠI HỌC QUỐC GIA TPHCM</strong></p>
+                            <p class="info-main-uni">ĐỒ ÁN LẬP TRÌNH WEB</p>
+                            <p class="info-web">Ecommerce-PHP</p>
                         </div>
                         <div class="col-1">
                         </div>
-                        <div class="col-1">
-                        </div>
-                        <div class="col-3">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero quisquam ex excepturi voluptatem veritatis voluptatibus. Iure cum dicta quas id harum accusamus dignissimos quaerat, animi omnis libero eveniet esse ducimus!
+                        <div class="col-3 col-email">
+                            <p class="info-student"><strong>Email liên hệ</strong></p   >
+                            <p>ntrongquyet@gmail.com</p>
+                            <p>tongo0209@gmail.com</p>
+                            <p>phamcuong2751@gmail.com</p>
+                            <p>mainhan.mtn93@gmail.com</p>                        
                         </div>
                     </div>
                 </div>
