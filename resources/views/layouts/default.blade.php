@@ -27,8 +27,8 @@
     <!--#endregion -->
 
     <!-- nhan -->
-
     <title>@yield('title')</title>
+    <link rel = "icon" href = "{{url('/image/icon/icon.ico')}}" type = "image/x-icon"> 
 </head>
 
 <body class="position-relative">
