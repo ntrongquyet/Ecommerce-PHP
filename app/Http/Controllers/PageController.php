@@ -53,12 +53,15 @@ class PageController extends Controller
 
         $products = DB::table('Products')->get();
 
+        $currentUser = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+
         return view('index', [
             'categoryList' => $categories,
             'productList' =>  $products,
             'topSaleProduct' => $topSaleProduct,
             'topNewProduct' => $topNewProduct,
-            'topLikeProduct' => $topLikeProduct
+            'topLikeProduct' => $topLikeProduct,
+            'currentUser' => $currentUser
         ]);
     }
     public function chitietsanpham($idCat, $idProduct)

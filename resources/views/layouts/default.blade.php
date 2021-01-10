@@ -57,11 +57,13 @@
               </a>
             </li>
             @if (session()->has('user'))
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <div class="nav-link-price">Admin Dashboard</div>
-                    </a>
-                </li>
+                @if ($currentUser->role == 1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('/index-admin')}}">
+                            <div class="nav-link-price">Admin Dashboard</div>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                 <a href="/profile/{{session()->get('user')}}" class="nav-link">
                     <div class="nav-link-price">Tôi</div>
