@@ -44,7 +44,7 @@
                     <div class="title">ADMIN <span>DASHBROAD</span></div>
 
                     <ul class="manipulation">
-                        <li><a href="#"><i class="fas icon-nav fa-house-user"></i></a></li>
+                        <li><a href="{{ URL::to('/') }}"><i class="fas icon-nav fa-house-user"></i></a></li>
                         <li><a href="#"><i class="fas icon-nav fa-bell"></i></a></li>
                         <li><a href="#"><i class="fas icon-nav fa-power-off"></i></a></li>
                     </ul>
