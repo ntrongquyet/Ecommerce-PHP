@@ -57,13 +57,13 @@
               </a>
             </li>
             @if (session()->has('user'))
-                {{-- @if ($currentUser->role == 1)
+                @if (session()->get('role')==1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ URL::to('/index-admin')}}">
                             <div class="nav-link-price">Admin Dashboard</div>
                         </a>
                     </li>
-                @endif --}}
+                @endif
                 <li class="nav-item">
                 <a href="/profile/{{session()->get('user')}}" class="nav-link">
                     <div class="nav-link-price">Tôi</div>

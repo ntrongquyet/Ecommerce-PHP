@@ -14,13 +14,14 @@ class LoginController extends Controller
     public function loginValid(Request $res)
     {
         $data = $res->input();
-        $user = DB::table('users')->select('username', 'password')
+        $user = DB::table('users')
             ->where('username', '=', $data['username'])
             ->orWhere('email', '=', $data['username'])
             ->get()->first();
         if ($user !== null) {
             if (password_verify($data['pwd'], $user->password)) {
                 session()->put('user', $user->username);
+                session()->put('role', $user->role);
                 return redirect('/');
 
             } else {

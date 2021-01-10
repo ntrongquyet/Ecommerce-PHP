@@ -59,7 +59,7 @@
                     <div class="col-sm-offset-3 row">
                             @foreach($listImage as $item)
                             <label class="col-sm-2 d-flex flex-column" style="align-items: center;">
-                                <img src="{{url('/image/products')}}/{{$item->image}}">
+                                <img src="{{$item->image}}">
                                 <input  class="text-center mt-2" type="radio" name="image" value="{{$item->image}}" {{($product->avatar == $item->image) ? 'checked' : ''}} >
                             </label>
                             @endforeach
