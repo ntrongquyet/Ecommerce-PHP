@@ -120,7 +120,7 @@
                                         class="fas fa-eye"></i></a>
                                 <a class="manipulation delete" href="{{ route('removeProduct', ['id' => $item->id_product]) }}" title="Xóa" data-toggle="tooltip"><i
                                         class="fas fa-minus-circle "></i></a>
-                                <a class="manipulation edit" href="#" title="Sửa" data-toggle="tooltip"><i
+                                <a class="manipulation edit" href="{{'/product/edit/'{{$item->id_product}}}}" title="Sửa" data-toggle="tooltip"><i
                                         class="fas fa-pen-square"></i></a>
                             </td>
                         </tr>
