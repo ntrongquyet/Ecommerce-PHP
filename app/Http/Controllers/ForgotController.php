@@ -98,7 +98,6 @@ class ForgotController extends Controller
 		}else{
             $data = $res->input();
 
-            var_dump(session()->get('id_reset'));
             $user = DB::table('users')
                 ->where('id', '=', session()->get('id_reset'))
                 ->get()->first();
@@ -114,7 +113,7 @@ class ForgotController extends Controller
                 ->update(['password' => $newPassword]);
                 return redirect('Active')->with('status',"Reset tài khoản thành công");
             }else{
-                return redirect('Active')->with('status', "Link reset không chính xác");
+                return redirect('Active')->with('status', "Link đã hết hạn");
             }
         }
 
