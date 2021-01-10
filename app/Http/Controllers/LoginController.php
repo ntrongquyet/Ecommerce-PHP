@@ -14,7 +14,6 @@ class LoginController extends Controller
     public function loginValid(Request $res)
     {
         $data = $res->input();
-
         $user = DB::table('users')
             ->where('username', '=', $data['username'])
             ->orWhere('email', '=', $data['username'])
