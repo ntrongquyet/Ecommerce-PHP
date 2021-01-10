@@ -12,6 +12,11 @@ use Darryldecode\Cart\Cart as CartCart;
 use Cloudder;
 class PageController extends Controller
 {
+    public function __construct() {
+        $currentUser = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+        return redirect()->back()->with(['currentUser' => $currentUser]);
+        // View::share('currentUser', $currentUser);
+    }
     public function index()
     {
         $categories = DB::table('Categories')->get();
@@ -53,15 +58,14 @@ class PageController extends Controller
 
         $products = DB::table('Products')->get();
 
-        $currentUser = DB::table('users')->where('username', '=', session()->get('user'))->get()->first();
+        
 
         return view('index', [
             'categoryList' => $categories,
             'productList' =>  $products,
             'topSaleProduct' => $topSaleProduct,
             'topNewProduct' => $topNewProduct,
-            'topLikeProduct' => $topLikeProduct,
-            'currentUser' => $currentUser
+            'topLikeProduct' => $topLikeProduct
         ]);
     }
     public function chitietsanpham($idCat, $idProduct)
