@@ -23,13 +23,6 @@
         @endif
         <form action="ResetPassword" method="POST">
             {{ csrf_field() }}
-            <div class="form-group" hidden="true">
-                <input type="text" name="email" <?php if (isset($email)) echo 'value = "' . $email . '"' ?> class="form-control" placeholder="" aria-describedby="helpId">
-            </div>
-            <div class="form-group">
-                <label for="username">Mã reset</label>
-                <input type="text" name="code" class="form-control" placeholder="" aria-describedby="helpId">
-            </div>
             <div class="row">
                 <div class="col-12-md col-6">
                     <div class="form-group">

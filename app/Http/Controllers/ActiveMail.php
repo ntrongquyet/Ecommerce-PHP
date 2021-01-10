@@ -32,4 +32,14 @@ class ActiveMail extends Controller
             }
         }
     }
+
+    public function resetAccount(Request $res)
+    {
+        $id = $res->id;
+        $hashCode = $res->hashCode;
+
+        session()->put('id_reset', $id);
+        session()->put('code_reset', $hashCode);
+        return view('Users.ResetPassword');
+    }
 }

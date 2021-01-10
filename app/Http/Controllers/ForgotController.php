@@ -37,28 +37,23 @@ class ForgotController extends Controller
 		}else{
             $data = $request->input();
 
-            $email = DB::table('users')->select('email')
+            $user = DB::table('users')
                     ->Where('email', '=', $data['email'])
                     ->get()->first();
-            if($email !== null)
+            if($user !== null)
             {
                 try{
-                    $code = strtoupper(bin2hex(random_bytes(4)));
-                    $hashPassword = password_hash($code, PASSWORD_DEFAULT);
+                    // $code = strtoupper(bin2hex(random_bytes(4)));
+                    $hashCode = md5($user->password);
                     $details = [
                         'title' => "Reset tài khoản",
-                        'code' => $code,
-                        'link' => "http://127.0.0.1:8000/ResetPassword?emailreset=$email->email"
+                        'reset' => "",
+                        'link' => "http://127.0.0.1:8000/Reset?id=$user->id&hashCode=$hashCode"
                     ];
     
                     \Mail::to($data['email'])->send(new \App\Mail\MyTestMail($details));
     
-                    //lưu code thành mật khẩu tạm thời
-                    DB::table('users')
-                    ->where('email', $data['email'])
-                    ->update(['password' => $hashPassword]);
-    
-                    return redirect('Forgot')->with('status',"Mã reset tài khoản đã được gửi đến {$data['email']}");
+                    return redirect('Forgot')->with('status',"Link reset tài khoản đã được gửi đến {$data['email']}");
     
                 }catch(Exception $e){
                     return redirect('Forgot')->with('failed',"operation failed");
@@ -73,20 +68,16 @@ class ForgotController extends Controller
 
     public function reset(Request $res)
     {
-        $email = $res->emailreset;
-        return view('Users.ResetPassword')->with(['email' => $email]);
+        return view('Users.ResetPassword');
     }
 
     public function resetAccount(Request $res)
     {
         $rule = [
-            'code' => 'required',
             'pwd' => 'required|string|min:4|max:32',
             'pwd_confirm' => 'required|string|min:4|max:255|required_with:pwd|same:pwd',
         ];
         $customMessage = [
-            // code
-            'code.required' => ':attribute không được để trống',
             // Mật khẩu
             'pwd.required' => ':attribute không được để trống',
             'pwd.min' => ':attribute tối thiểu 4 kí tự',
@@ -107,11 +98,14 @@ class ForgotController extends Controller
 		}else{
             $data = $res->input();
 
+            var_dump(session()->get('id_reset'));
             $user = DB::table('users')
-                ->where('email', '=', $data['email'])
+                ->where('id', '=', session()->get('id_reset'))
                 ->get()->first();
 
-            if (password_verify($data['code'], $user->password))
+            $hashCode = md5($user->password);
+
+            if (session()->get('code_reset') == $hashCode)
             {
                 $newPassword = password_hash($data['pwd'], PASSWORD_DEFAULT);
                 //update lại password
@@ -120,7 +114,7 @@ class ForgotController extends Controller
                 ->update(['password' => $newPassword]);
                 return redirect('Active')->with('status',"Reset tài khoản thành công");
             }else{
-                return redirect('Active')->with('status', "Mã reset không đúng");
+                return redirect('Active')->with('status', "Link reset không chính xác");
             }
         }
 

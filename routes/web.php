@@ -52,6 +52,7 @@ Route::get('Forgot', 'ForgotController@forgot');
 Route::post('Forgot','ForgotController@forgotPassword');
 
 //reset password
+Route::get('Reset','ActiveMail@resetAccount');
 Route::get('ResetPassword','ForgotController@reset');
 Route::post('ResetPassword','ForgotController@resetAccount');
 
