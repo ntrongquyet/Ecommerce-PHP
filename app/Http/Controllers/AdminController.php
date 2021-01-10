@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Cloudder;
 
 class AdminController extends Controller
 {
@@ -23,7 +25,7 @@ class AdminController extends Controller
         ->select('Products.*')
         ->get();
         return view('Admin.Products.viewProductAdmin',[
-            'listProducts' => $listProducts
+            'listProducts' => $listProducts,
         ]);
     } 
 
@@ -347,5 +349,16 @@ class AdminController extends Controller
                 'categoryList' => $categories
             ])->with('msg', "$msg");
         }
+    }
+
+    public function remove($id){
+        DB::table('Products')->where('id_product', '=', $id)->delete();
+        $listProducts = DB::table('Products')
+                        ->select('Products.*')
+                        ->get();
+        return view('Admin.Products.viewProductAdmin',[
+            'listProducts' => $listProducts,
+            'msg' => "xóa thành công",
+        ]);
     }
 }

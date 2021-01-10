@@ -72,9 +72,6 @@ Route::get('product/cart/checkout','PageController@chitietdathang')->middleware(
 Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
 //like sản phẩm
-// Route::get("product/liked/{idProduct}",'PageController@likeProduct')->middleware('Logged');
-// Route::post('ajax/likeProduct','PageController@likeProduct')->name('ajax.likeProduct')->middleware('Logged');
-//
 Route::post('ajax/likeProduct','PageController@likeProduct')->middleware('Logged')->name('ajax.likeProduct');
 
 // Bình luận sản phẩm
@@ -85,6 +82,7 @@ Route::post("product/comment/{id}","PageController@comment");
 Route::get('Admin',function(){
     return view('Admin.indexAdmin');
 });
+
 //index adim
 Route::get('/index-admin', 'AdminController@index_Admin');
 // view customer admin
@@ -94,7 +92,8 @@ Route::get('/add-customer', 'AdminController@add_Customer');
 // product admin
 Route::get('/view-product', 'AdminController@view_Product');
 //add product admin
-Route::get('/add-product-admin', 'AdminController@add_ProductAdmin');
+Route::get('addProductAdmin', 'AdminController@add_ProductAdmin');
+Route::post('addProductAdmin', 'AdminController@insertProductToDB');
 // top 10 product admin
 Route::get('/top-product', 'AdminController@top_Product');
 // view purchase admin
@@ -123,6 +122,5 @@ Route::post('ajax/revenueYear', 'AdminController@revenue_Year')->name('ajax.reve
 Route::get('/product/edit/{id}', 'PageController@getEdit')->name('editProduct')->middleware('RoleCheck');
 Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductDB')->middleware('RoleCheck');
 
-
 // delete
-Route::get('/product/remove/{id}', 'PageController@remove')->name('removeProduct')->middleware('RoleCheck');
+Route::get('/product/remove/{id}', 'AdminController@remove')->name('removeProduct')->middleware('RoleCheck');

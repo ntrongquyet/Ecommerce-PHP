@@ -64,7 +64,7 @@
         }
 
     </style>
-
+<body <?php if(isset($msg)) echo "onload=".'"show_msg()"';?>>
     <div class="user-control">
         <nav class="nav-admin">
             <div class="admin-nav">
@@ -76,13 +76,19 @@
                 </div>
     
                 <div class="admin-nav--item grid-item--right">
-                    <a href="{{ URL::to('/add-product-admin') }}" class="content-item-right" title="Thêm sản phẩm mới" data-toggle="tooltip">
+                    <a href="{{ URL::to('/addProductAdmin') }}" class="content-item-right" title="Thêm sản phẩm mới" data-toggle="tooltip">
                         <i class="fas fa-plus-square"></i>
                     </a>
                 </div>
             </div>
         </nav>
 
+        {{--@if (isset($msg))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ $msg }}
+            </div>
+        @endif--}}
         <div class="my-table">
             <table class="table table-image table-dark table-hover " id="data">
                 <thead>
@@ -122,6 +128,7 @@
             </table>
         </div>
     </div>
+</body>
 
     <script type="text/javascript">
 $(document).ready(function() {
@@ -160,6 +167,11 @@ $(document).ready(function() {
         //phân trang
 
 });
+
+function show_msg()
+{
+    alert("xóa thành công");
+}
 </script>
 
 @endsection

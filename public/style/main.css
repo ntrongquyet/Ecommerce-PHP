@@ -117,6 +117,11 @@ footer .container-fluid{
      opacity: .6 !important;
      display: block !important;
  }
+ /* FOOTER */
+ .container-footer .col-info-center{
+    text-align: center;
+ }
+ /*  */
  /* #region REPONSIVE */
  @media (max-width: 1023px) {
     .btn-sub{
@@ -909,18 +914,36 @@ footer .container-fluid{
 .container-footer{
     background-image: url('/image/background/Background-44.png');
     background-size: cover;
-    height:200px;
+    height:100%;
     display: fixed;   
     color: #FFFFFF;
 }
-.container-footer .col-3{
-    margin: auto;
+.col-footer{
+    margin: 10px auto 0px auto;
 }
-.container-footer .col-3 .content-main{
-    font-weight: 600;
+.container-footer .col-footer .row-footer .info-student{
+    font-size: 1.3rem;
+    margin-bottom: 10px;
 }
-.container-footer .col-3 .content{
-    margin: 10px 0px;
+.container-footer 
+.col-footer 
+.row-footer 
+.col-email{
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.info-uni{
+    font-size: 1.6rem;
+}
+.info-main-uni{
+    font-size: 1.4rem;
+    font-weight:600;
+}
+.info-web{
+    font-size: 1.3rem;
+    font-weight:500;
 }
 /*  */
 p {

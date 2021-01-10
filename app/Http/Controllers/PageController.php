@@ -610,8 +610,5 @@ class PageController extends Controller
             ]);
         }
     }
-    public function remove($id){
-        DB::table('Products')->where('id_product', '=', $id)->delete();
-        return redirect('/');
-    }
+    
 }
