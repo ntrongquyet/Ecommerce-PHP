@@ -89,6 +89,7 @@
                 {{ $msg }}
             </div>
         @endif--}}
+        
         <div class="my-table">
             <table class="table table-image table-dark table-hover " id="data">
                 <thead>

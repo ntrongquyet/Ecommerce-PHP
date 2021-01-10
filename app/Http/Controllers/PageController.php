@@ -483,7 +483,7 @@ class PageController extends Controller
     public function profile($user)
     {
          // Lấy thông tin khách hàng
-         $user_id  = DB::table('users')->where('username', '=', $user)->select('id')->get()->first();
+         $user_id  = DB::table('users')->where('username', '=', $user)->get()->first();
 
         $listPurchases = DB::table('Purchases')
             ->join('users', 'Purchases.id_user', '=', 'users.id')
@@ -501,7 +501,8 @@ class PageController extends Controller
 
         return view('Users.Profile', [
             'listPurchases' => $listPurchases,
-            'likedProducts' => $likedProducts
+            'likedProducts' => $likedProducts,
+            'currentUser' => $user_id
         ]);
     }
 
