@@ -15,7 +15,7 @@
                         <ul class="cart_list" id="cartContent">
                             @foreach($list as $item)
                             <li class="cart_item clearfix" id="{{$item->id}}">
-                                <div class="cart_item_image"><img src="{{url('/image/products')}}/{{$item->attributes->img}}" alt=""></div>
+                                <div class="cart_item_image"><img src="{{$item->attributes->img}}" alt=""></div>
                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-around">
                                     <div class="cart_item_name cart_info_col">
                                         <div class="cart_item_title">Tên SP</div>
