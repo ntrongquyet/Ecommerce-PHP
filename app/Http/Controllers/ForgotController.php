@@ -48,7 +48,7 @@ class ForgotController extends Controller
                     $details = [
                         'title' => "Reset tài khoản",
                         'reset' => "",
-                        'link' => "http://127.0.0.1:8000/Reset?id=$user->id&hashCode=$hashCode"
+                        'link' => "https://ecommerce-18ck.herokuapp.com/Reset?id=$user->id&hashCode=$hashCode"
                     ];
     
                     \Mail::to($data['email'])->send(new \App\Mail\MyTestMail($details));
