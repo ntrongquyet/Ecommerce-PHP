@@ -91,6 +91,8 @@ Route::get('/view-customer', 'AdminController@view_Customer');
 Route::get('/add-customer', 'AdminController@add_Customer');
 // product admin
 Route::get('/view-product', 'AdminController@view_Product');
+//add product admin
+Route::get('/add-product-admin', 'AdminController@add_ProductAdmin');
 // top 10 product admin
 Route::get('/top-product', 'AdminController@top_Product');
 // view purchase admin
