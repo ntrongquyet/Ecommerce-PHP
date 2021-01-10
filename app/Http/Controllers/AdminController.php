@@ -51,6 +51,7 @@ class AdminController extends Controller
 
     public function add_Customer()
     {
+        
         return view('Admin.Customers.addCustomer');
     }
 

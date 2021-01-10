@@ -101,7 +101,7 @@
                         <tr>
                             <th scope="row">{{ $item->id_product }}</th>
                             <td class="w-25">
-                                <img src="{{ url('/image/products') }}/{{ $item->avatar }}" class="img-fluid img-thumbnail"
+                                <img src="{{ $item->avatar }}" class="img-fluid img-thumbnail"
                                     alt="Sheep">
                             </td>
                             <td>{{ $item->name }}</td>

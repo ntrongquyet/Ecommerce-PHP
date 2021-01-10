@@ -14,9 +14,6 @@
 <div class="my-form">
     
     <section class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Thêm sản phẩm</h3>
-        </div>
         <div class="panel-body">
             @if ($msg != "")
             <div class="alert alert-success" role="alert">
@@ -28,12 +25,12 @@
 
             {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
             @endif
-            <form action="/AddProduct" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
+            <form action="/AddProductAdmin" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="cats" class="col-sm-3 control-label">Loại sản phẩm</label>
                     <div class="col-sm-9">
-                        <select name="cats" id="cats">
+                        <select name="cats" id="cats" class="form-control my-background">
                             @foreach($categoryList as $itemCat)
                             <option value="{{$itemCat->id_Cat}}">{{$itemCat->name}}</option>
                             @endforeach
@@ -44,29 +41,29 @@
                 <div class="form-group">
                     <label for="name" class="col-sm-3 control-label">Tên sản phẩm</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Nhập tên sản phẩm">
+                        <input type="text" class="form-control my-background" name="name" id="name" placeholder="Nhập tên sản phẩm">
                     </div>
                 </div> <!-- form-group // -->
                 <div class="form-group">
                     <label for="price" class="col-sm-3 control-label">Giá tiền</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="price" id="price" placeholder="Giá tiền">
+                        <input type="text" class="form-control my-background" name="price" id="price" placeholder="Giá tiền">
                     </div>
                 </div> <!-- form-group // -->
                 <div class="form-group">
                     <label for="about" class="col-sm-3 control-label">Chi tiết sản phẩm</label>
                     <div class="col-sm-9">
-                        <textarea name="about" class="form-control"></textarea>
+                        <textarea name="about" class="form-control my-background"></textarea>
                     </div>
                 </div> <!-- form-group // -->
                 <div class="form-group">
-                    <label for="qty" class="col-sm-3 control-label">Số lượng</label>
+                    <label for="qty" class="col-sm-3 control-label my-background">Số lượng</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" name="qty" id="qty" placeholder="Số lượng">
+                        <input type="number" min="0" class="form-control my-background" name="qty" id="qty" placeholder="Số lượng">
                     </div>
                 </div> <!-- form-group // -->
                 <div class="form-group">
-                    <label for="image" class="col-sm-3 control-label">Hình ảnh</label>
+                    <label for="image" class="col-sm-3 control-label my-background">Hình ảnh</label>
                     <div class="col-sm-9">
                         <input type="file" accept="image/gif, image/jpeg" class="form-control" name="images[]" id="images" multiple>
                     </div>
@@ -74,7 +71,7 @@
                 <hr>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-primary">Thêm</button>
+                        <button type="submit" class="btn btn-secondary admin-button">Thêm</button>
                     </div>
                 </div> <!-- form-group // -->
             </form>

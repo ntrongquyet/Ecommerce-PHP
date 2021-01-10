@@ -12,11 +12,11 @@
                 <div class="preview col-md-6">
                     <div class="preview-pic tab-content">
                         <div class="tab-pane active" id="pic-1"><img
-                                src="{{ url('/image/products') }}/{{ $product->avatar }}" /></div>
+                                src="{{ $product->avatar }}" /></div>
                         @php($counter = 2)
                         @foreach ($imageDetail as $image)
                         <div class="tab-pane" id="pic-{{ $counter }}"><img
-                                src="{{ url('/image/products') }}/{{ $image->image }}" /></div>
+                                src="{{ $image->image }}" /></div>
                         @php($counter = $counter + 1)
 
                         @endforeach
@@ -26,7 +26,7 @@
                         @foreach ($imageDetail as $image)
 
                         <li><a data-target="#pic-{{ $counter }}" data-toggle="tab"><img
-                                    src="{{ url('/image/products') }}/{{ $image->image }}" /></a>
+                                    src="{{ $image->image }}" /></a>
                         </li>
                         @php($counter = $counter + 1)
 
