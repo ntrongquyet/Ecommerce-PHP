@@ -19,6 +19,12 @@ Route::get('404', function(){
     return view('layouts.error');
 });
 
+// Rollback
+
+Route::get('/rollback',function(){
+    return redirect()->back();
+});
+
 // Đăng kí
 Route::get('Register','RegisterController@register');
 Route::post('Register','RegisterController@insertAccount');
@@ -124,3 +130,10 @@ Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductD
 
 // delete
 Route::get('/product/remove/{id}', 'AdminController@remove')->name('removeProduct')->middleware('RoleCheck');
+
+//
+Route::post('thongke', 'AdminController@statistic_Purchase')->name('thongke');
+//Tài khoản chưa kích hoạt
+Route::get('/noActive',function(){
+    return view('layouts.active');
+});

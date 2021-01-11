@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url('/style/carousel.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('/style/detailProductStyle.css') }}" />
@@ -28,7 +27,7 @@
 
     <!-- nhan -->
     <title>@yield('title')</title>
-    <link rel = "icon" href = "{{url('/image/icon/icon.ico')}}" type = "image/x-icon"> 
+    <link rel = "icon" href = "{{url('/image/icon/icon.ico')}}" type = "image/x-icon">
 </head>
 
 <body class="position-relative">
@@ -62,7 +61,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ URL::to('/index-admin')}}">
                             <div class="nav-link-price">Admin Dashboard</div>
-                            
+
                         </a>
                     </li>
                 @endif
@@ -135,7 +134,7 @@
                         </div>
                         <div class="col-4 col-info-center">
                             <img class="img-footer" src="{{url('/image/icon/logo-footer.png')}}"
-                            alt="Girl in a jacket" width="600px" height="auto"></li>                
+                            alt="Girl in a jacket" width="600px" height="auto"></li>
                         </div>
                         <div class="col-1">
                         </div>
@@ -144,7 +143,7 @@
                             <p>ntrongquyet@gmail.com</p>
                             <p>tongo0209@gmail.com</p>
                             <p>phamcuong2751@gmail.com</p>
-                            <p>mainhan.mtn93@gmail.com</p>                        
+                            <p>mainhan.mtn93@gmail.com</p>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Trang chủ')
+@section('title', 'Trang cá nhân')
 @section('sidebar')
     @parent
 @endsection
@@ -135,7 +135,7 @@
                             <img src="{{ $item->avatar }}" class="img-fluid img-thumbnail"
                                 alt="Sheep">
                         </td>
-                        <td>{{ $item->name }}</td>
+                        <td><a href="{{ URL::to('/'.$item->id_Cat.'/'.$item->id_product)}}">{{ $item->name }} </a></td>
                     <td><div class="rating text-right" style="color:red;"> <i class="fas fa-heart"></i>
                         {{ $item->liked }}
                     </div></td>

@@ -227,7 +227,6 @@
             $('.btn-price').on('click', function() {
                 var id = $(this).data('key');
                 var quantity = 0;
-                console.log(id, quantity);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -251,7 +250,6 @@
                 })
 
             });
-
          //phân trang
          $('#all-product').after(
             '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
