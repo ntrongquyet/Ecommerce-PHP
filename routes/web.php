@@ -68,14 +68,14 @@ Route::post('ResetPassword','ForgotController@resetAccount');
 Route::get('AddProduct','PageController@insertProduct')->middleware('RoleCheck');
 Route::post('AddProduct','PageController@insertProductToDB')->middleware('RoleCheck');
 // Giỏ hàng
-Route::post("product/addToCart",'PageController@themgiohang')->middleware('checkout')->name('addToCart');
-Route::get('product/view/cart','PageController@cart')->middleware('checkout');
-Route::get('product/xoa-san-pham/{id}','PageController@xoasanpham')->middleware('checkout');
-Route::post('product/giam-san-pham','PageController@giamsanpham')->middleware('checkout')->name('giamsanpham');
-Route::post('product/tang-san-pham','PageController@tangsanpham')->middleware('checkout')->name('tangsanpham');
+Route::post("product/addToCart",'PageController@themgiohang')->middleware('Logged')->name('addToCart');
+Route::get('product/view/cart','PageController@cart')->middleware('Logged');
+Route::get('product/xoa-san-pham/{id}','PageController@xoasanpham')->middleware('Logged');
+Route::post('product/giam-san-pham','PageController@giamsanpham')->middleware('Logged')->name('giamsanpham');
+Route::post('product/tang-san-pham','PageController@tangsanpham')->middleware('Logged')->name('tangsanpham');
 // Đặt hàng
-Route::get('product/cart/checkout','PageController@chitietdathang')->middleware('checkout');
-Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('checkout');
+Route::get('product/cart/checkout','PageController@chitietdathang')->middleware('Logged');
+Route::post('product/cart/checkout','PageController@thanhtoan')->middleware('Logged');
 
 //like sản phẩm
 Route::post('ajax/likeProduct','PageController@likeProduct')->middleware('Logged')->name('ajax.likeProduct');
@@ -133,7 +133,6 @@ Route::get('/product/remove/{id}', 'AdminController@remove')->name('removeProduc
 
 //
 Route::post('thongke', 'AdminController@statistic_Purchase')->name('thongke');
-
 //Tài khoản chưa kích hoạt
 Route::get('/noActive',function(){
     return view('layouts.active');
