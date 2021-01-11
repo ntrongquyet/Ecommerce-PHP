@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <link rel="stylesheet" type="text/css" href="{{ url('/style/main.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('/style/Admin/adminStyle.css') }}" />
@@ -32,7 +33,7 @@
     <!-- nhan -->
 
     <title>@yield('title')</title>
-    <link rel = "icon" href = "{{url('/image/icon/icon.ico')}}" type = "image/x-icon"> 
+    <link rel = "icon" href = "{{url('/image/icon/icon.ico')}}" type = "image/x-icon">
 </head>
 
 

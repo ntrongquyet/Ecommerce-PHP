@@ -12,7 +12,7 @@
             <div class="admin-nav--item grid-item--left">
                 <div class="content-item-left">
                     <i class="far fa-list-alt "></i>
-                    <div class="text-header"> LỘC CÁC ĐƠN HÀNG</div>
+                    <div class="text-header"> LỌC CÁC ĐƠN HÀNG</div>
                 </div>
             </div>
         </div>

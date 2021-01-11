@@ -43,10 +43,9 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-        'checkout' =>[
+        'Admin' =>[
             \App\Http\Middleware\checkLogin::class,
-            \App\Http\Middleware\checkActive::class,
-            \App\Http\Middleware\checkInfo::class,
+            \App\Http\Middleware\checkRole::class,
 
         ]
     ];

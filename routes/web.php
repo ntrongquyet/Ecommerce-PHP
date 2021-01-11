@@ -87,52 +87,52 @@ Route::post("product/comment/{id}","PageController@comment");
 //Trang admin
 Route::get('Admin',function(){
     return view('Admin.indexAdmin');
-});
+})->middleware('Admin');
 
 //index adim
-Route::get('/index-admin', 'AdminController@index_Admin');
+Route::get('/index-admin', 'AdminController@index_Admin')->middleware('Admin');
 // view customer admin
-Route::get('/view-customer', 'AdminController@view_Customer');
+Route::get('/view-customer', 'AdminController@view_Customer')->middleware('Admin');
 // add customer admin
-Route::get('/add-customer', 'AdminController@add_Customer');
+Route::get('/add-customer', 'AdminController@add_Customer')->middleware('Admin');
 // product admin
-Route::get('/view-product', 'AdminController@view_Product');
+Route::get('/view-product', 'AdminController@view_Product')->middleware('Admin');
 //add product admin
-Route::get('addProductAdmin', 'AdminController@add_ProductAdmin');
-Route::post('addProductAdmin', 'AdminController@insertProductToDB');
+Route::get('addProductAdmin', 'AdminController@add_ProductAdmin')->middleware('Admin');
+Route::post('addProductAdmin', 'AdminController@insertProductToDB')->middleware('Admin');
 // top 10 product admin
-Route::get('/top-product', 'AdminController@top_Product');
+Route::get('/top-product', 'AdminController@top_Product')->middleware('Admin');
 // view purchase admin
 // Route::get('/view-purchase', 'PageController@bill');
-Route::get('/view-purchase', 'AdminController@view_Purchase');
+Route::get('/view-purchase', 'AdminController@view_Purchase')->middleware('Admin');
 //Thay đổi trạng thái đơn hàng
-Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus');
+Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus')->middleware('Admin');
 // view purchase admin
-Route::get('/filter-purchase', 'AdminController@filter_Purchase');
-Route::get('/filter-purchase', 'AdminController@filter_Purchase');
+Route::get('/filter-purchase', 'AdminController@filter_Purchase')->middleware('Admin');
+Route::get('/filter-purchase', 'AdminController@filter_Purchase')->middleware('Admin');
 
 // revenue statistic
-Route::get('/revenue-statistic', 'AdminController@revenue_Statistic');
+Route::get('/revenue-statistic', 'AdminController@revenue_Statistic')->middleware('Admin');
 
 // revenue day
-Route::post('ajax/revenueDay', 'AdminController@revenue_Day')->name('ajax.revenueDay');
+Route::post('ajax/revenueDay', 'AdminController@revenue_Day')->name('ajax.revenueDay')->middleware('Admin');
 // revenue month
-Route::post('ajax/revenueMonth', 'AdminController@revenue_Month')->name('ajax.revenueMonth');
+Route::post('ajax/revenueMonth', 'AdminController@revenue_Month')->name('ajax.revenueMonth')->middleware('Admin');
 // revenue quarter
-Route::post('ajax/revenueQuarter', 'AdminController@revenue_Quarter')->name('ajax.revenueQuarter');
+Route::post('ajax/revenueQuarter', 'AdminController@revenue_Quarter')->name('ajax.revenueQuarter')->middleware('Admin');
 // revenue year
-Route::post('ajax/revenueYear', 'AdminController@revenue_Year')->name('ajax.revenueYear');
+Route::post('ajax/revenueYear', 'AdminController@revenue_Year')->name('ajax.revenueYear')->middleware('Admin');
 
 // edit sản phẩm
 
-Route::get('/product/edit/{id}', 'PageController@getEdit')->name('editProduct')->middleware('RoleCheck');
-Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductDB')->middleware('RoleCheck');
+Route::get('/product/edit/{id}', 'PageController@getEdit')->middleware('Admin')->name('editProduct');
+Route::post('/product/edit/{id}', 'PageController@postEdit')->middleware('Admin')->name('editProductDB');
 
 // delete
-Route::get('/product/remove/{id}', 'AdminController@remove')->name('removeProduct')->middleware('RoleCheck');
+Route::get('/product/remove/{id}', 'AdminController@remove')->middleware('Admin')->name('removeProduct');
 
 //
-Route::post('thongke', 'AdminController@statistic_Purchase')->name('thongke');
+Route::post('thongke', 'AdminController@statistic_Purchase')->middleware('Admin')->name('thongke');
 //Tài khoản chưa kích hoạt
 Route::get('/noActive',function(){
     return view('layouts.active');
