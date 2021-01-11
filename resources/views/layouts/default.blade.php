@@ -134,10 +134,8 @@
                         <div class="col-1">
                         </div>
                         <div class="col-4 col-info-center">
-                            <p class="info-uni"><strong>ĐẠI HỌC KHOA HỌC TỰ NHIÊN</strong></p>
-                            <p class="info-uni"><strong>ĐẠI HỌC QUỐC GIA TPHCM</strong></p>
-                            <p class="info-main-uni">ĐỒ ÁN LẬP TRÌNH WEB</p>
-                            <p class="info-web">Ecommerce-PHP</p>
+                            <img class="img-footer" src="{{url('/image/icon/logo-footer.png')}}"
+                            alt="Girl in a jacket" width="600px" height="auto"></li>                
                         </div>
                         <div class="col-1">
                         </div>

@@ -119,7 +119,8 @@ footer .container-fluid{
  }
  /* FOOTER */
  .container-footer .col-info-center{
-    text-align: center;
+    text-align: left;
+    margin: auto 0px;
  }
  /*  */
  /* #region REPONSIVE */
@@ -931,7 +932,7 @@ footer .container-fluid{
 .col-email{
     font-size: 1.3rem;
     margin-bottom: 10px;
-    text-align: right;
+    text-align: left;
 }
 
 .info-uni{

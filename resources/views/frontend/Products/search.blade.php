@@ -27,7 +27,7 @@
                             VNĐ</span> <br> <small class="text-success">Free shipping</small>
                         </div>
                     </div>
-                      <p class="btn btn-primary float-right btn-price" data-key="{{$product->id_product}}" data-abc="true"> Mua ngay </p>
+                    <p class="btn btn-primary float-right btn-price" data-key="{{$product->id_product}}" data-abc="true"> Mua ngay </p>
             </figure>
         </div>
         @endforeach
@@ -37,6 +37,33 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+    $('.btn-price').on('click', function() {
+                var id = $(this).data('key');
+                var quantity = 0;
+                console.log(id, quantity);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('addToCart') }}",
+                    data: {
+                        id: id,
+                        quantity: quantity
+                    },
+                    success: function(response) {
+                        if(response.msg!=undefined){
+                            alert(response.msg);
+                        }
+                        else{
+                            alert("Đăng nhập để tiếp tục");
+                        }
+                    }
+                })
+
+            });
         //phân trang
         $('#search').after(
             '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
