@@ -107,6 +107,8 @@ Route::get('/top-product', 'AdminController@top_Product')->middleware('Admin');
 Route::get('/view-purchase', 'AdminController@view_Purchase')->middleware('Admin');
 //Thay đổi trạng thái đơn hàng
 Route::post('ajax/changeStatus','PageController@changeStatus')->name('ajax.changeStatus')->middleware('Admin');
+//Thay đổi ququyenf truy cập
+Route::post('ajax/changeRole','AdminController@changeRole')->name('changeRole')->middleware('Admin');
 // view purchase admin
 Route::get('/filter-purchase', 'AdminController@filter_Purchase')->middleware('Admin');
 Route::get('/filter-purchase', 'AdminController@filter_Purchase')->middleware('Admin');
@@ -140,4 +142,4 @@ Route::get('/noActive',function(){
 
 
 //Xóa tài khoản người dùng
-Route::post('/user/delete/{id}', 'AdminController@remove_user')->middleware('Admin')->name('removeUser');
+Route::get('/user/delete/{id}', 'AdminController@remove_user')->middleware('Admin')->name('removeUser');

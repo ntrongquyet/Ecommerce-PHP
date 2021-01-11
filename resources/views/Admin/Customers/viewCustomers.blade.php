@@ -9,14 +9,12 @@
         z-index: 100 !important;
     }
 
-    .delete {
-        color: crimson !important;
-        font-size: 30px !important;
-
-    }
-
     .icon-delete {
         text-align: center;
+    }
+
+    .alert-dismissible .btn-close {
+        padding: 1rem !important;
     }
 
 </style>
@@ -34,6 +32,12 @@
             </div>
         </nav>
         <div class="my-table">
+            @if ($msg != '')
+                <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{ $msg }}
+                </div>
+            @endif
             <table class="table table-image table-dark table-hover" id="data">
                 <thead>
                     <tr>
@@ -46,13 +50,14 @@
                     </tr>
                 <tbody>
                     @foreach ($listCustomer as $item)
-                        <tr>
+                        <tr id="{{ $item->id }}">
+
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>
-                                <select name="status" class="form-control my-background changeStatus">
+                                <select name="status" class="form-control my-background changeRole">
                                     @if ($item->role == 1)
                                         <option selected="selected" value="1">Quản trị viên</option>
                                         <option value="-1">Người dùng</option>
@@ -63,9 +68,39 @@
                                 </select>
                             </td>
                             <td class="icon-delete">
-                                <a class="manipulation delete" href="{{ URL::to('/user/delete/'.$item->id.'/') }}" title="Xóa" data-toggle="tooltip"><i
-                                        class="far fa-trash-alt"></i></a>
-                            </td>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{ $item->id }}">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel" style="color:black;">Thông
+                                                    báo</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close<"></button>
+                                            </div>
+                                            <div class="modal-body" style="color:black;">Bạn có thật sự muốn xóa người dùng
+                                                "{{ $item->username }}"!</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Không</button>
+                                                <a href="{{ route('removeUser', ['id' => $item->id]) }}"
+                                                    style="background-color:#dc3545 !important; border-color: #dc3545 !important"
+                                                    class="btn btn-danger">Có</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <a class="manipulation delete"
+                                    href="{{ route('removeUser', ['id' => $item->id]) }}" title="Xóa"
+                                    data-toggle="tooltip"><i class="far fa-trash-alt"></i></a>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -78,24 +113,24 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.changeStatus').on('change', function() {
-            var id = $(this).closest('tr').attr('id');
-            var value = $(this).val();
-            console.log(id, value);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "{{ route('ajax.changeStatus') }}",
-                data: {
-                    id: id,
-                    value: value
-                }
+            $('.changeRole').on('change', function() {
+                var id = $(this).closest('tr').attr('id');
+                var value = $(this).val();
+                console.log(id, value);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('changeRole') }}",
+                    data: {
+                        id: id,
+                        value: value
+                    }
+                })
             })
-        })
             //phân trang
             $('#data').after(
                 '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'

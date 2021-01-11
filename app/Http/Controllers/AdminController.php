@@ -54,9 +54,11 @@ class AdminController extends Controller
 
     public function view_Customer()
     {
+        $msg = '';
         $listCustomer = DB::table('users')->get();
         return view('Admin.Customers.viewCustomers',[
-            'listCustomer' => $listCustomer
+            'listCustomer' => $listCustomer,
+            'msg'=>$msg
         ]);
     }
 
@@ -377,11 +379,11 @@ class AdminController extends Controller
     }
 
     public function remove_user($id){
-        DB::table('users')->where('id', '=', $id)->delete();
-        $listCustomer = DB::table('users')->get();
-        return view('Admin.Products.viewProductAdmin',[
+      // DB::table('users')->where('id', '=', $id)->delete();
+        $listCustomer = DB::table('users')->select('users.*')->get();
+        return view('Admin.Customers.viewCustomers',[
             'listCustomer' => $listCustomer,
-            'msg' => "xóa thành công",
+            'msg' => "Xóa người dùng thành công!",
         ]);
     }
 
@@ -404,5 +406,14 @@ class AdminController extends Controller
                     }
       echo $data = json_encode($chart_data);
 
+    }
+
+    public function changeRole(Request $res)
+    {
+        $data = $res->input();
+        $id = $data['id'];
+        DB::table('users')
+            ->where('id', '=', $data['id'])
+            ->update(['role' => $data['value']]);
     }
 }
