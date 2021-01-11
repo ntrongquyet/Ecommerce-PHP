@@ -66,7 +66,7 @@ class PageController extends Controller
             'topSaleProduct' => $topSaleProduct,
             'topNewProduct' => $topNewProduct,
             'topLikeProduct' => $topLikeProduct,
-            'currentUser' =>  $currentUser 
+            'currentUser' =>  $currentUser
         ]);
     }
     public function chitietsanpham($idCat, $idProduct)
@@ -244,7 +244,7 @@ class PageController extends Controller
         }
         $msg = "Thêm sản phẩm thất bại";
         $item = Cart::get($idProduct);
-        if ($item != null && ($item->quantity >= $product->quantity || $item->quantity + $qtt >= $product->quantity)) {
+        if ($item != null && ($item->quantity == $product->quantity || $item->quantity + $qtt == $product->quantity)) {
             $qtt = $product->quantity;
 
             // Xoá sản phẩm hiện tại
@@ -263,17 +263,23 @@ class PageController extends Controller
             $msg = "Thêm sản phẩm thành công";
 
         } else {
-            Cart::add(array(
-                'id'    => $idProduct,
-                'name'  => $product->name,
-                'price' => $product->price,
-                'quantity'   => $qtt,
-                'attributes' => [
-                    'img' => $product->avatar,
-                    'cat' => $product->id_Cat,
-                ]
-            ));
-            $msg = "Thêm sản phẩm thành công";
+            if($qtt>$product->quantity){
+                $msg = "Thêm sản phẩm thất bại";
+            }
+            else{
+                Cart::add(array(
+                    'id'    => $idProduct,
+                    'name'  => $product->name,
+                    'price' => $product->price,
+                    'quantity'   => $qtt,
+                    'attributes' => [
+                        'img' => $product->avatar,
+                        'cat' => $product->id_Cat,
+                    ]
+                ));
+                $msg = "Thêm sản phẩm thành công";
+            }
+
 
         }
 
@@ -560,5 +566,5 @@ class PageController extends Controller
             ]);
         }
     }
-    
+
 }

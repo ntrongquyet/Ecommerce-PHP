@@ -20,10 +20,14 @@ class LoginController extends Controller
             ->get()->first();
         if ($user !== null) {
             if (password_verify($data['pwd'], $user->password)) {
-                session()->put('user', $user->username);
-                session()->put('role', $user->role);
-                return redirect('/');
-
+                if($user->email_verified_at!='0000-00-00 00:00:00'){
+                    session()->put('user', $user->username);
+                    session()->put('role', $user->role);
+                    return redirect('/');
+                }
+                else{
+                    return view('layouts.active');
+                }
             } else {
                 $msg = "Mật khẩu đăng nhập không chính xác";
             }

@@ -28,7 +28,7 @@
                                         <div class="cart_item_text">
                                             <i id="cart_quantity_down" class="fas fa-minus"></i>
                                             {{$item->quantity}}
-                                            <i class="fas fa-plus" id="cart_quantity_up"></i>
+                                            <i class="fas fa-plus cart_quantity_up"></i>
                                         </div>
                                     </div>
                                     <div class="cart_item_price cart_info_col">
@@ -108,7 +108,7 @@
             })
 
         });
-        $('#cart_quantity_up').on('click', function(e) {
+        $('.cart_quantity_up').on('click', function(e) {
             var id = $(this).closest('li').attr('id');
             console.log(id);
             $.ajaxSetup({

@@ -16,7 +16,7 @@ class ActiveMail extends Controller
         $user = DB::table('users')->select('username', 'password', 'email_verified_at')
             ->where('username', '=', $username)
             ->get()->first();
-        if ($user->email_verified_at != null) {
+        if ($user->email_verified_at !='0000-00-00 00:00:00') {
             return redirect('Active')->with('status',"Tài khoản này đã kích hoạt");
 
         } else {
