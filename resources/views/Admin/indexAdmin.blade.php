@@ -148,9 +148,10 @@
                 method: 'POST',
                 url: "{{ url('/thongke') }}",
                 data: {"_token": "{{ csrf_token() }}"},
-                success: function(data) { 
-                    console.log(data);
-                    chart.setdata(data);
+                success: function(data) {
+                    _data = JSON.parse(data); 
+                    console.log(_data);
+                    chart.setData(_data);
                 }
             });
         }
@@ -184,7 +185,7 @@
             // ],
 
             // The name of the data record attribute that contains x-values.
-            xkey: 'month',
+            xkey: 'day',
             // A list of names of data record attributes that contain y-values.
             ykeys: ['value'],
             // Labels for the ykeys -- will be displayed when you hover over the
