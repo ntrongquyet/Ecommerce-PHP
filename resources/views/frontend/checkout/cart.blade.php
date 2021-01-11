@@ -88,7 +88,7 @@
 @endif
 <script type="text/javascript">
     $(document).ready(function() {
-        $('cart_quantity_down').on('click', function(e) {
+        $('.cart_quantity_down').on('click', function(e) {
             var id = $(this).closest('li').attr('id');
             console.log(id);
             $.ajaxSetup({
