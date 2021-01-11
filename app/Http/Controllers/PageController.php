@@ -497,7 +497,7 @@ class PageController extends Controller
             ->update(['status' => $data['value']]);
     }
     public function getEdit($id)
-    {
+    {  $msg = '';
         $product = DB::table('Products')
             ->where('id_product', '=', $id)->get()->first();
         $categories = DB::table('Categories')->get();
@@ -506,7 +506,8 @@ class PageController extends Controller
         return view('Admin.Products.editProduct', [
             'product' => $product,
             'categoryList' => $categories,
-            'listImage' => $image
+            'listImage' => $image,
+            'msg' => $msg
         ]);
     }
     public function postEdit(Request $res, $id)
@@ -551,9 +552,7 @@ class PageController extends Controller
                 'avatar' => $data['image'],
             ]);
 
-            $msg = "Thêm sản phẩm thành công";
-
-            $msg = "Thêm sản phẩm thất bại, số lượng ảnh tối thiểu phải là 3";
+            $msg = "Cập nhật phẩm thành công";
 
             $product = DB::table('Products')
                 ->where('id_product', '=', $id)->get()->first();
@@ -563,6 +562,7 @@ class PageController extends Controller
                 'product' => $product,
                 'categoryList' => $categories,
                 'listImage' => $image,
+                'msg' => $msg
             ]);
         }
     }

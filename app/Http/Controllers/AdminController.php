@@ -279,6 +279,11 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+    public function removeUser($id){
+        DB::table('users')->where('id', '=', $id)->delete();
+        return redirect('/');
+    }
+
 
     public function add_ProductAdmin(){
         $categories = DB::table('Categories')->get();
@@ -367,6 +372,15 @@ class AdminController extends Controller
                         ->get();
         return view('Admin.Products.viewProductAdmin',[
             'listProducts' => $listProducts,
+            'msg' => "xóa thành công",
+        ]);
+    }
+
+    public function remove_user($id){
+        DB::table('users')->where('id', '=', $id)->delete();
+        $listCustomer = DB::table('users')->get();
+        return view('Admin.Products.viewProductAdmin',[
+            'listCustomer' => $listCustomer,
             'msg' => "xóa thành công",
         ]);
     }

@@ -63,7 +63,7 @@
                                 </select>
                             </td>
                             <td class="icon-delete">
-                                <a class="manipulation delete" href="#" title="Xóa" data-toggle="tooltip"><i
+                                <a class="manipulation delete" href="{{ URL::to('/user/delete/'.$item->id.'/') }}" title="Xóa" data-toggle="tooltip"><i
                                         class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>

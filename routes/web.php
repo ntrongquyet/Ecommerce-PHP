@@ -131,9 +131,13 @@ Route::post('/product/edit/{id}', 'PageController@postEdit')->middleware('Admin'
 // delete
 Route::get('/product/remove/{id}', 'AdminController@remove')->middleware('Admin')->name('removeProduct');
 
-//
+//Hiểm thi live chart
 Route::post('thongke', 'AdminController@statistic_Purchase')->middleware('Admin')->name('thongke');
 //Tài khoản chưa kích hoạt
 Route::get('/noActive',function(){
     return view('layouts.active');
 });
+
+
+//Xóa tài khoản người dùng
+Route::post('/user/delete/{id}', 'AdminController@remove_user')->middleware('Admin')->name('removeUser');
