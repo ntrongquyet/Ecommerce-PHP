@@ -383,7 +383,7 @@ class AdminController extends Controller
                                 'value'=>$val->total
                             );
                             // $chart_data['month'] = (string) $val->created_at->format('M');
-                            // $chart_data['value'] = $val->total;
+                            // $chart_data['value'] = $val->total
                     }
       echo $data = json_encode($chart_data);
      
