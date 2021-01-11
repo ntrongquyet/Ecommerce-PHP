@@ -1,4 +1,9 @@
 @extends('Admin.AdminPage')
+@section ('title','Lộc đơn hàng')
+@section ('sidebar')
+@parent
+
+@endsection
 @section ('admin-content')
 
 <div class="user-control">

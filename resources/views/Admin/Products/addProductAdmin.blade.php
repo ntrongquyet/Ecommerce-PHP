@@ -1,4 +1,9 @@
 @extends('Admin.AdminPage')
+@section ('title','Thêm sản phẩm')
+@section ('sidebar')
+@parent
+
+@endsection
 @section ('admin-content')
 <div class="user-control">
     <nav class="nav-admin">

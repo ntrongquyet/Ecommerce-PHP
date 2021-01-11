@@ -1,4 +1,9 @@
 @extends('Admin.AdminPage')
+@section ('title','Đơn hàng')
+@section ('sidebar')
+@parent
+
+@endsection
 @section('admin-content')
 
 <style>
