@@ -374,19 +374,18 @@ class AdminController extends Controller
 
     public function statistic_Purchase(Request $res){
         $data = $res->all();
-        $chart_data = array();
-        $get = DB::table('purchases')->where('created_at', '=', now()->month())
+        $get = DB::table('purchases')->whereMonth('created_at', '=', now())
                     ->orderBy('created_at', 'ASC')->get();
-        
+ 
                     foreach ($get as $key => $val){
-                            // $chart_data[] {
-                            //     'year'=>$val->created_at,
-                            //     'value'=>$val->total
-                            //     $chart_data['year'] = $val->created_at;
-                            // );
-                            $chart_data['year'] = $val->created_at;
-                            $chart_data['value'] = $val->total;
+                              $chart_data[] =  array(
+                                'year'=>$val->created_at,
+                                'value'=>$val->total
+                            );
+                            // $chart_data['month'] = (string) $val->created_at->format('M');
+                            // $chart_data['value'] = $val->total;
                     }
       echo $data = json_encode($chart_data);
+     
     }
 }
