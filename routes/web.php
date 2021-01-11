@@ -112,7 +112,7 @@ Route::get('/filter-purchase', 'AdminController@filter_Purchase')->middleware('A
 Route::get('/filter-purchase', 'AdminController@filter_Purchase')->middleware('Admin');
 
 // revenue statistic
-Route::get('/revenue-statistic', 'AdminController@revenue_Statistic')->middleware('Admin')
+Route::get('/revenue-statistic', 'AdminController@revenue_Statistic')->middleware('Admin');
 
 // revenue day
 Route::post('ajax/revenueDay', 'AdminController@revenue_Day')->name('ajax.revenueDay')->middleware('Admin');
@@ -125,14 +125,14 @@ Route::post('ajax/revenueYear', 'AdminController@revenue_Year')->name('ajax.reve
 
 // edit sản phẩm
 
-Route::get('/product/edit/{id}', 'PageController@getEdit')->name('editProduct')->middleware('Admin');
-Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductDB')->middleware('Admin');
+Route::get('/product/edit/{id}', 'PageController@getEdit')->middleware('Admin')->name('editProduct');
+Route::post('/product/edit/{id}', 'PageController@postEdit')->middleware('Admin')->name('editProductDB');
 
 // delete
-Route::get('/product/remove/{id}', 'AdminController@remove')->name('removeProduct')->middleware('Admin');
+Route::get('/product/remove/{id}', 'AdminController@remove')->middleware('Admin')->name('removeProduct');
 
 //
-Route::post('thongke', 'AdminController@statistic_Purchase')->name('thongke')->middleware('Admin');
+Route::post('thongke', 'AdminController@statistic_Purchase')->middleware('Admin')->name('thongke');
 //Tài khoản chưa kích hoạt
 Route::get('/noActive',function(){
     return view('layouts.active');
