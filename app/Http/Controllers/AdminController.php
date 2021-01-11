@@ -16,7 +16,16 @@ class AdminController extends Controller
     private $limit = 5;
     public function index_Admin()
     {
-        return view('Admin.indexAdmin');
+        $countUser = DB::table('users')->count();
+        $countPurchase = DB::table('purchases')->count();
+        $countCategory = DB::table('categories')->count();
+        $countProduct = DB::table('products')->count();
+        return view('Admin.indexAdmin', [
+            'countUser' =>  $countUser,
+            'countPurchase' => $countPurchase,
+            'countCategory' => $countCategory,
+            'countProduct' => $countProduct
+        ]);
     }
 
     public function view_Product()
@@ -360,5 +369,24 @@ class AdminController extends Controller
             'listProducts' => $listProducts,
             'msg' => "xóa thành công",
         ]);
+    }
+
+
+    public function statistic_Purchase(Request $res){
+        $data = $res->all();
+        $chart_data = array();
+        $get = DB::table('purchases')->where('created_at', '=', now()->month())
+                    ->orderBy('created_at', 'ASC')->get();
+        
+                    foreach ($get as $key => $val){
+                            // $chart_data[] {
+                            //     'year'=>$val->created_at,
+                            //     'value'=>$val->total
+                            //     $chart_data['year'] = $val->created_at;
+                            // );
+                            $chart_data['year'] = $val->created_at;
+                            $chart_data['value'] = $val->total;
+                    }
+      echo $data = json_encode($chart_data);
     }
 }

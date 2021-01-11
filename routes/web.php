@@ -124,3 +124,6 @@ Route::post('/product/edit/{id}', 'PageController@postEdit')->name('editProductD
 
 // delete
 Route::get('/product/remove/{id}', 'AdminController@remove')->name('removeProduct')->middleware('RoleCheck');
+
+//
+Route::post('thongke', 'AdminController@statistic_Purchase')->name('thongke');
