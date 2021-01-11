@@ -29,7 +29,8 @@
 
     <!-- nhan -->
 
-    <title>@yield('Administrator')</title>
+    <title>@yield('title')</title>
+    <link rel = "icon" href = "{{url('/image/icon/icon.ico')}}" type = "image/x-icon"> 
 </head>
 
 
