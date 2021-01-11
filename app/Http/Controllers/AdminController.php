@@ -36,7 +36,7 @@ class AdminController extends Controller
         return view('Admin.Products.viewProductAdmin',[
             'listProducts' => $listProducts,
         ]);
-    } 
+    }
 
     public function top_Product()
     {
@@ -62,7 +62,7 @@ class AdminController extends Controller
 
     public function add_Customer()
     {
-        
+
         return view('Admin.Customers.addCustomer');
     }
 
@@ -255,7 +255,7 @@ class AdminController extends Controller
         }
         return response()->json(['statistics' => [],'total_price'=> 0,  'total_purchase' => 0], 200);
     }
-    
+
     public function revenue_Year(Request $res)
     {
         $year = $res->input('year');
@@ -403,6 +403,6 @@ class AdminController extends Controller
                             // $chart_data['value'] = $val->total
                     }
       echo $data = json_encode($chart_data);
-     
+
     }
 }
