@@ -16,7 +16,7 @@
     <!--modal-->
     <h1 style="
     text-align: center;">
-        Chào mừng {{$details['username']}} đến với trang thương mại điện tử
+        Chào mừng bạn đến với trang thương mại điện tử
     </h1>
     @if(isset($details['username']))
 
@@ -50,7 +50,7 @@
         <p style="
     text-align: center;
     font-size: 120%;">
-    Vui lòng click vào đường button bên dưới để kích hoạt tài khoản</p>
+    Vui lòng click vào đường button bên dưới để thiết lập lại mật khẩu/p>
         <div style="
     text-align: center;
     width: 280px;
@@ -70,24 +70,3 @@
 </body>
 
 </html>
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Trang thương mại điện tử</title>
-</head>
-
-<body>
-    <h1>{{ $details['title'] }}</h1>
-    @if(isset($details['username']))
-    <span>Vui lòng click vào <a href="{{$details['link']}}">đây</a> để kích hoạt tài khoản</span>
-    @endif
-
-    @if(isset($details['reset']))
-    <span>Vui lòng click vào <a href="{{$details['link']}}">đây</a> để reset tài khoản</span>
-    @endif
-    <p>Thank you</p>
-
-</body>
-
-</html> -->

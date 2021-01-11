@@ -78,7 +78,7 @@
                         <div class="inner">
                             <h3>{{ $countCategory }}</h3>
 
-                            <p>Loại mặc hàng</p>
+                            <p>Loại mặt hàng</p>
                         </div>
                         <div class="admin-icon">
                             <i class="fas fa-star-half-alt"></i>
