@@ -133,17 +133,18 @@
         });
 
         function load_data() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+        
             $.ajax({
                 method: 'POST',
-                url: "{{ route('thongke') }}",
-                data: {_token:_token},
-                success: function(data) {
+                url: "{{ url('/thongke') }}",
+                data: {"_token": "{{ csrf_token() }}"},
+                success: function(data) { 
+                    console.log(data);
                     chart.setdata(data);
                 }
             });
@@ -178,7 +179,7 @@
             // ],
 
             // The name of the data record attribute that contains x-values.
-            xkey: 'year',
+            xkey: 'month',
             // A list of names of data record attributes that contain y-values.
             ykeys: ['value'],
             // Labels for the ykeys -- will be displayed when you hover over the
