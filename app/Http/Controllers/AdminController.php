@@ -36,7 +36,7 @@ class AdminController extends Controller
         return view('Admin.Products.viewProductAdmin',[
             'listProducts' => $listProducts,
         ]);
-    } 
+    }
 
     public function top_Product()
     {
@@ -62,7 +62,7 @@ class AdminController extends Controller
 
     public function add_Customer()
     {
-        
+
         return view('Admin.Customers.addCustomer');
     }
 
@@ -255,7 +255,7 @@ class AdminController extends Controller
         }
         return response()->json(['statistics' => [],'total_price'=> 0,  'total_purchase' => 0], 200);
     }
-    
+
     public function revenue_Year(Request $res)
     {
         $year = $res->input('year');
@@ -374,19 +374,21 @@ class AdminController extends Controller
 
     public function statistic_Purchase(Request $res){
         $data = $res->all();
-        $get = DB::table('purchases')
-                ->whereMonth('created_at', '=', now())
-               ->get();
+        $get = DB::table('purchases as pur')
+                ->whereMonth('pur.created_at', '=', now())
+                ->select(array(DB::Raw('sum(pur.total) as total'), DB::Raw('DATE(pur.created_at) day')))
+                ->groupBy('day')
+                ->get();
                 //$date = date("d-m-y",$val->created_at);
                     foreach ($get as $key => $val){
                               $chart_data[] =  array(
-                                'day'=> Carbon::parse($val->created_at)->day,
+                                'day'=> $val->day,
                                 'value'=>$val->total
                             );
                             // $chart_data['month'] = (string) $val->created_at->format('M');
                             // $chart_data['value'] = $val->total
                     }
       echo $data = json_encode($chart_data);
-     
+
     }
 }

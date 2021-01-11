@@ -10,11 +10,9 @@
         .small-box {
             border-radius: 5px !important;
         }
-
         .small-box .inner {
             padding: 10px;
         }
-
         .small-box-footer {
             background-color: rgba(0, 0, 0, .1);
             color: rgba(255, 255, 255, .8);
@@ -26,15 +24,12 @@
             z-index: 10;
             transition: .5s;
         }
-
         .small-box-footer:hover {
             color: black !important;
         }
-
         .fa-arrow-circle-right {
             margin-left: 5px;
         }
-
         .admin-icon {
             font-size: 50px;
             position: absolute;
@@ -43,15 +38,12 @@
             color: rgba(0, 0, 0, .15);
             transition: .75s ease;
         }
-
         .small-box:hover>.admin-icon {
             font-size: 60px;
         }
-
         .inner p {
             z-index: 100;
         }
-
     </style>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -132,36 +124,31 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-
             load_data();
-
         });
-
         function load_data() {
             // $.ajaxSetup({
             //     headers: {
             //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             //     }
             // });
-        
+
             $.ajax({
                 method: 'POST',
                 url: "{{ url('/thongke') }}",
                 data: {"_token": "{{ csrf_token() }}"},
                 success: function(data) {
-                    _data = JSON.parse(data); 
+                    _data = JSON.parse(data);
                     console.log(_data);
                     chart.setData(_data);
                 }
             });
         }
-
         let chart = new Morris.Line({
             // ID of the element in which to draw the chart.
             element: 'myfirstchart',
             // Chart data records -- each entry in this array corresponds to a point on
             // the chart.
-
             // data: [{
             //         year: '2008',
             //         value: 20
@@ -183,15 +170,17 @@
             //         value: 20
             //     }
             // ],
-
             // The name of the data record attribute that contains x-values.
             xkey: 'day',
             // A list of names of data record attributes that contain y-values.
             ykeys: ['value'],
             // Labels for the ykeys -- will be displayed when you hover over the
             // chart.
-            labels: ['Value']
-        });
+            labels: ['Value'],
+            xLabelFormat: function(d) {
+                    return d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear();
+                    },
 
+        });
     </script>
 @endsection
