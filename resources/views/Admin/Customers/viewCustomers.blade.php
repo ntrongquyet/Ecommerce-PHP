@@ -1,9 +1,25 @@
 @extends('Admin.AdminPage')
-@section ('title','Thống kê')
-@section ('sidebar')
-@parent
+@section('title', 'Người dùng')
+@section('sidebar')
+    @parent
 
 @endsection
+<style>
+    .manipulation {
+        z-index: 100 !important;
+    }
+
+    .delete {
+        color: crimson !important;
+        font-size: 30px !important;
+
+    }
+
+    .icon-delete {
+        text-align: center;
+    }
+
+</style>
 @section('admin-content')
 
     <div class="user-control">
@@ -25,6 +41,8 @@
                         <th scope="col" class="font-weight-bold">Username</th>
                         <th scope="col" class="font-weight-bold">Email</th>
                         <th scope="col" class="font-weight-bold">Ngày tạo</th>
+                        <th scope="col" class="font-weight-bold">Quyền truy cập</th>
+                        <th scope="col" class="font-weight-bold">Xóa người dùng</th>
                     </tr>
                 <tbody>
                     @foreach ($listCustomer as $item)
@@ -33,6 +51,21 @@
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->created_at }}</td>
+                            <td>
+                                <select name="status" class="form-control my-background changeStatus">
+                                    @if ($item->role == 1)
+                                        <option selected="selected" value="1">Quản trị viên</option>
+                                        <option value="-1">Người dùng</option>
+                                    @else
+                                        <option value="1">Quản trị viên</option>
+                                        <option selected="selected" value="-1">Người dùng</option>
+                                    @endif
+                                </select>
+                            </td>
+                            <td class="icon-delete">
+                                <a class="manipulation delete" href="#" title="Xóa" data-toggle="tooltip"><i
+                                        class="far fa-trash-alt"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -45,6 +78,24 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $('.changeStatus').on('change', function() {
+            var id = $(this).closest('tr').attr('id');
+            var value = $(this).val();
+            console.log(id, value);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('ajax.changeStatus') }}",
+                data: {
+                    id: id,
+                    value: value
+                }
+            })
+        })
             //phân trang
             $('#data').after(
                 '<div class="row mt-2"><nav id="pageginNum" aria-label="Page navigation example pagination-secondary" style="margin: 0 auto"><ul id="nav" class="pagination"></ul></div>'
@@ -52,9 +103,8 @@
             var rowsShown = 8;
             var rowsTotal = $('#data tbody tr').length;
             var numPages = rowsTotal / rowsShown;
-            if(numPages > 1)
-            {
-                
+            if (numPages > 1) {
+
                 for (i = 0; i < numPages; i++) {
                     var pageNum = i + 1;
                     $('#nav').append(
